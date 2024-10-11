@@ -47,7 +47,7 @@ Asegúrate de tener instaladas las siguientes herramientas en tu entorno de desa
 1. **Clona el repositorio:**
 
    ```bash
-   git clone https://github.com/JavaChispas/proyecto-final-programacion3.git
+   git clone https://github.com/Juani17/proyectFinal
    ```
 
 2. **Navega al directorio del proyecto:**
