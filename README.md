@@ -13,7 +13,7 @@
 
 ## Descripción del Proyecto
 
-Este es el proyecto final de la materia Programación 3, desarrollado utilizando **React** con **TypeScript** y empaquetado con **Vite**. El objetivo del proyecto es aplicar los conceptos aprendidos durante el curso, incluyendo desarrollo de interfaces de usuario dinámicas y optimizadas. El proyecto trata sobre un local que ofrece su menú de manera digital, através de las tecnologías mencionadas anteriormente llevamos a cabo el proyecto.
+Este es el proyecto final de la materia Programación 3, desarrollado utilizando **React** con **TypeScript** y empaquetado con **Vite**. El objetivo del proyecto es aplicar los conceptos aprendidos durante el curso, incluyendo el desarrollo de interfaces de usuario dinámicas y optimizadas. El proyecto trata sobre un local que ofrece su menú de manera digital, utilizando las tecnologías mencionadas para crear una experiencia interactiva y eficiente.
 
 ---
 
@@ -22,7 +22,11 @@ Este es el proyecto final de la materia Programación 3, desarrollado utilizando
 - **React**: Biblioteca para la creación de interfaces de usuario.
 - **TypeScript**: Lenguaje tipado sobre JavaScript.
 - **Vite**: Herramienta rápida de desarrollo y empaquetado.
-  
+- **Redux Toolkit**: Gestión del estado global.
+- **React Router DOM**: Manejo de rutas para navegación.
+- **React Hook Form**: Manejo de formularios.
+- **Bootstrap**: Framework de diseño para interfaces responsive.
+
 ---
 
 ## Requisitos Previos
@@ -31,6 +35,10 @@ Asegúrate de tener instaladas las siguientes herramientas en tu entorno de desa
 
 - [Node.js](https://nodejs.org/) (versión 16 o superior)
 - [npm](https://www.npmjs.com/) o [yarn](https://yarnpkg.com/)
+- [Redux Toolkit](https://redux-toolkit.js.org/)
+- [React Router DOM](https://reactrouter.com/)
+- [React Hook Form](https://react-hook-form.com/)
+- [Bootstrap](https://getbootstrap.com/)
 
 ---
 
@@ -64,7 +72,17 @@ Asegúrate de tener instaladas las siguientes herramientas en tu entorno de desa
    yarn install
    ```
 
-4. **Inicia el servidor de desarrollo:**
+5. **Instalación de tecnologías adicionales:**
+
+   Si usas **npm**:
+
+   ```bash
+   npm install @reduxjs/toolkit react-redux
+   npm install react-router-dom
+   npm install react-hook-form
+   npm install bootstrap
+   ```
+5. **Inicia el servidor de desarrollo:**
 
    Si usas **npm**:
 
