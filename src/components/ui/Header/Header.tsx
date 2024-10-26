@@ -12,7 +12,7 @@ export const Header = () => {
         </div>
         <div className={styles.buttonContainer}>
           <button className={styles.buttonLogOut}>
-            LOGOUT <span className="material-symbols-outlined">logout</span>
+            LOGOUT <span className="material-symbols-outlined"></span>
           </button>
         </div>
       </Container>
