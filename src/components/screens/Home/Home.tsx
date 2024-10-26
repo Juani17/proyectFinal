@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Modal from '../../ui/Modal';
+import Modal from '../../ui/modal/Modal';
 import styles from './Home.module.css';
 import { useForm } from '../../hooks/useForm/useForm';
 import { IEmpresa } from '../../types/IEmpresa';
