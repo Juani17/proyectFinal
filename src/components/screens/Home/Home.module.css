@@ -1,0 +1,133 @@
+.containerView{
+
+    display: grid;
+    grid-template-columns: 0.2fr 0.8fr;
+}
+
+
+
+
+/* ASIDE */
+
+.asideContainer{
+    max-height: 100vh;
+    overflow-y: auto;
+    padding-top: 2rem;
+    color: white;
+    width: 100%;
+    height: 100vh;
+    background-color: #08192D;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.asideContainer button {
+    width: 10vw;
+    padding: 0.4rem;
+    background-color: #006284;
+    color: white;
+    border: none;
+    border-radius: 0.4rem;
+    text-align: center;
+}
+
+
+
+
+/* MAIN */
+
+.mainContainer{
+    padding: 2rem 4rem 2rem 4rem;
+    width: 100%;
+    height: 100vh;
+    background-color: #006284;
+    
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.containerButtonSucursal button{
+    width: 10vw;
+    padding: 0.4rem;
+    background-color: #08192D;
+    color: white;
+    border: none;
+    border-radius: 0.4rem;
+    text-align: center;
+}
+
+.containerSucursales {
+    height: 100vh;
+    border: 1px solid white;
+}
+
+.containerAgregarimagen {
+    background-color: #006284;
+    width: 324px;
+    height: 100px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.containerButton {
+    width: 324px;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.containerButton button {
+    padding: 4px;
+    width: 100px;
+    border: none;
+    color: white;
+    border-radius: 5px;
+}
+
+.modalContainer {
+    width: 100%;
+    background-color: #08192D;
+    padding: 20px;
+    border-radius: 10px;
+    position: relative;
+    max-width: 600px;
+    max-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;    
+    align-items: center;
+    gap: 1rem;
+}
+
+.modalContainer h2 {
+    width: 324px;
+    text-align: center;
+    font-size: 24px;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid white;
+    margin-bottom: 1rem;
+}
+
+.modalContainer input {
+    width: 324px;
+    color: white;
+    background-color: #006284;
+    border: none;
+    padding: 0.4rem 0.4rem 0.4rem 0.9rem;
+}
+
+.modalContainer input::placeholder {
+    color: #EAEAEA;
+    opacity: 1;
+}
+
+.modalContainer input:focus {
+    outline: none
+}
