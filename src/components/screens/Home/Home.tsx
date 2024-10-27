@@ -140,8 +140,8 @@ export const Home = () => {
                         </div>
 
                         <div className={styles.containerButton}>
-                            <button style={{ backgroundColor: '#F80000' }} onClick={handleCloseModal}>Cancelar</button>
-                            <button style={{ backgroundColor: '#26E200' }} type='submit'>Confirmar</button>
+                            <button style={{ backgroundColor: '#FF4500' }} onClick={handleCloseModal}>Cancelar</button>
+                            <button style={{ backgroundColor: '#FF4500' }} type='submit'>Confirmar</button>
                         </div>
                     </form>
                 </Modal>
