@@ -77,7 +77,7 @@ export const Home = () => {
 
   return (
     <>
-      <div className={styles.containerView}>
+      <div className={`${styles.containerView} ${isOpenModal || isOpenSucursalModal ? styles.blurredBackground : ''}`}>
         <aside className={styles.asideContainer}>
           <div>
             <h1 style={{ fontSize: "1.8rem" }}>Empresas</h1>
