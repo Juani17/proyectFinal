@@ -1,15 +1,14 @@
-import { Home } from "./components/screens/Home/Home"
-import { Header } from "./components/ui/Header/Header"
-
+import { Home } from "./components/screens/Home/Home";
+import { Header } from "./components/ui/Header/Header";
+import { ModalProvider } from "./context/ModalContext";
 
 function App() {
-
   return (
-    <>
-      <Header/>
-      <Home/>
-    </>
-  )
+    <ModalProvider>
+      <Header />
+      <Home />
+    </ModalProvider>
+  );
 }
 
-export default App
+export default App;

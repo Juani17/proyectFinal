@@ -6,23 +6,27 @@ import { IEmpresa } from "../../types/IEmpresa";
 import { ISucursales } from "../../types/ISucursales";
 import PopUpSucursal from "../../ui/PopUpSucursal/PopUpSucursal";
 import { CardSucursal } from "../../ui/CardSucursal/CardSucursal";
+import { useModalContext } from "../../../context/ModalContext";
 
 export const Home = () => {
+  // Contexto de modales
+  const {
+    isOpenModal,
+    openModal,
+    closeModal,
+    isOpenSucursalModal,
+    closeSucursalModal,
+    openSucursalModal,
+  } = useModalContext();
+
   // Estado de empresas
   const [empresas, setEmpresa] = useState<IEmpresa[]>([]);
+  const [sucursales, setSucursales] = useState<ISucursales[]>([]); // Estado para sucursales
 
-  // Array para guardar sucursales
-  const [sucursales, setSucursales] = useState<ISucursales[]>([]); // Nuevo estado para las sucursales
+  const [selectedImage, setSelectedImage] = useState<File | null>(null); // Estado del logo de la empresa
+  const [imagePreviewUrl, setImagePreviewUrl] = useState<string | null>(null); // Estado para el URL de la imagen
 
-  // Estado del modal crear empresa
-  const [isOpenModal, setIsOpenModal] = useState(false);
-
-  // Estado del logo de la empresa
-  const [selectedImage, setSelectedImage] = useState<File | null>(null);
-
-  // Estado para el URL de la imagen
-  const [imagePreviewUrl, setImagePreviewUrl] = useState<string | null>(null);
-
+  // Formulario con useForm hook
   const { values, handleChange, handleSubmitForm } = useForm({
     nombre: "",
     razonSocial: "",
@@ -31,28 +35,20 @@ export const Home = () => {
 
   const { nombre, razonSocial, cuit } = values;
 
-  // Inicializar modal Sucursal cerrado
-  const [isOpenSucursalModal, setIsOpenSucursalModal] = useState(false);
-
-  // Al tocar el botón se abre el modal Sucursal
-  const handlePopUpSucursal = () => setIsOpenSucursalModal(true);
-
-  // Muestra la sucursal agregada
+  // Función para manejar el botón de agregar sucursal
   const handleAddSucursal = (sucursal: ISucursales) => {
     console.log("Sucursal añadida:", sucursal);
     setSucursales((prev) => [...prev, sucursal]);
   };
 
-  const handleOpenModal = () => {
-    setIsOpenModal(true);
-  };
-
+  // Manejador de cierre del modal
   const handleCloseModal = () => {
-    setIsOpenModal(false);
+    closeModal();
     setSelectedImage(null);
     setImagePreviewUrl(null); // Reinicia la vista previa al cerrar
   };
 
+  // Manejador del cambio de imagen
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
@@ -61,11 +57,10 @@ export const Home = () => {
     }
   };
 
+  // Manejador del envío del formulario
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     if (selectedImage) {
-      // Aquí puedes manejar el envío de los datos, incluyendo la imagen
-      // Ejemplo: agregar la empresa a la lista
       setEmpresa((prev) => [
         ...prev,
         { nombre, razonSocial, cuit, logo: selectedImage },
@@ -86,38 +81,43 @@ export const Home = () => {
             <h1 style={{ fontSize: "1.8rem" }}>Empresas</h1>
           </div>
           <div>
-            <button onClick={handleOpenModal}>Agregar Empresa</button>
+            <button onClick={openModal}>Agregar Empresa</button>
           </div>
-          <div className={styles.empresaContainer}>
-            {empresas.map((empresa, index) => (
-              <div key={index}>
-                <h3 style={{ color: "white" }}>{empresa.nombre}</h3>
-                <div className={styles.iconsContainer}>
-                <i className="fa-solid fa-eye" style={{color:" #086A87"}}></i>
-                <i className="fa-solid fa-trash" style={{color:" #c9410b"}}></i>
-                <i className="fa-solid fa-pencil"style={{color:" #17985A"}}></i>
+          {empresas.length > 0 && (
+            <div className={styles.empresaContainer}>
+              {empresas.map((empresa, index) => (
+                <div key={index} className={styles.empresaCard}>
+                  {" "}
+                  {/* Añade una clase para el estilo de cada empresa */}
+                  <h3 style={{ color: "white" }}>{empresa.nombre}</h3>
+                  <div className={styles.iconsContainer}>
+                    <i
+                      className="fa-solid fa-eye"
+                      style={{ color: "#086A87" }}
+                    ></i>
+                    <i
+                      className="fa-solid fa-trash"
+                      style={{ color: "#c9410b" }}
+                    ></i>
+                    <i
+                      className="fa-solid fa-pencil"
+                      style={{ color: "#17985A" }}
+                    ></i>
+                  </div>
                 </div>
-                {/* <p>{empresa.razonSocial}</p>
-                <p>{empresa.cuit}</p>
-                {empresa.logo && (
-                  <img
-                    src={URL.createObjectURL(empresa.logo)}
-                    alt="Logo"
-                    style={{
-                      maxWidth: "100px",
-                      maxHeight: "100px",
-                      objectFit: "cover",
-                    }}
-                  />
-                )} */}
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
         </aside>
 
         <div className={styles.mainContainer}>
-          <div className={styles.containerButtonSucursal}>
-            <button onClick={handlePopUpSucursal}>Agregar Sucursal</button>
+          <div>
+            <button
+              className={styles.containerButtonSucursal}
+              onClick={openSucursalModal}
+            >
+              Agregar Sucursal
+            </button>
           </div>
           <div className={styles.containerSucursales}>
             {sucursales.map((sucursal, index) => (
@@ -133,6 +133,7 @@ export const Home = () => {
         </div>
       </div>
 
+      {/* Modal para agregar empresa */}
       {isOpenModal && (
         <Modal>
           <form onSubmit={handleSubmit} className={styles.modalContainer}>
@@ -161,17 +162,15 @@ export const Home = () => {
               onChange={handleChange}
               required
             />
-
             <div className={styles.containerAgregarimagen}>
               <input
                 type="file"
                 accept="image/*"
                 onChange={handleImageChange}
                 id="file-upload"
-                style={{ display: "none" }} // Oculta el input
+                style={{ display: "none" }}
                 required
               />
-              {/* Botón personalizado */}
               <label htmlFor="file-upload" className={styles.customFileUpload}>
                 Seleccionar imagen
               </label>
@@ -194,7 +193,6 @@ export const Home = () => {
                 </span>
               )}
             </div>
-
             <div className={styles.containerButton}>
               <button
                 style={{ backgroundColor: "#F80000" }}
@@ -210,11 +208,11 @@ export const Home = () => {
         </Modal>
       )}
 
-      {/* Modal de Sucursal */}
+      {/* Modal para agregar sucursal */}
       {isOpenSucursalModal && (
         <PopUpSucursal
           isOpen={isOpenSucursalModal}
-          onClose={() => setIsOpenSucursalModal(false)}
+          onClose={closeSucursalModal}
           onAddSucursal={handleAddSucursal}
         />
       )}

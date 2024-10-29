@@ -134,20 +134,27 @@
 }
 
 .blurredBackground {
-    filter: blur(2px); /* Ajusta el nivel de difuminado */
-    pointer-events: none; /* Para que no se pueda interactuar con el fondo mientras está activo */
-}
-.empresaContainer{
-    padding-top:15px ;
-    border-radius: 1rem;
-    background-color:#212121 ;
-    display: flex;
-    justify-content: center;
-    width: 80%;
-}
+    filter: blur(2px);
+  }
 .iconsContainer{
     padding: 1.6rem;
     display: flex;
     justify-content: space-around;
     font-size: 1.6rem;
 }
+/* En CardSucursal.module.css o el archivo CSS correspondiente */
+.empresaContainer {
+    display: flex;
+    flex-direction: column; /* Hace que los elementos hijos se dispongan en una columna */
+    gap: 1rem; /* Añade espacio entre cada empresa */
+    background-color: #333; /* Solo si quieres un fondo cuando hay contenido */
+    padding: 1rem; /* Añade un padding si deseas separar el contenido de los bordes */
+    border-radius: 8px; /* Opcional, para dar un borde redondeado */
+  }
+  
+  .empresaCard {
+    padding: 10px;
+    background-color: #444; /* Color de fondo individual para cada empresa */
+    border-radius: 5px;
+  }
+  
