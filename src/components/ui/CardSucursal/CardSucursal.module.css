@@ -23,10 +23,11 @@
 }
 
 .ContainersIcons{
+    font-size: 1.3rem;
     display: flex;
-    gap: 1vh;
+    gap: 2vh;
     margin: .4rem;
-    padding: .4rem;
+    padding: .6rem;
 }
 .ContainersIcons span:hover{
     cursor: pointer;

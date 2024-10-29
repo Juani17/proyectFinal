@@ -16,9 +16,10 @@ export const CardSucursal: React.FC<CardSucursalProps> = ({ nombre, horarioApert
               <img src={imagen} alt={nombre} />
           </div>
           <div className={styles.ContainersIcons}>
-              <span className="material-symbols-outlined">edit</span>
-              <span className="material-symbols-outlined">delete</span>
-              <span className="material-symbols-outlined">visibility</span>
+          <i className="fa-solid fa-eye" style={{color:" #086A87"}}></i>
+          <i className="fa-solid fa-trash" style={{color:" #c9410b"}}></i>
+          <i className="fa-solid fa-pencil"style={{color:" #17985A"}}></i>
+              
           </div>
       </div>
   );

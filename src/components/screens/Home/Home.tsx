@@ -14,7 +14,6 @@ export const Home = () => {
   // Array para guardar sucursales
   const [sucursales, setSucursales] = useState<ISucursales[]>([]); // Nuevo estado para las sucursales
 
-
   // Estado del modal crear empresa
   const [isOpenModal, setIsOpenModal] = useState(false);
 
@@ -77,7 +76,11 @@ export const Home = () => {
 
   return (
     <>
-      <div className={`${styles.containerView} ${isOpenModal || isOpenSucursalModal ? styles.blurredBackground : ''}`}>
+      <div
+        className={`${styles.containerView} ${
+          isOpenModal || isOpenSucursalModal ? styles.blurredBackground : ""
+        }`}
+      >
         <aside className={styles.asideContainer}>
           <div>
             <h1 style={{ fontSize: "1.8rem" }}>Empresas</h1>
@@ -88,8 +91,13 @@ export const Home = () => {
           <div className={styles.empresaContainer}>
             {empresas.map((empresa, index) => (
               <div key={index}>
-                <h3>{empresa.nombre}</h3>
-                <p>{empresa.razonSocial}</p>
+                <h3 style={{ color: "white" }}>{empresa.nombre}</h3>
+                <div className={styles.iconsContainer}>
+                <i className="fa-solid fa-eye" style={{color:" #086A87"}}></i>
+                <i className="fa-solid fa-trash" style={{color:" #c9410b"}}></i>
+                <i className="fa-solid fa-pencil"style={{color:" #17985A"}}></i>
+                </div>
+                {/* <p>{empresa.razonSocial}</p>
                 <p>{empresa.cuit}</p>
                 {empresa.logo && (
                   <img
@@ -101,7 +109,7 @@ export const Home = () => {
                       objectFit: "cover",
                     }}
                   />
-                )}
+                )} */}
               </div>
             ))}
           </div>
@@ -112,15 +120,15 @@ export const Home = () => {
             <button onClick={handlePopUpSucursal}>Agregar Sucursal</button>
           </div>
           <div className={styles.containerSucursales}>
-          {sucursales.map((sucursal, index) => (
-        <CardSucursal
-            key={index}
-            nombre={sucursal.nombre}
-            horarioApertura={sucursal.horarioApertura}
-            horarioCierre={sucursal.horarioCierre}
-            imagen={sucursal.imagen} 
-        />
-    ))}
+            {sucursales.map((sucursal, index) => (
+              <CardSucursal
+                key={index}
+                nombre={sucursal.nombre}
+                horarioApertura={sucursal.horarioApertura}
+                horarioCierre={sucursal.horarioCierre}
+                imagen={sucursal.imagen}
+              />
+            ))}
           </div>
         </div>
       </div>

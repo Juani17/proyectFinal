@@ -137,3 +137,17 @@
     filter: blur(2px); /* Ajusta el nivel de difuminado */
     pointer-events: none; /* Para que no se pueda interactuar con el fondo mientras está activo */
 }
+.empresaContainer{
+    padding-top:15px ;
+    border-radius: 1rem;
+    background-color:#212121 ;
+    display: flex;
+    justify-content: center;
+    width: 80%;
+}
+.iconsContainer{
+    padding: 1.6rem;
+    display: flex;
+    justify-content: space-around;
+    font-size: 1.6rem;
+}
