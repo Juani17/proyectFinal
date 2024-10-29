@@ -1,8 +1,8 @@
 export interface ISucursales {
     nombre: string
-    horarioApertura: Date
-    horarioCierre: Date
-    pais: String
+    horarioApertura: string
+    horarioCierre: string
+    pais: string
     provincia: string
     latitud: string
     longitud: string

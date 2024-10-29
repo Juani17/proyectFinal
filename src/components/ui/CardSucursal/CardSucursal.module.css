@@ -1,0 +1,34 @@
+.ContainerCardPrincipal{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: whitesmoke;
+    color: black;
+    border-radius: 2vh;
+    width: 25%;   
+    padding: .4rem;
+    margin: .4rem;
+}
+
+.ContainerImage{
+    width: 50%;
+
+}
+
+.ContainerImage img{
+    width: 100%;
+    border-radius: 2vh;
+    box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.5);
+}
+
+.ContainersIcons{
+    font-size: 1.3rem;
+    display: flex;
+    gap: 2vh;
+    margin: .4rem;
+    padding: .6rem;
+}
+.ContainersIcons span:hover{
+    cursor: pointer;
+}
