@@ -10,7 +10,7 @@ interface CardSucursalProps {
 export const CardSucursal: React.FC<CardSucursalProps> = ({ nombre, horarioApertura, horarioCierre, imagen }) => {
   return (
       <div className={styles.ContainerCardPrincipal}>
-          <h2>{nombre}</h2> {/* Cambiado para mostrar el nombre de la sucursal */}
+          <h2>{nombre}</h2> 
           <p>Horario: {horarioApertura} - {horarioCierre}</p>
           <div className={styles.ContainerImage}>
               <img src={imagen} alt={nombre} />

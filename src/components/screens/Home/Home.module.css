@@ -5,8 +5,6 @@
 }
 
 
-
-
 /* ASIDE */
 
 .asideContainer{
@@ -50,7 +48,7 @@
     
 }
 
-.containerButtonSucursal button{
+.containerButtonSucursal{
     width: 10vw;
     padding: 0.4rem;
     background-color: #000000;
@@ -62,9 +60,16 @@
 }
 
 .containerSucursales {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Tres columnas de igual ancho */
+    grid-auto-rows: 225px; /* Establece una altura fija para cada tarjeta */
+    gap: 20px; /* Espacio entre las tarjetas */
     height: 100vh;
     border: 1px solid white;
+    padding: 10px;
+    overflow-y: auto; /* Permite scroll vertical si hay más tarjetas */
 }
+
 
 .containerAgregarimagen {
     background-color: black;

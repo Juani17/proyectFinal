@@ -1,14 +1,17 @@
-.ContainerCardPrincipal{
+.ContainerCardPrincipal {
+    background-color: whitesmoke;
+    color: black;
+    border-radius: 2vh;
+    max-width: 250px; /* Define un ancho máximo para evitar el estiramiento */
+    width: 100%; /* Ocupa todo el ancho disponible dentro del max-width */
+    height: auto;
+    padding: 0.4rem;
+    margin: 0.4rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: whitesmoke;
-    color: black;
-    border-radius: 2vh;
-    width: 25%;   
-    padding: .4rem;
-    margin: .4rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .ContainerImage{
