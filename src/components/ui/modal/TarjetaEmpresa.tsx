@@ -1,5 +1,5 @@
 import { FC } from "react"
-import { IEmpresa } from "../../types/IEmpresa"
+import { IEmpresa } from "../../../types/IEmpresa"
 
 
 export const TarjetaEmpresa: FC<IEmpresa>  = () => {

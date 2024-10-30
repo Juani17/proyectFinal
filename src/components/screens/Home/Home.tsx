@@ -1,23 +1,28 @@
 import { useState } from "react";
 import Modal from "../../ui/modal/Modal";
 import styles from "./Home.module.css";
-import { useForm } from "../../hooks/useForm/useForm";
-import { IEmpresa } from "../../types/IEmpresa";
-import { ISucursales } from "../../types/ISucursales";
+import { useForm } from "../../../hooks/useForm/useForm";
+import { IEmpresa } from "../../../types/IEmpresa";
+import { ISucursales } from "../../../types/ISucursales";
 import PopUpSucursal from "../../ui/PopUpSucursal/PopUpSucursal";
 import { CardSucursal } from "../../ui/CardSucursal/CardSucursal";
-import { useModalContext } from "../../../context/ModalContext";
-
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../../redux/store/store";
+import {
+  openModal,
+  closeModal,
+  openSucursalModal,
+  closeSucursalModal,
+} from "../../../redux/slices/modalSlice";
 export const Home = () => {
   // Contexto de modales
-  const {
-    isOpenModal,
-    openModal,
-    closeModal,
-    isOpenSucursalModal,
-    closeSucursalModal,
-    openSucursalModal,
-  } = useModalContext();
+  const dispatch = useDispatch();
+  const isOpenModal = useSelector(
+    (state: RootState) => state.modal.isOpenModal
+  );
+  const isOpenSucursalModal = useSelector(
+    (state: RootState) => state.modal.isOpenSucursalModal
+  );
 
   // Estado de empresas
   const [empresas, setEmpresa] = useState<IEmpresa[]>([]);
@@ -43,9 +48,9 @@ export const Home = () => {
 
   // Manejador de cierre del modal
   const handleCloseModal = () => {
-    closeModal();
+    dispatch(closeModal());
     setSelectedImage(null);
-    setImagePreviewUrl(null); // Reinicia la vista previa al cerrar
+    setImagePreviewUrl(null);
   };
 
   // Manejador del cambio de imagen
@@ -81,7 +86,7 @@ export const Home = () => {
             <h1 style={{ fontSize: "1.8rem" }}>Empresas</h1>
           </div>
           <div>
-            <button onClick={openModal}>Agregar Empresa</button>
+            <button onClick={() => dispatch(openModal())}>Agregar Empresa</button>
           </div>
           {empresas.length > 0 && (
             <div className={styles.empresaContainer}>
@@ -114,7 +119,7 @@ export const Home = () => {
           <div>
             <button
               className={styles.containerButtonSucursal}
-              onClick={openSucursalModal}
+              onClick={() => dispatch(openSucursalModal())}
             >
               Agregar Sucursal
             </button>
@@ -212,7 +217,7 @@ export const Home = () => {
       {isOpenSucursalModal && (
         <PopUpSucursal
           isOpen={isOpenSucursalModal}
-          onClose={closeSucursalModal}
+          onClose={() => dispatch(closeSucursalModal())}
           onAddSucursal={handleAddSucursal}
         />
       )}

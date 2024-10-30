@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ISucursales } from "../../types/ISucursales";
+import { ISucursales } from "../../../types/ISucursales";
 import Modal from "../modal/Modal";
 import styles from "./PopUpSucursal.module.css"
 
