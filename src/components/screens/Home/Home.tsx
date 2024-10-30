@@ -7,6 +7,7 @@ import { ISucursales } from "../../types/ISucursales";
 import PopUpSucursal from "../../ui/PopUpSucursal/PopUpSucursal";
 import { CardSucursal } from "../../ui/CardSucursal/CardSucursal";
 import { useModalContext } from "../../../context/ModalContext";
+import PopUpVerSucursal from "../../ui/PopUpVerSucursal/PopUpVerSucursal";
 
 export const Home = () => {
   // Contexto de modales
@@ -22,6 +23,10 @@ export const Home = () => {
   // Estado de empresas
   const [empresas, setEmpresa] = useState<IEmpresa[]>([]);
   const [sucursales, setSucursales] = useState<ISucursales[]>([]); // Estado para sucursales
+
+  // Estado para ver detalles de una sucursal
+  const [isViewSucursalOpen, setIsViewSucursalOpen] = useState(false);
+  const [selectedSucursal, setSelectedSucursal] = useState<ISucursales | null>(null);
 
   const [selectedImage, setSelectedImage] = useState<File | null>(null); // Estado del logo de la empresa
   const [imagePreviewUrl, setImagePreviewUrl] = useState<string | null>(null); // Estado para el URL de la imagen
@@ -39,6 +44,12 @@ export const Home = () => {
   const handleAddSucursal = (sucursal: ISucursales) => {
     console.log("Sucursal añadida:", sucursal);
     setSucursales((prev) => [...prev, sucursal]);
+  };
+
+  // Función para abrir el modal de detalles de sucursal
+  const handleViewSucursal = (sucursal: ISucursales) => {
+    setSelectedSucursal(sucursal);
+    setIsViewSucursalOpen(true);
   };
 
   // Manejador de cierre del modal
@@ -73,7 +84,7 @@ export const Home = () => {
     <>
       <div
         className={`${styles.containerView} ${
-          isOpenModal || isOpenSucursalModal ? styles.blurredBackground : ""
+          isOpenModal || isOpenSucursalModal || isViewSucursalOpen ? styles.blurredBackground : ""
         }`}
       >
         <aside className={styles.asideContainer}>
@@ -87,22 +98,12 @@ export const Home = () => {
             <div className={styles.empresaContainer}>
               {empresas.map((empresa, index) => (
                 <div key={index} className={styles.empresaCard}>
-                  {" "}
-                  {/* Añade una clase para el estilo de cada empresa */}
+                  {" "} {/* Añade una clase para el estilo de cada empresa */}
                   <h3 style={{ color: "white" }}>{empresa.nombre}</h3>
                   <div className={styles.iconsContainer}>
-                    <i
-                      className="fa-solid fa-eye"
-                      style={{ color: "#086A87" }}
-                    ></i>
-                    <i
-                      className="fa-solid fa-trash"
-                      style={{ color: "#c9410b" }}
-                    ></i>
-                    <i
-                      className="fa-solid fa-pencil"
-                      style={{ color: "#17985A" }}
-                    ></i>
+                    <i className="fa-solid fa-eye" style={{ color: "#086A87" }}></i>
+                    <i className="fa-solid fa-trash" style={{ color: "#c9410b" }}></i>
+                    <i className="fa-solid fa-pencil" style={{ color: "#17985A" }}></i>
                   </div>
                 </div>
               ))}
@@ -127,6 +128,7 @@ export const Home = () => {
                 horarioApertura={sucursal.horarioApertura}
                 horarioCierre={sucursal.horarioCierre}
                 imagen={sucursal.imagen}
+                onView={() => handleViewSucursal(sucursal)}
               />
             ))}
           </div>
@@ -214,6 +216,14 @@ export const Home = () => {
           isOpen={isOpenSucursalModal}
           onClose={closeSucursalModal}
           onAddSucursal={handleAddSucursal}
+        />
+      )}
+
+      {isViewSucursalOpen && selectedSucursal && (
+        <PopUpVerSucursal
+          isOpen={isViewSucursalOpen}
+          onClose={() => setIsViewSucursalOpen(false)}
+          sucursal={selectedSucursal}
         />
       )}
     </>
