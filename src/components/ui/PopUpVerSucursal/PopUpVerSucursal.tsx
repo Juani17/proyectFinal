@@ -1,5 +1,5 @@
 import Modal from '../modal/Modal';
-import { ISucursales } from '../../types/ISucursales';
+import { ISucursales } from '../../../types/ISucursales';
 import styles from './PopUpVerSucursal.module.css';
 
 interface PopUpVerSucursalProps {

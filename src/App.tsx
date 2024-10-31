@@ -1,13 +1,14 @@
 import { Home } from "./components/screens/Home/Home";
 import { Header } from "./components/ui/Header/Header";
-import { ModalProvider } from "./context/ModalContext";
+import { Provider } from "react-redux";
+import { store } from "./redux/store/store";
 
 function App() {
   return (
-    <ModalProvider>
+    <Provider store={store}>
       <Header />
       <Home />
-    </ModalProvider>
+    </Provider>
   );
 }
 

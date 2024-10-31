@@ -1,17 +1,18 @@
-import { Container, Navbar } from "react-bootstrap"; // Asegúrate de que tienes bootstrap instalado
+import { Container, Navbar } from "react-bootstrap"; // Asegúrate de tener Bootstrap instalado
 import styles from "./Header.module.css"; // Asegúrate de que la ruta sea correcta
-import { useModalContext } from "../../../context/ModalContext";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../redux/store/store";
 
 export const Header = () => {
-  
-  // Extrae los valores 'isOpenModal' e 'isOpenSucursalModal' del contexto para saber si algún modal está abierto
-  const { isOpenModal, isOpenSucursalModal } = useModalContext();
+  // Extrae los valores 'isOpenModal' e 'isOpenSucursalModal' del estado de Redux
+  const isOpenModal = useSelector((state: RootState) => state.modal.isOpenModal);
+  const isOpenSucursalModal = useSelector((state: RootState) => state.modal.isOpenSucursalModal);
 
   return (
     // Define una barra de navegación (Navbar) con un color de fondo claro (light)
     <Navbar
       bg="light"
-      // Aplica las clases de estilo 'principal' y 'blurredBackground' (fondo difuminado) si algún modal está abierto
+      // Aplica las clases de estilo 'principal' y 'blurredBackground' si algún modal está abierto
       className={`${styles.principal} ${
         isOpenModal || isOpenSucursalModal ? styles.blurredBackground : ""
       }`}

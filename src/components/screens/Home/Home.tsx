@@ -1,32 +1,42 @@
 import { useState } from "react";
 import Modal from "../../ui/modal/Modal";
 import styles from "./Home.module.css";
-import { useForm } from "../../hooks/useForm/useForm";
-import { IEmpresa } from "../../types/IEmpresa";
-import { ISucursales } from "../../types/ISucursales";
+import { useForm } from "../../../hooks/useForm/useForm";
+import { IEmpresa } from "../../../types/IEmpresa";
+import { ISucursales } from "../../../types/ISucursales";
 import PopUpSucursal from "../../ui/PopUpSucursal/PopUpSucursal";
 import { CardSucursal } from "../../ui/CardSucursal/CardSucursal";
-import { useModalContext } from "../../../context/ModalContext";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  closeModal,
+  closeSucursalModal,
+  openModal,
+  openSucursalModal,
+} from "../../../redux/slices/modalSlice";
 import PopUpVerSucursal from "../../ui/PopUpVerSucursal/PopUpVerSucursal";
+import { RootState } from "../../../redux/store/store";
 
 export const Home = () => {
   // Contexto de modales
-  const {
-    isOpenModal,
-    openModal,
-    closeModal,
-    isOpenSucursalModal,
-    closeSucursalModal,
-    openSucursalModal,
-  } = useModalContext();
+  const dispatch = useDispatch();
+  const isOpenModal = useSelector(
+    (state: RootState) => state.modal.isOpenModal
+  );
+  const isOpenSucursalModal = useSelector(
+    (state: RootState) => state.modal.isOpenSucursalModal
+  );
 
   // Estado de empresas
   const [empresas, setEmpresa] = useState<IEmpresa[]>([]);
   const [sucursales, setSucursales] = useState<ISucursales[]>([]); // Estado para sucursales
+  //Estado para empresa seleccionada
+  const [selectedEmpresa, setSelectedEmpresa] = useState<IEmpresa | null>(null);
 
   // Estado para ver detalles de una sucursal
   const [isViewSucursalOpen, setIsViewSucursalOpen] = useState(false);
-  const [selectedSucursal, setSelectedSucursal] = useState<ISucursales | null>(null);
+  const [selectedSucursal, setSelectedSucursal] = useState<ISucursales | null>(
+    null
+  );
 
   const [selectedImage, setSelectedImage] = useState<File | null>(null); // Estado del logo de la empresa
   const [imagePreviewUrl, setImagePreviewUrl] = useState<string | null>(null); // Estado para el URL de la imagen
@@ -39,6 +49,17 @@ export const Home = () => {
   });
 
   const { nombre, razonSocial, cuit } = values;
+
+  //Funcion para empresa seleccionada
+  const handleSelectEmpresa = (empresa: IEmpresa) => {
+    setSelectedEmpresa(empresa);
+    console.log(empresa);
+  };
+
+  //Funcion para seleccionar sucursal segun empresa
+  const sucursalesFiltradas = sucursales.filter(
+    (sucursal) => sucursal.empresaId === selectedEmpresa?.id
+  );
 
   // Función para manejar el botón de agregar sucursal
   const handleAddSucursal = (sucursal: ISucursales) => {
@@ -54,9 +75,9 @@ export const Home = () => {
 
   // Manejador de cierre del modal
   const handleCloseModal = () => {
-    closeModal();
+    dispatch(closeModal());
     setSelectedImage(null);
-    setImagePreviewUrl(null); // Reinicia la vista previa al cerrar
+    setImagePreviewUrl(null);
   };
 
   // Manejador del cambio de imagen
@@ -74,7 +95,7 @@ export const Home = () => {
     if (selectedImage) {
       setEmpresa((prev) => [
         ...prev,
-        { nombre, razonSocial, cuit, logo: selectedImage },
+        { id: Date.now(), nombre, razonSocial, cuit, logo: selectedImage },
       ]);
       handleCloseModal(); // Cierra el modal después de enviar
     }
@@ -84,7 +105,9 @@ export const Home = () => {
     <>
       <div
         className={`${styles.containerView} ${
-          isOpenModal || isOpenSucursalModal || isViewSucursalOpen ? styles.blurredBackground : ""
+          isOpenModal || isOpenSucursalModal || isViewSucursalOpen
+            ? styles.blurredBackground
+            : ""
         }`}
       >
         <aside className={styles.asideContainer}>
@@ -92,18 +115,34 @@ export const Home = () => {
             <h1 style={{ fontSize: "1.8rem" }}>Empresas</h1>
           </div>
           <div>
-            <button onClick={openModal}>Agregar Empresa</button>
+            <button onClick={() => dispatch(openModal())}>
+              Agregar Empresa
+            </button>
           </div>
           {empresas.length > 0 && (
             <div className={styles.empresaContainer}>
               {empresas.map((empresa, index) => (
-                <div key={index} className={styles.empresaCard}>
-                  {" "} {/* Añade una clase para el estilo de cada empresa */}
+                <div
+                  key={index}
+                  className={styles.empresaCard}
+                  onClick={() => handleSelectEmpresa(empresa)}
+                >
+                  {" "}
+                  {/* Añade una clase para el estilo de cada empresa */}
                   <h3 style={{ color: "white" }}>{empresa.nombre}</h3>
                   <div className={styles.iconsContainer}>
-                    <i className="fa-solid fa-eye" style={{ color: "#086A87" }}></i>
-                    <i className="fa-solid fa-trash" style={{ color: "#c9410b" }}></i>
-                    <i className="fa-solid fa-pencil" style={{ color: "#17985A" }}></i>
+                    <i
+                      className="fa-solid fa-eye"
+                      style={{ color: "#086A87" }}
+                    ></i>
+                    <i
+                      className="fa-solid fa-trash"
+                      style={{ color: "#c9410b" }}
+                    ></i>
+                    <i
+                      className="fa-solid fa-pencil"
+                      style={{ color: "#17985A" }}
+                    ></i>
                   </div>
                 </div>
               ))}
@@ -113,15 +152,21 @@ export const Home = () => {
 
         <div className={styles.mainContainer}>
           <div>
-            <button
-              className={styles.containerButtonSucursal}
-              onClick={openSucursalModal}
-            >
-              Agregar Sucursal
-            </button>
+            <h2>
+              Lista de sucursales de la empresa:{" "}
+              {selectedEmpresa?.nombre || "Seleccione una empresa"}
+            </h2>
+            {selectedEmpresa && (
+              <button
+                className={styles.containerButtonSucursal}
+                onClick={() => dispatch(openSucursalModal())}
+              >
+                Agregar Sucursal
+              </button>
+            )}
           </div>
           <div className={styles.containerSucursales}>
-            {sucursales.map((sucursal, index) => (
+            {sucursalesFiltradas.map((sucursal, index) => (
               <CardSucursal
                 key={index}
                 nombre={sucursal.nombre}
@@ -214,7 +259,7 @@ export const Home = () => {
       {isOpenSucursalModal && (
         <PopUpSucursal
           isOpen={isOpenSucursalModal}
-          onClose={closeSucursalModal}
+          onClose={() => dispatch(closeSucursalModal())}
           onAddSucursal={handleAddSucursal}
         />
       )}

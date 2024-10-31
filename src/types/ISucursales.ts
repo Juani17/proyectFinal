@@ -1,4 +1,5 @@
 export interface ISucursales {
+    empresaId: number;
     nombre: string
     horarioApertura: string
     horarioCierre: string

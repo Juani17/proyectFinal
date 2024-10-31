@@ -32,9 +32,6 @@
     text-align: center;
 }
 
-
-
-
 /* MAIN */
 
 .mainContainer{
@@ -45,6 +42,7 @@
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    color: white;
     
 }
 
@@ -162,4 +160,7 @@
     background-color: #444; /* Color de fondo individual para cada empresa */
     border-radius: 5px;
   }
+  .empresaCard h3:hover{
+    cursor: pointer;
+}
   
