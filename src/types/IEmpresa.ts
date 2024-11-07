@@ -6,5 +6,5 @@ export interface IEmpresa {
     sucursales: ISucursales[];
     razonSocial: string
     cuit: string
-    logo: File | null
+    logo: File | string | null;
 }

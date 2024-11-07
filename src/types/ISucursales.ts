@@ -1,6 +1,7 @@
 import { IProducto } from "./IProducto";
 
 export interface ISucursales {
+    empresaId: number;
     id: number;
     nombre: string
     productos: IProducto[];
