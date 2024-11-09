@@ -1,0 +1,77 @@
+.containerPrincipal{
+    min-height: 50vh;
+    min-width: 600px;
+    background-color: white;
+    border-radius: 3vh;
+    box-shadow: 5px 5px 25px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    color: #000;
+    z-index: 3; 
+}
+.containerTitle{
+    text-align: center;
+    padding: 5px;
+}
+.containerForm{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 1vh;
+    padding: 2vh;
+    width: 90%;
+    margin: 0 auto;
+    justify-content: space-between;
+}
+
+.containerForm input{
+    padding: 5px 20px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    max-width: 200px;
+    text-align: center;
+}
+.containerForm select{
+    padding: 5px 20px;
+    border-radius: 8px;
+    max-width: 220px;
+    font-size: 0.8rem;
+    text-align: center;
+}
+.containerForm input[type=checkbox]{
+    padding: 5px 20px;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    max-width: 200px;
+    height: 20px;
+    width: 30px;
+    margin: 0 auto;
+}
+.containerPrincipal label{
+    font-size: 1.2rem;
+}
+.containerButtons{
+    display: flex;
+    justify-content: center;
+    gap: 5vw;
+    padding: 2vh;   
+}
+.containerButtons button{
+    padding: 10px 30px;
+    font-size: 1.2rem;
+}
+
+.blockOne{
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+}
+
+.blockTwo{
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+}

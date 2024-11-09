@@ -1,0 +1,23 @@
+.header{
+    background-color: blueviolet;
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    color: white;
+}
+
+.header__logo{
+    font-size: 2em;
+  
+}
+
+.headerBtn{
+    background-color: transparent;
+    border: 2px solid white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 15px;
+    color: white;
+}

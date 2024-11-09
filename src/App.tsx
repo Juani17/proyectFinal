@@ -1,15 +1,10 @@
-import { Home } from "./components/screens/Home/Home";
-import { Header } from "./components/ui/Header/Header";
-import { Provider } from "react-redux";
-import { store } from "./redux/store/store";
+import { AppRouter } from "./routes/AppRouter";
 
-function App() {
+export const App = () => {
   return (
-    <Provider store={store}>
-      <Header />
-      <Home />
-    </Provider>
+    <>
+      {/* AppRouter define y maneja las rutas de la aplicación */}
+      <AppRouter></AppRouter>
+    </>
   );
-}
-
-export default App;
+};

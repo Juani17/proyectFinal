@@ -1,0 +1,37 @@
+.contentHero{
+    height: 90vh;
+    width: 100%;
+    padding: 10px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+.containerList{
+    display: flex;
+    flex-direction: column;
+    gap: 5vh;
+    list-style: none;
+}
+.categoryHeader{
+    display: flex;
+    flex-direction: row;
+    box-shadow: 2px 2px 5px hsl(0, 0%, 61%);
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    margin: 0 auto;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    margin-bottom: 4vh;
+}
+.backgroundDisabled{
+    background-color:rgba(0, 0, 0, 0.5) !important ;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index:1 !important
+}
+
+

@@ -1,0 +1,41 @@
+.containerPrincipalOn{
+    min-height: 50vh;
+    min-width: 25vw;
+    background-color: white;
+    border-radius: 3vh;
+    box-shadow: 5px 5px 25px;
+    position: fixed; /* Position fixed para centrar el popup */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    color: #000;
+    z-index: 3;
+}
+.containerTitle{
+    text-align: center;
+    padding: 5px;
+}
+.containerData{
+    margin-top: 20px;
+    padding-inline: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    text-align: left;
+}
+.containerLogo{
+    display: flex;
+    gap: 1vw;
+}
+.containerLogo img{
+    max-width: 5vw;
+    max-height: 8vh;
+}
+.containerButton{
+    padding: 10px;
+    text-align: center;
+}
+.containerButton button{
+    width: 8vw;
+}
