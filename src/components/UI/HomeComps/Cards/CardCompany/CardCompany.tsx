@@ -39,7 +39,7 @@ export const CardCompany : FC<ICardCompany>= ({company}) => {
 
   return (
     <>
-      <Card onClick={handleSelectCompany} className={styles.cardContainer} style={{ width: '18rem' }}>
+      <Card onClick={handleSelectCompany} className={styles.cardContainer}>
         <Card.Body>
           <img 
             src={

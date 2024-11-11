@@ -52,7 +52,7 @@ export const ViewSucursals: FC = () => {
       
       {selectedCompany? ( 
         <>
-        <h2>Sucursales de {selectedCompany?.nombre}</h2>
+        <h2>Sucursales: {selectedCompany?.nombre}</h2>
         <Button onClick={handleShowModal}>Agregar Sucursal</Button>
         </>
       
@@ -80,7 +80,6 @@ export const ViewSucursals: FC = () => {
 
     {showModalAddSucursal && (
         <>
-        {/* Meto un div abajo para que impida pulsar otro elemento */}
           <div className={styles.backgroundDisabled}>
           </div>
           <ModalAddSucursal closeModalAdd={handleCloseModal} idEmpresa={selectedCompanyId ?? 0}/> 

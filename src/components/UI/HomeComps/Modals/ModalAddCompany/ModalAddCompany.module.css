@@ -1,31 +1,55 @@
-.containerPrincipal{
+/* Contenedor Principal */
+.containerPrincipal {
     min-height: 50vh;
     min-width: 25vw;
-    background-color: white;
-    border-radius: 3vh;
-    box-shadow: 5px 5px 25px;
+    background-color: #f5f5f5; /* Fondo gris claro para un look sobrio */
+    border-radius: 12px; /* Redondeado sutil en px para un aspecto moderno */
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2); /* Sombra sutil y difusa */
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    padding: 20px;
-    color: #000;
-    z-index: 3; 
+    padding: 24px;
+    color: #333; /* Color de texto gris oscuro */
+    z-index: 3;
 }
-.containerTitle{
+
+/* Título del Contenedor */
+.containerTitle {
     text-align: center;
-    padding: 5px;
+    padding: 8px;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #1a1a2e; /* Azul oscuro para resaltar */
+    border-bottom: 1px solid #ddd; /* Línea para separar el título */
 }
-.containerForm{
+
+/* Formulario dentro del Contenedor */
+.containerForm {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 1vh;
-    padding: 2vh;
+    gap: 1.2em; /* Espaciado mayor para mejorar legibilidad */
+    padding: 16px;
 }
-.containerButtons{
+
+/* Contenedor de Botones */
+.containerButtons {
     display: flex;
     justify-content: center;
-    gap: 5vw;
-    padding: 2vh;   
+    gap: 4vw; /* Espaciado ajustado para balancear los botones */
+    padding: 16px;
+}
+
+/* Placeholder de Inputs */
+::placeholder {
+    color: #888; /* Gris claro para que no compita visualmente */
+    font-size: 1em; /* Tamaño de fuente que se adapta bien al formulario */
+    font-style: italic; /* Crea un contraste suave con el texto ingresado */
+    opacity: 0.8; /* Ligera transparencia para un look más sutil */
+}
+
+input:focus::placeholder {
+    color: #aaa; /* Cambia a un gris más claro al enfocar para mejorar contraste */
+    opacity: 0.6;
 }

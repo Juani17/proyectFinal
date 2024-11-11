@@ -1,46 +1,51 @@
-.sucursalsContainer{
+.sucursalsContainer {
     display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    padding: 10px;
-    width: 100%;
     flex-direction: column;
-    
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 15px;
+    width: 100%;
+    background-color: #f3f4f6; /* Fondo claro para contraste */
 }
 
-.sucursalsCardContainer{
+.sucursalsCardContainer {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Dos columnas por defecto */
-    gap: 20px; /* Espacio entre las tarjetas */
-    padding: 10px;
-    height: 80vh;
-    overflow-y: scroll;
+    grid-template-columns: repeat(2, 1fr); /* Dos columnas en pantallas pequeñas */
+    gap: 25px; /* Espacio entre tarjetas para una separación más clara */
+    padding: 15px;
+    max-height: 80vh; /* Altura máxima para evitar desbordamiento */
+    overflow-y: auto; /* Habilita el scroll vertical */
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Sombra sutil */
 }
 
 @media (min-width: 1250px) {
     .sucursalsCardContainer {
-        grid-template-columns: repeat(3, 1fr); /* Tres columnas */
+        grid-template-columns: repeat(3, 1fr); /* Tres columnas en pantallas grandes */
     }
 }
-.containerHeader{
+
+.containerHeader {
     display: flex;
     align-items: center;
-    margin: 0 auto;
-    width: 100%;
-
     justify-content: space-between;
-    padding: 10px;
+    width: 100%;
+    padding: 15px;
+    border-bottom: 1px solid #333; 
     border-radius: 0 0 8px 8px;
-    border-bottom: 1px solid blueviolet;
-  
+    color: #f1f1f1;/* Color de texto oscuro para contraste */
+    background-color: #0f3460
 }
 
-.backgroundDisabled{
-    background-color:rgba(3, 0, 0, 0.5) !important ;
+.backgroundDisabled {
+    background-color: rgba(0, 0, 0, 0.6); /* Fondo más oscuro para el overlay */
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index:2 !important
+    z-index: 2 !important;
+    backdrop-filter: blur(3px); /* Agrega desenfoque para mejor efecto */
 }
+

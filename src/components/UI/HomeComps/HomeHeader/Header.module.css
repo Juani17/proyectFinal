@@ -1,12 +1,21 @@
-.header{
-    background-color: blueviolet;
+/* Encabezado */
+.header {
+    background-color: #1a1a2efa; /* Azul oscuro elegante */
     height: 10vh;
-    color: white;
+    color: #f1f1f1; /* Blanco suave para mejor contraste */
     display: flex;
     align-items: center;
     padding: 10px 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    border-bottom: 1px solid #333; /* Línea divisoria para un look profesional */
+    justify-content: center
 }
-.header__logo{
-    font-size: 2em;
-    font-style: italic;
+
+/* Logo del Encabezado */
+.header__logo {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #e1e1e1; /* Gris claro para suavizar el contraste */
+    font-style: normal; /* Cambiado de italic a normal para más seriedad */
+    letter-spacing: 1px; /* Espaciado para un toque moderno */
 }
