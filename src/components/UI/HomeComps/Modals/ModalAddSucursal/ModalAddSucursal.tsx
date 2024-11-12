@@ -103,18 +103,24 @@ const ModalAddSucursal: FC<IModalAdd> = ({ closeModalAdd, idEmpresa }) => {
        const [selectedProvince, setSelectedProvince] = useState("");
        const [selectedLocality, setSelectedLocality] = useState("");
        
-       // Cargar países al montar el componente
+    
+       
        useEffect(() => {
-           const fetchCountries = async () => {
-               try {
-                const data = await countryService.getAllCountries(); // Cambiado a async/await
-                setCountries(data);
-               } catch (error) {
-                   console.error("Error al cargar los países:", error);
-               }
-           };
-           fetchCountries();
-       }, []);
+        const fetchCountries = async () => {
+            try {
+                const data = await countryService.getAllCountries();
+                if (Array.isArray(data)) { // Verificar que `data` sea un array
+                    setCountries(data);
+                } else {
+                    console.error("Error: `getAllCountries` no devolvió un array.");
+                }
+            } catch (error) {
+                console.error("Error al cargar los países:", error);
+            }
+        };
+        fetchCountries();
+    }, []);
+    
    
        // Cargar provincias cuando se selecciona un país
        useEffect(() => {
