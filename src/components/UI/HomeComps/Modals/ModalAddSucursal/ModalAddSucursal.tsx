@@ -191,10 +191,10 @@ const ModalAddSucursal: FC<IModalAdd> = ({ closeModalAdd, idEmpresa }) => {
                     <input type="text" placeholder="Nombre de la Sucursal" name="nombre" value={newSucursal.nombre} onChange={handleChange} />
                     
                     <label htmlFor="horarioApertura">Horario de apertura</label>
-                    <input type="text" placeholder="Horario Apertura" name="horarioApertura" value={newSucursal.horarioApertura} onChange={handleChange} />
+                    <input type="time" placeholder="Horario Apertura" name="horarioApertura" value={newSucursal.horarioApertura} onChange={handleChange} />
                     
                     <label htmlFor="horarioCierre">Horario de cierre</label>
-                    <input type="text" placeholder="Horario Cierre" name="horarioCierre" value={newSucursal.horarioCierre} onChange={handleChange} />
+                    <input type="time" placeholder="Horario Cierre" name="horarioCierre" value={newSucursal.horarioCierre} onChange={handleChange} />
                     
                     <label htmlFor="esCasaMatriz">Es Casa Matriz</label>
                     <input type="checkbox" name="esCasaMatriz" checked={newSucursal.esCasaMatriz} onChange={handleChange} />

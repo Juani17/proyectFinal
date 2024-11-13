@@ -2,7 +2,7 @@ import axios from "axios";
 import { IPais } from "../endPoints/types/IPais";
 
 // Definimos la URL base de la API que vamos a utilizar para hacer las solicitudes relacionadas con los países
-const API_URL = `${import.meta.env.VITE_API_URL_API}/paises`;
+const API_URL = `${import.meta.env.VITE_API_URL}/paises`;
 
 export const countryService = {
 

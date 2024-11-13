@@ -171,6 +171,12 @@ const ModalEditSucursal: FC<IModalEditSucursal> = ({ modalCloseEdit, sucursal })
                     <label htmlFor="nombre">Nombre</label>
                     <input type="text" placeholder="Nombre de la sucursal" name="nombre" value={formValues.nombre} onChange={handleChange} />
 
+                    <label htmlFor="horarioApertura">Horario de Apertura</label>
+                    <input type="time" name="horarioApertura" value={formValues.horarioApertura} onChange={handleChange} />
+
+                    <label htmlFor="horarioCierre">Horario de Cierre</label>
+                    <input type="time" name="horarioCierre" value={formValues.horarioCierre} onChange={handleChange} />
+
                     <label htmlFor="latitud">Latitud</label>
                     <input type="text" placeholder="Latitud" name="latitud" value={formValues.latitud} onChange={handleChange} />
 

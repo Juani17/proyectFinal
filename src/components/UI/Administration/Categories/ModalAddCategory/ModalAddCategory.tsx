@@ -1,74 +1,60 @@
-import { ChangeEvent, FC, useState } from "react";
-import styles from "./ModalAddCategory.module.css";
-import { Button } from "react-bootstrap";
-import { ICreateCategoria } from "../../../../../endPoints/types/dtos/categorias/ICreateCategoria";
-import Swal from "sweetalert2";
-import { categoryService } from "../../../../../Services/categoryServices";
+// ModalAddCategory.tsx
+import { ChangeEvent, FC, useState } from 'react';
+import styles from './ModalAddCategory.module.css';
+import { Button } from 'react-bootstrap';
+import { ICreateCategoria } from '../../../../../endPoints/types/dtos/categorias/ICreateCategoria';
+import Swal from 'sweetalert2';
 
 interface IModalAddCategory {
-  closeModalAdd: () => void; // Función para cerrar el modal
-  idSucursal: number; // ID de la sucursal
+  closeModalAdd: () => void;
+  idSucursal: number;
+  onAddCategory: (newCategory: ICreateCategoria) => void; // Asegúrate de que esta función se pase correctamente
 }
 
 const ModalAddCategory: FC<IModalAddCategory> = ({
   idSucursal,
   closeModalAdd,
+  onAddCategory,
 }) => {
-  // Estado para manejar los datos de la nueva categoría que se está creando
   const [newCategory, setNewCategory] = useState<ICreateCategoria>({
-    denominacion: "", // Nombre de la categoría
-    idSucursales: [idSucursal], // ID de la sucursal donde se va a crear la categoría
-    idCategoriaPadre: null, // ID de la categoría padre (si existe), inicialmente es null
+    denominacion: '',
+    idSucursales: [idSucursal], // Esto asume que se agrega la sucursal seleccionada
+    idCategoriaPadre: null,
   });
 
-  // Función que maneja el cambio en los campos del formulario
-  const handleCahge = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    // Actualiza el estado de la nueva categoría con el valor cambiado
     setNewCategory((prev) => ({
       ...prev,
       [name]: value,
     }));
   };
 
-  // Función que maneja el envío del formulario para crear la nueva categoría
   const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault(); // Evita que la página se recargue al enviar el formulario
+    e.preventDefault();
 
-    // Verificación básica: si el campo denominación está vacío, muestra un mensaje de alerta
     if (!newCategory.denominacion) {
-      alert("No puede dejar en blanco el campo");
+      alert('No puede dejar en blanco el campo');
       return;
     }
 
     try {
-      // Verificamos los datos que vamos a enviar
-      console.log("Enviando datos:", JSON.stringify(newCategory));
+      // Llamar a la función para agregar la categoría
+      onAddCategory(newCategory);
 
-      // Llamada al servicio para crear la categoría
-      await categoryService.createCategory(newCategory);
-
-      // Muestra un mensaje de éxito con SweetAlert
+      // Mostrar un mensaje de éxito
       Swal.fire({
-        icon: "success",
-        title: "Categoría creada",
-        text: "La categoría se ha creado exitosamente.",
+        icon: 'success',
+        title: 'Categoría creada',
+        text: 'La categoría se ha creado exitosamente.',
       });
-
-      // Cierra el modal después de crear la categoría
-      closeModalAdd();
     } catch (error) {
-      // Si ocurre un error, muestra el error y luego cierra el modal
-      console.error("El problema es: ", error);
+      console.error('El problema es: ', error);
       Swal.fire({
-        icon: "success",
-        title: "Categoria agregada",
+        icon: 'error',
+        title: 'Error al agregar categoría',
         showConfirmButton: false,
         timer: 1500,
-        willClose: () => {
-          closeModalAdd(); // Cierra el modal
-          window.location.reload(); // Recarga la página
-        },
       });
     }
   };
@@ -76,23 +62,20 @@ const ModalAddCategory: FC<IModalAddCategory> = ({
   return (
     <div className={styles.containerPrincipal}>
       <div className={styles.containerTitle}>
-        <h1>Agregar Categoria</h1>
+        <h1>Agregar Categoría</h1>
       </div>
       <div className={styles.containerBody}>
-        <label htmlFor="">Ingrese Denominacion</label>
-        {/* Campo de entrada para la denominación de la categoría */}
+        <label>Ingrese Denominación</label>
         <input
           type="text"
-          placeholder="Denominacion"
+          placeholder="Denominación"
           value={newCategory.denominacion}
           name="denominacion"
-          onChange={handleCahge}
+          onChange={handleChange}
         />
       </div>
       <div className={styles.containerButtons}>
-        {/* Botón de Aceptar para enviar la nueva categoría */}
         <Button onClick={handleSubmit}>Aceptar</Button>
-        {/* Botón de Cancelar para cerrar el modal sin hacer cambios */}
         <Button onClick={closeModalAdd}>Cancelar</Button>
       </div>
     </div>

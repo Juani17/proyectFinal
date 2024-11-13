@@ -1,23 +1,23 @@
-// Importing necessary components and styles
-import { AdministrationAside } from "../../../../UI/Administration/Aside/AdministrationAside"; // Sidebar component for administration menu
-import ListCategories from "../../../../UI/Administration/Categories/ListCategories/ListCategories"; // Component for displaying the list of categories
-import { AdministrationHeader } from "../../../../UI/Administration/Header/AdministrationHeader"; // Header component for administration page
-import styles from "./Categories.module.css"; // Importing CSS module for styling
+// Importando los componentes y estilos necesarios
+import { AdministrationAside } from "../../../../UI/Administration/Aside/AdministrationAside"; // Componente de la barra lateral para el menú de administración
+import ListCategories from "../../../../UI/Administration/Categories/ListCategories/ListCategories"; // Componente para mostrar la lista de categorías
+import { AdministrationHeader } from "../../../../UI/Administration/Header/AdministrationHeader"; // Componente de encabezado para la página de administración
+import styles from "./Categories.module.css"; // Importando el módulo CSS para los estilos
 
-// Functional component to render Categories page
+// Componente funcional para renderizar la página de Categorías
 export const Categories = () => {
   return (
     <>
-      {/* Render the Administration Header at the top of the page */}
+      {/* Renderizar el encabezado de administración en la parte superior de la página */}
       <AdministrationHeader />
       
-      {/* Main content container */}
+      {/* Contenedor del contenido principal */}
       <div className={styles.mainContent}>
         
-        {/* Render the Sidebar (Aside) with administrative options */}
+        {/* Renderizar la barra lateral (Aside) con las opciones administrativas */}
         <AdministrationAside />
         
-        {/* Component to display a list of categories */}
+        {/* Componente para mostrar una lista de categorías */}
         <ListCategories />
       </div>
     </>

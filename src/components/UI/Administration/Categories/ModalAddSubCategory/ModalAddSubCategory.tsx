@@ -26,7 +26,7 @@ const ModalAddSubCategory: FC<IModalAddSubCategory> = ({
   });
 
   // Función para manejar el cambio en los inputs del formulario
-  const handleCahnge = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     // Actualiza el estado con el nuevo valor del input
     setNewCategory((prev) => ({
@@ -72,7 +72,7 @@ const ModalAddSubCategory: FC<IModalAddSubCategory> = ({
           placeholder="Denominacion"
           name="denominacion"
           value={newSubCategory.denominacion}
-          onChange={handleCahnge} // Llama a la función de manejo de cambios
+          onChange={handleChange} // Llama a la función de manejo de cambios
         />
       </div>
       <div className={styles.containerButtons}>
