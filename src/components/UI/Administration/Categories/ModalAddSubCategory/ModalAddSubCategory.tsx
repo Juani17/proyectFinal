@@ -48,6 +48,13 @@ const ModalAddSubCategory: FC<IModalAddSubCategory> = ({
     try {
       console.log("Datos enviados", newSubCategory); // Log para depuración
       categoryService.createCategory(newSubCategory); // Llama al servicio para crear la categoría
+      closeModalAdd();
+      Swal.fire({
+        icon: 'success',
+        title: 'Categoría creada',
+        text: 'La subcategoria se ha creado exitosamente.',
+      });
+      
     } catch (error) {
       console.error("El problema es: ", error); // Muestra el error en consola
       // Muestra una alerta usando SweetAlert2 si ocurre un error
