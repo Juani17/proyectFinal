@@ -20,7 +20,7 @@ export const categoryService = {
 
   // Mostrar categorias por sucursal
   async getCategoriesBySucursal(sucursalId: number): Promise<ICategorias[]> {
-    const response = await axios.get<ICategorias[]>(`${API_URL}/categoriasPorSucursal/${sucursalId}`);
+    const response = await axios.get<ICategorias[]>(`${API_URL}/allCategoriasPadrePorSucursal/${sucursalId}`);
     return response.data;
   },
 
@@ -37,7 +37,7 @@ export const categoryService = {
   },
 
   // Método para obtener todas las subcategorías de una categoría padre por su ID y página (paginación)
-  async getAllSubCategoriesByCategoryId(categoryId: number, page: number = 1): Promise<ICategorias[]> {
+  async getAllSubCategoriesByCategoryId(categoryId: number, page: number = 1 ): Promise<ICategorias[]> {
     const response = await axios.get<ICategorias[]>(`${API_URL}/allSubCategoriasPorCategoriaPadre/${categoryId}/${page}`);
     return response.data;
   },
