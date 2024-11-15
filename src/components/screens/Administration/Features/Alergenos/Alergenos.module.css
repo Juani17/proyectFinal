@@ -17,7 +17,7 @@
 .titleContainer {
     display: flex;
     flex-direction: row;
-    box-shadow: 2px 2px 5px hsl(0, 0%, 61%);
+    box-shadow: 2px 2px 5px hsl(0, 3%, 81%);
     width: 100%;
     align-items: center;
     justify-content: space-between;
@@ -29,7 +29,7 @@
 
 /* Contenedor principal de la lista */
 .containerList {
-    box-shadow: 2px 2px 5px #696969;
+    box-shadow: 2px 2px 5px #c6bcbc;
     border-radius: 12px;
     padding: 10px;
     display: flex;
@@ -51,10 +51,10 @@ ul {
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
-    box-shadow: 2px 2px 5px #696969;
+    box-shadow: 2px 2px 5px #000000;
     padding: 10px 10px 10px 20px;
     border-radius: 12px;
-    background-color: #f8f8f8;
+    background-color: #b4adad;
     font-size: 1.2rem;
 }
 
@@ -70,10 +70,10 @@ ul {
 
 /* Estilos para el modal y botones */
 .AddAlergen {
-    background-color: #007bff;
-    color: #fff;
+    background-color: #000000;
+    color: #ffffff;
     border-radius: 6px;
-    border-color: #007bff;
+    border-color: #ff0000;
     font-size: 16px;
     height: 38px;
 }
@@ -95,9 +95,9 @@ ul {
     display: flex;
     flex-direction: column;
     gap: 50px;
-    border: solid black 2px;
-    box-shadow: 5px 5px 25px;
-    background-color: white;
+    border: solid rgb(255, 255, 255) 2px;
+    background-color: rgb(255, 255, 255);
+    color: #ff8800;
     border-radius: 18px;
     padding: 20px;
 }
@@ -126,7 +126,6 @@ ul {
     background-color: #007bff;
     color: #fff;
     border-radius: 6px;
-    border-color: #007bff;
     font-size: 16px;
     height: 38px;
 }

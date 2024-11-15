@@ -30,7 +30,7 @@
 
 .asideBtn:hover{
     box-shadow: none;
-    background-color: hsl(271, 67%, 41%);
+    background-color: hsl(0, 100%, 50%);
     border: 1px solid rgb(239, 239, 239);
     color: rgb(239, 239, 239);;
 }
