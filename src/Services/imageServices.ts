@@ -5,7 +5,7 @@ import { IImagen } from "../endPoints/types/IImagen"; // Importa la interfaz IIm
 const API_URL = `${import.meta.env.VITE_API_URL}/images`;
 
 // Exporta un objeto con métodos para interactuar con la API de imágenes
-export const imageService = {
+export const ImageService = {
 
     // Método para subir una imagen a la API
     async uploadImage(newImage: IImagen): Promise<IImagen> {

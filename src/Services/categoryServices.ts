@@ -18,11 +18,16 @@ export const categoryService = {
     return response.data;
   },
 
-  // Mostrar categorias por sucursal
-  async getCategoriesBySucursal(sucursalId: number): Promise<ICategorias[]> {
+  // Mostrar categorias padres por sucursal
+  async getCategoriesPadresBySucursal(sucursalId: number|undefined): Promise<ICategorias[]> {
     const response = await axios.get<ICategorias[]>(`${API_URL}/allCategoriasPadrePorSucursal/${sucursalId}`);
     return response.data;
-  },
+},
+  // Mostrar categorias por sucursal
+  async getCategoriesBySucursal(sucursalId: number|undefined): Promise<ICategorias[]> {
+    const response = await axios.get<ICategorias[]>(`${API_URL}/allCategoriasPorSucursal/${sucursalId}`);
+    return response.data;
+},
 
   // Método para crear una nueva categoría
   async createCategory(newCategory: ICreateCategoria): Promise<ICategorias> {
@@ -30,15 +35,22 @@ export const categoryService = {
     return response.data;
   },
 
-  // Método para actualizar los datos de una categoría existente por su ID
+  // Método para actualizar los datos de una categoría existente
   async updateCategory(categoryId: number, categoryActualizada: ICategorias): Promise<ICategorias> {
     const response = await axios.put<ICategorias>(`${API_URL}/update/${categoryId}`, categoryActualizada);
     return response.data;
   },
 
   // Método para obtener todas las subcategorías de una categoría padre por su ID y página (paginación)
-  async getAllSubCategoriesByCategoryId(categoryId: number, page: number = 1 ): Promise<ICategorias[]> {
+  async getAllSubCategoriesByCategoryId(categoryId: number, page: number = 1): Promise<ICategorias[]> {
     const response = await axios.get<ICategorias[]>(`${API_URL}/allSubCategoriasPorCategoriaPadre/${categoryId}/${page}`);
     return response.data;
   },
+
+
+  async getAllSubCategoriesBySucursalId(sucursalId: number): Promise<ICategorias[]> {
+    const response = await axios.get<ICategorias[]>(`${API_URL}/allSubCategoriasPorSucursal/${sucursalId}`);
+    return response.data;
+},
+
 };

@@ -15,3 +15,4 @@ export interface IProductos {
   alergenos: IAlergenos[];
   imagenes: IImagen[];
 }
+

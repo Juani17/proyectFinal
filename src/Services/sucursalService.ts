@@ -16,7 +16,7 @@ export const sucursalService = {
             return response.data; // Retorna los datos de la respuesta (un arreglo de sucursales)
         } catch (error) {
             console.error('Error al obtener las sucursales:', error); // Maneja cualquier error
-            throw new Error('No se pudieron obtener las sucursales'); // Lanza un error si ocurre algún problema
+            throw new Error('No obtuvieron las sucursales'); // Lanza un error si ocurre algún problema
         }
     },
 
@@ -28,7 +28,7 @@ export const sucursalService = {
             return response.data; // Retorna el resultado de la respuesta (true o false)
         } catch (error) {
             console.error('Error al obtener la sucursal:', error); // Maneja cualquier error
-            throw new Error('No se pudo obtener la sucursal'); // Lanza un error si ocurre algún problema
+            throw new Error('No se obtuvo la sucursal'); // Lanza un error si ocurre algún problema
         }
     },
 
