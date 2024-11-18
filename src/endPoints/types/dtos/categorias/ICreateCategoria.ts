@@ -1,5 +1,5 @@
 export interface ICreateCategoria {
   denominacion: string;
-  idSucursales: number[];
+  idSucursales: number;
   idCategoriaPadre: number | null;
 }

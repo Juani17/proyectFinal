@@ -67,12 +67,12 @@ const ListCategories = () => {
       </div>
 
       <ul className={styles.containerList}>
-        {categories.map((category) => (
-          <li key={category.id} className={styles.containerPrincipal}>
-            <CategoryCard category={category} />
-          </li>
-        ))}
-      </ul>
+                {categories.filter(category => (!category.categoriaPadre)).map(category => (
+                    <li key={category.id} className={styles.containerPrincipal}>
+                        <CategoryCard category={category} />
+                    </li>
+                ))}
+            </ul>
 
       {showModalAddCategory && (
         <>

@@ -1,0 +1,94 @@
+.containerPrincipal{
+    background-color: white;
+    border-radius: 3vh;
+    box-shadow: 5px 5px 25px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    color: #000;
+    z-index: 3; 
+}
+
+.containerTitle{
+    padding: 10px;
+    text-align: center;
+}
+.containerBody{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+    text-align: center;
+    
+}
+.formContainer input{
+    text-align: left;
+    height: 30px;
+    border-radius: 5px;
+}
+
+.formContainer button{
+    border-radius: .4rem;
+    border: blueviolet solid 2px;
+    
+}
+
+.containerButtons{
+    padding: 20px;
+    display: flex;
+    gap: 13vw;
+}
+
+.formContainer{
+    display: flex;
+    width: 90%;
+    justify-content: center;
+    flex-direction: row;
+    gap: 2vh;
+    justify-content: space-between;
+}
+
+.formContainer textarea{
+    max-height: 150px;
+    min-height: 30px;
+
+}
+
+.formBlockOne{
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+}
+
+.formBlockTwo{
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+}
+
+.alergenosDropdown {
+    position: relative;
+  }
+  
+  .alergenosList {
+    position: absolute;
+    background: #fff;
+    border: 1px solid #ccc;
+    max-height: 150px;
+    overflow-y: auto;
+    width: 100%;
+    z-index: 10;
+  }
+  
+  .alergenoOption {
+    padding: 5px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .alergenoOption input {
+    margin-right: 10px;
+    height: 30px;
+  }
