@@ -1,9 +1,9 @@
 import { FC } from "react";
 import { Button } from "@mui/material";
 import Swal from "sweetalert2";
-import noImage from "../assets/images/noImage.jpeg";
+import sinImagen from "../assets/imagenes/sinImagen.jpeg"
 import { IImagen } from "../../../../../../src/endPoints/types/IImagen";
-import { ImageService } from "../../../../../Services/ImageServices";
+import { ImageService } from "../../../../../Services/imageServices";
 
 interface IUploadImage {
   image?: string | null;
@@ -99,7 +99,7 @@ export const UploadImage: FC<IUploadImage> = ({
             Eliminar imagen
           </Button>
           <img
-            src={imageObjeto ? imageObjeto.url : image || noImage}
+            src={imageObjeto ? imageObjeto.url : image || sinImagen}
             alt="Uploaded"
             style={{
               backgroundColor: "#ccc",
@@ -125,7 +125,7 @@ export const UploadImage: FC<IUploadImage> = ({
             </Button>
           </label>
           <img
-            src={noImage}
+            src={sinImagen}
             alt="Sin imagen"
             style={{ maxWidth: "100px", height: "auto", marginLeft: "1rem" }}
           />

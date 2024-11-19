@@ -7,7 +7,7 @@ import { IUpdateProducto } from "../endPoints/types/dtos/productos/IUpdateProduc
 
 
 
-const API_URL = `${import.meta.env.VITE_BASE_URL_API}/articulos`
+const API_URL = `${import.meta.env.VITE_API_URL}/articulos`
 
 
 export const articleService = {

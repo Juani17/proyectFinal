@@ -2,7 +2,7 @@ import Swal from "sweetalert2";
 import { BackendClient } from "./BackendClient";
 import { IImagen } from "../endPoints/types/IImagen";
 
-const API_URL = import.meta.env.VITE_BASE_URL_API;
+const API_URL = import.meta.env.VITE_API_URL;
 export class ImageService extends BackendClient<IImagen> {
   constructor(baseUrl: string) {
     // Llama al constructor de BackendClient con la URL base de imágenes
