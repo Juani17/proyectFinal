@@ -4,25 +4,31 @@ import { ChangeEvent, FC, useState } from "react";
 import { ICreateCategoria } from "../../../../../endPoints/types/dtos/categorias/ICreateCategoria";
 import { categoryService } from "../../../../../Services/categoryServices";
 import Swal from "sweetalert2";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../../../redux/store/store";
 
 // Definición de las propiedades esperadas para el componente
 interface IModalAddSubCategory {
   closeModalAdd: () => void; // Función para cerrar el modal
-  idSucursal: number; // ID de la sucursal
   idCategoriaPadre: number; // ID de la categoría padre
 }
 
 // Componente funcional para agregar una subcategoría
 const ModalAddSubCategory: FC<IModalAddSubCategory> = ({
   idCategoriaPadre,
-  idSucursal,
   closeModalAdd,
 }) => {
+  // Obtener la empresa seleccionada desde localStorage o Redux
+  const storedEmpresa = localStorage.getItem('company');
+  const selectedEmpresa = storedEmpresa
+    ? JSON.parse(storedEmpresa)
+    : useSelector((state: RootState) => state.company.selectedEmpresa);
+
   // Estado local para la nueva subcategoría
   const [newSubCategory, setNewCategory] = useState<ICreateCategoria>({
     denominacion: "", // Campo de denominación vacío inicialmente
-    idSucursales: [idSucursal], // Asociado con la sucursal actual
     idCategoriaPadre: idCategoriaPadre, // Asociado con la categoría padre actual
+    idEmpresa: selectedEmpresa ? selectedEmpresa.id : 0, // Asociado con la empresa actual
   });
 
   // Función para manejar el cambio en los inputs del formulario
@@ -36,7 +42,7 @@ const ModalAddSubCategory: FC<IModalAddSubCategory> = ({
   };
 
   // Función para manejar el envío del formulario
-  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault(); // Evita el comportamiento por defecto de recargar la página
 
     // Validación simple para verificar que el campo no esté vacío
@@ -46,13 +52,17 @@ const ModalAddSubCategory: FC<IModalAddSubCategory> = ({
     }
 
     try {
-      console.log("Datos enviados", newSubCategory); // Log para depuración
-      categoryService.createCategory(newSubCategory); // Llama al servicio para crear la categoría
+      // Llamar al servicio para crear la categoría
+      await categoryService.createCategory(newSubCategory);
+
+      // Cerrar el modal después de agregar la subcategoría
       closeModalAdd();
+
+      // Mostrar mensaje de éxito
       Swal.fire({
         icon: 'success',
         title: 'Categoría creada',
-        text: 'La subcategoria se ha creado exitosamente.',
+        text: 'La subcategoría se ha creado exitosamente.',
       });
       
     } catch (error) {
@@ -61,8 +71,9 @@ const ModalAddSubCategory: FC<IModalAddSubCategory> = ({
       Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: "Something went wrong!",
+        text: "Error al crear subcategoría!",
       });
+      closeModalAdd();
     }
   };
 
@@ -70,13 +81,13 @@ const ModalAddSubCategory: FC<IModalAddSubCategory> = ({
   return (
     <div className={styles.containerPrincipal}>
       <div className={styles.containerTitle}>
-        <h1>Agregar Subcategoria</h1>
+        <h1>Agregar Subcategoría</h1>
       </div>
       <div className={styles.containerBody}>
-        <label htmlFor="">Ingrese Denominacion</label>
+        <label htmlFor="">Ingrese Denominación</label>
         <input
           type="text"
-          placeholder="Denominacion"
+          placeholder="Denominación"
           name="denominacion"
           value={newSubCategory.denominacion}
           onChange={handleChange} // Llama a la función de manejo de cambios

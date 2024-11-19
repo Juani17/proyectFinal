@@ -67,19 +67,18 @@ const ListCategories = () => {
       </div>
 
       <ul className={styles.containerList}>
-                {categories.filter(category => (!category.categoriaPadre)).map(category => (
-                    <li key={category.id} className={styles.containerPrincipal}>
-                        <CategoryCard category={category} />
-                    </li>
-                ))}
-            </ul>
+        {categories.filter(category => (!category.categoriaPadre)).map(category => (
+          <li key={category.id} className={styles.containerPrincipal}>
+            <CategoryCard category={category} />
+          </li>
+        ))}
+      </ul>
 
       {showModalAddCategory && (
         <>
           <div className={styles.backgroundDisabled}></div>
           <ModalAddCategory 
             closeModalAdd={closeModal} 
-            idSucursal={selectedSucursal.id} 
             onAddCategory={handleAddCategory} 
           />
         </>

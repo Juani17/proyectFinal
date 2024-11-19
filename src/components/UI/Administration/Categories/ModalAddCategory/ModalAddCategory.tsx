@@ -4,21 +4,28 @@ import styles from './ModalAddCategory.module.css';
 import { Button } from 'react-bootstrap';
 import { ICreateCategoria } from '../../../../../endPoints/types/dtos/categorias/ICreateCategoria';
 import Swal from 'sweetalert2';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../../../redux/store/store'; 
+import { categoryService } from '../../../../../Services/categoryServices';
 
 interface IModalAddCategory {
   closeModalAdd: () => void;
-  idSucursal: number;
-  onAddCategory: (newCategory: ICreateCategoria) => void; // Asegúrate de que esta función se pase correctamente
+  onAddCategory: (newCategory: ICreateCategoria) => void;
 }
 
 const ModalAddCategory: FC<IModalAddCategory> = ({
-  idSucursal,
   closeModalAdd,
   onAddCategory,
 }) => {
+  // Obtener la sucursal seleccionada
+  const storedSucursal = localStorage.getItem('selectedSucursal');
+  const selectedSucursal = storedSucursal
+    ? JSON.parse(storedSucursal)
+    : useSelector((state: RootState) => state.sucursal.selectedSucursal);
+
   const [newCategory, setNewCategory] = useState<ICreateCategoria>({
     denominacion: '',
-    idSucursales: [idSucursal], // Esto asume que se agrega la sucursal seleccionada
+    idEmpresa: selectedSucursal.empresa?.id || 0,
     idCategoriaPadre: null,
   });
 
@@ -39,8 +46,12 @@ const ModalAddCategory: FC<IModalAddCategory> = ({
     }
 
     try {
-      // Llamar a la función para agregar la categoría
-      onAddCategory(newCategory);
+      // Llamar al servicio para crear la categoría
+      await categoryService.createCategory({
+        denominacion: newCategory.denominacion,
+        idEmpresa: newCategory.idEmpresa,
+        idCategoriaPadre: newCategory.idCategoriaPadre,
+      });
 
       // Mostrar un mensaje de éxito
       Swal.fire({
@@ -48,6 +59,9 @@ const ModalAddCategory: FC<IModalAddCategory> = ({
         title: 'Categoría creada',
         text: 'La categoría se ha creado exitosamente.',
       });
+
+      // Llamar a la función de callback para agregar la categoría
+      onAddCategory(newCategory);
     } catch (error) {
       console.error('El problema es: ', error);
       Swal.fire({

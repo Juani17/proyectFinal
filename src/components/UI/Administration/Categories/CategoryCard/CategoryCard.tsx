@@ -33,7 +33,7 @@ const CategoryCard: FC<ICategoryCard> = ({ category }) => {
   useEffect(() => {
     const fetchSubCategories = async () => {
       try {
-        const subCategoriesFetched = await categoryService.getAllSubCategoriesByCategoryId(
+        const subCategoriesFetched = await categoryService.getAllSubCategoriesPorCAtegoriaPadre(
           category.id,
           selectedSucursal.id
         );
@@ -91,7 +91,6 @@ const CategoryCard: FC<ICategoryCard> = ({ category }) => {
             <div className={styles.backgroundDisabled}></div>
             <ModalAddSubCategory
               closeModalAdd={closeModal}
-              idSucursal={selectedSucursal.id}
               idCategoriaPadre={category.id}
             />
           </>

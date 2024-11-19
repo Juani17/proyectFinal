@@ -3,6 +3,7 @@ import { IEmpresa } from "../../endPoints/types/dtos/empresa/IEmpresa"; // Impor
 
 // Define la estructura del estado inicial para la compañía
 interface CompanyState {
+    selectedEmpresa: any;
     selectedCompany: IEmpresa | null; // Representa la compañía seleccionada, o null si no hay ninguna seleccionada
 }
 

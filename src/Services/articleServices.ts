@@ -3,10 +3,6 @@ import { IProductos } from "../endPoints/types/dtos/productos/IProductos";
 import { ICreateProducto } from "../endPoints/types/dtos/productos/ICreateProducto";
 import { IUpdateProducto } from "../endPoints/types/dtos/productos/IUpdateProducto";
 
-// Definimos la URL base de la API que vamos a utilizar para hacer las solicitudes
-
-
-
 const API_URL = `${import.meta.env.VITE_API_URL}/articulos`
 
 
@@ -36,7 +32,7 @@ export const articleService = {
         return response.data
     },
 
-    async getPagedArticles(sucursalId: number, page: number)/*: Promise<IProductos[]>*/ {
+    async getPagedArticles(sucursalId: number, page: number) {
         const response = await axios.get(`${API_URL}/pagedPorSucursal/${sucursalId}?page=${page}&size=${10}`);
         return response.data;
     },

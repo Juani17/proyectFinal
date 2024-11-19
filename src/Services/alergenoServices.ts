@@ -35,7 +35,7 @@ export const alergenoService = {
         return response.data
     },
 
-    //dudo sobre como hacer POST DeleteImgAlergeno
+    
     async deleteImgAlergeno(id: number, publicId: string): Promise<void> {
         try {
             const url = `${BASE_URL}/?id=${id}&publicId=${publicId}`;
