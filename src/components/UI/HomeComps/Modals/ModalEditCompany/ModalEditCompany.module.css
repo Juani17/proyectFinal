@@ -26,6 +26,21 @@
     display: flex;
     justify-content: center;
     gap: 5vw;
-    padding: 2vh;
-   
+    padding: 2vh;   
+}
+
+.containerButtons button {
+    padding: 10px 30px;
+    font-size: 1.2rem;
+    background-color: black;
+    color: white; /* Asegúrate de que el texto sea visible */
+    border: 1px solid black; /* Asegúrate de definir un borde válido */
+    border-radius: 5px; /* Estética adicional */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Añade una transición suave */
+}
+
+.containerButtons button:hover {
+    background-color: #ff7b00; /* Color más oscuro al hacer hover */
+    color: black; /* Cambia el color del texto para contraste */
+    border: 1px solid #ff7b00; /* Cambia el borde también */
 }

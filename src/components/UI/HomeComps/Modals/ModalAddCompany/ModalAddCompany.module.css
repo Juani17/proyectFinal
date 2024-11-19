@@ -33,6 +33,13 @@
     padding: 16px;
 }
 
+.containerForm input,
+.containerForm select {
+    border: 1px solid #000000; /* Borde gris claro */   
+    background-color: #000000;
+    color: white;
+}
+
 /* Contenedor de Botones */
 .containerButtons {
     display: flex;
@@ -61,6 +68,7 @@
     font-size: 1em; /* Tamaño de fuente que se adapta bien al formulario */
     font-style: italic; /* Crea un contraste suave con el texto ingresado */
     opacity: 0.8; /* Ligera transparencia para un look más sutil */
+    
 }
 
 input:focus::placeholder {
