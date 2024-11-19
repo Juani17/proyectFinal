@@ -1,5 +1,7 @@
 .containerPrincipal{
-    background-color: rgb(255, 0, 0);
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
     border-radius: 3vh;
     box-shadow: 5px 5px 25px;
     position: absolute;
@@ -7,7 +9,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     padding: 20px;
-    color: #ff0000;
+    color: #f66c10;
     z-index: 3; 
 }
 
@@ -31,14 +33,16 @@
 
 .formContainer button{
     border-radius: .4rem;
-    border: rgb(83, 226, 43) solid 2px;
+    border: rgb(0, 0, 0) solid 2px;
     
 }
 
 .containerButtons{
+    justify-content: center;
+    align-items: center;
     padding: 20px;
     display: flex;
-    gap: 13vw;
+    gap: 10vw;
 }
 
 .formContainer{
@@ -92,3 +96,4 @@
     margin-right: 10px;
     height: 30px;
   }
+

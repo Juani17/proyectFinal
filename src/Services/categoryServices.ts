@@ -2,7 +2,7 @@ import axios from "axios";
 import { ICategorias } from "../endPoints/types/dtos/categorias/ICategorias";
 import { ICreateCategoria } from "../endPoints/types/dtos/categorias/ICreateCategoria";
 
-// Definimos la URL base de la API que vamos a utilizar para hacer las solicitudes relacionadas con las categorías
+// Definimos la URL base de la API 
 const API_URL = `${import.meta.env.VITE_API_URL}/categorias`;
 
 export const categoryService = {
