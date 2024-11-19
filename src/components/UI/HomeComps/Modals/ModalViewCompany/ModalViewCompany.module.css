@@ -1,15 +1,14 @@
 .containerPrincipalOn{
     min-height: 50vh;
     min-width: 25vw;
-    background-color: white;
+    background-color: rgb(255, 255, 255);
     border-radius: 3vh;
-    box-shadow: 5px 5px 25px;
     position: fixed; /* Position fixed para centrar el popup */
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     padding: 20px;
-    color: #000;
+    color: #ff8800;
     z-index: 3;
 }
 .containerTitle{

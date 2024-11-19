@@ -10,7 +10,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     padding: 24px;
-    color: #333; /* Color de texto gris oscuro */
+    color: #ff7700; /* Color de texto gris oscuro */
     z-index: 3;
 }
 
@@ -20,7 +20,7 @@
     padding: 8px;
     font-size: 1.5em;
     font-weight: bold;
-    color: #1a1a2e; /* Azul oscuro para resaltar */
+    color: #ff7b00; /* Azul oscuro para resaltar */
     border-bottom: 1px solid #ddd; /* Línea para separar el título */
 }
 
@@ -38,18 +38,32 @@
     display: flex;
     justify-content: center;
     gap: 4vw; /* Espaciado ajustado para balancear los botones */
-    padding: 16px;
+    padding: 16px;    
+}
+.containerButtons button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #000000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.containerButtons button:hover {
+    background-color: #ff7b00; /* Color más oscuro al hacer hover */
 }
 
 /* Placeholder de Inputs */
 ::placeholder {
-    color: #888; /* Gris claro para que no compita visualmente */
+    color: #ffffff; /* Gris claro para que no compita visualmente */
     font-size: 1em; /* Tamaño de fuente que se adapta bien al formulario */
     font-style: italic; /* Crea un contraste suave con el texto ingresado */
     opacity: 0.8; /* Ligera transparencia para un look más sutil */
 }
 
 input:focus::placeholder {
-    color: #aaa; /* Cambia a un gris más claro al enfocar para mejorar contraste */
+    color: #ff7700; /* Cambia a un gris más claro al enfocar para mejorar contraste */
     opacity: 0.6;
 }
