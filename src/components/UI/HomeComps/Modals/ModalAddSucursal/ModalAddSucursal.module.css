@@ -1,15 +1,14 @@
 .containerPrincipal {
     min-height: 50vh;
     min-width: 600px;
-    background-color: #f8f9fa; /* Fondo neutro, ligeramente gris */
+    background-color: #ffffff; /* Fondo neutro, ligeramente gris */
     border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Sombra más suave y difusa */
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     padding: 30px;
-    color: #333; /* Texto en gris oscuro para contraste */
+    color: #ffae00; /* Texto en gris oscuro para contraste */
     z-index: 3;
 }
 
@@ -17,9 +16,9 @@
     text-align: center;
     padding: 10px;
     font-size: 1.5rem;
-    color: #333;
+    color: #fa8e00;
     font-weight: bold;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #ff9100;
 }
 
 .containerForm {
@@ -36,18 +35,19 @@
 .containerForm select {
     padding: 10px 15px;
     border-radius: 5px;
-    border: 1px solid #ced4da; /* Borde gris claro */
+    border: 1px solid #000000; /* Borde gris claro */
     font-size: 0.9rem;
     width: 100%;
     max-width: 220px;
     text-align: center;
-    background-color: #fff;
+    background-color: #000000;
+    color: white;
     transition: border-color 0.2s ease;
 }
 
 .containerForm input:focus,
 .containerForm select:focus {
-    border-color: #007bff; /* Resalta el campo activo en azul */
+    border-color: #ff5e00; /* Resalta el campo activo en azul */
     outline: none;
 }
 
@@ -59,7 +59,7 @@
 
 .containerPrincipal label {
     font-size: 1rem;
-    color: #555;
+    color: #ff8000;
 }
 
 .containerButtons {
@@ -73,7 +73,7 @@
     padding: 10px 20px;
     font-size: 1rem;
     color: #fff;
-    background-color: #007bff;
+    background-color: #000000;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -81,7 +81,7 @@
 }
 
 .containerButtons button:hover {
-    background-color: #0056b3; /* Color más oscuro al hacer hover */
+    background-color: #ff7b00; /* Color más oscuro al hacer hover */
 }
 
 .blockOne,

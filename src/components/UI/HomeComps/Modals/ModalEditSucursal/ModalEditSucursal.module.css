@@ -1,15 +1,14 @@
 .containerPrincipal{
     min-height: 50vh;
     min-width: 600px;
-    background-color: white;
+    background-color: rgb(255, 255, 255);
     border-radius: 3vh;
-    box-shadow: 5px 5px 25px;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     padding: 20px;
-    color: #000;
+    color: #ff9100;
     z-index: 3; 
 }
 .containerTitle{
@@ -29,6 +28,8 @@
 
 .containerForm input{
     padding: 5px 20px;
+    background-color: black;
+    color: white;
     border-radius: 8px;
     font-size: 0.8rem;
     max-width: 200px;
@@ -36,6 +37,8 @@
 }
 .containerForm select{
     padding: 5px 20px;
+    background-color: black;
+    color: white;
     border-radius: 8px;
     max-width: 220px;
     font-size: 0.8rem;
@@ -62,7 +65,14 @@
 .containerButtons button{
     padding: 10px 30px;
     font-size: 1.2rem;
+    background-color: black;
+    border: black;
 }
+
+.containerButtons button:hover {
+    background-color: #ff7b00; /* Color más oscuro al hacer hover */
+}
+
 
 .blockOne{
     display: flex;
