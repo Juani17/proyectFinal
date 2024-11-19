@@ -10,6 +10,7 @@ import { alergenoService } from "../../../../../Services/alergenoServices"
 import Swal from "sweetalert2"
 import { articleService } from "../../../../../Services/articleServices"
 import { IImagen } from "../../../../../../src/endPoints/types/IImagen"
+import { UploadImage } from "./UploadImage"
 
 interface IModalAddProduct{
     closeModal : () => void //Funcion para cerrar el modal
@@ -140,61 +141,70 @@ export const ModalAddProduct : FC<IModalAddProduct> = ({closeModal, sucursal}) =
         <div className={styles.containerBody}>
             <form action="" className={styles.formContainer}>
 
-                <div className={styles.formBlockOne}>
-                    <label htmlFor="denominacion">Denominacion: </label>
-                    <input type="text" placeholder="Denominacion" value={newProduct.denominacion} name="denominacion" onChange={handleChange}/>
+            <div className={styles.formBlockOne}>
+                <label htmlFor="denominacion">Denominacion: </label>
+                <input type="text" placeholder="Denominacion" value={newProduct.denominacion} name="denominacion" onChange={handleChange}/>
 
-                    <label htmlFor="precioVenta">Precio de venta: </label>
-                    <input type="number" placeholder="Precio de venta" min={0} value={newProduct.precioVenta} name="precioVenta" onChange={handleChange}/>
+                <label htmlFor="precioVenta">Precio de venta: </label>
+                <input type="number" placeholder="Precio de venta" min={0} value={newProduct.precioVenta} name="precioVenta" onChange={handleChange}/>
 
-                    <label htmlFor="descripcion">Descripcion: </label>
-                    <textarea
-                        id="descripcion"
-                        placeholder="Descripción"
-                        value={newProduct.descripcion}
-                        name="descripcion"
-                        onChange ={handleChange}
-                    ></textarea>
+                <label htmlFor="descripcion">Descripcion: </label>
+                <textarea
+                    id="descripcion"
+                    placeholder="Descripción"
+                    value={newProduct.descripcion}
+                    name="descripcion"
+                    onChange ={handleChange}
+                ></textarea>
 
+            </div>
+            
+            
+            <div className={styles.formBlockTwo}>
+
+                <label htmlFor="codigo">Código: </label>
+                <input type="text" placeholder="Código" value={newProduct.codigo} name="codigo" onChange={handleChange} />
+
+                <label htmlFor="categoria">Categoria: </label>
+                <select name="" id="" onChange={handleCategoryChange}>
+                    <option value="">Seleccione una Categoría</option>
+                    {categories.map((category) => (
+                        <option key={category.id} value={category.id}>{category.denominacion}</option>
+                    ))}
+                </select>
+
+
+                <label htmlFor="alergenos">Alergenos</label>
+            <div className={styles.alergenosDropdown}>
+              <button type="button" onClick={handleAlergenosToggle}>
+                Seleccionar alérgenos
+              </button>
+              {isAlergenosOpen && (
+                <div className={styles.alergenosList}>
+                    {alergenos.map((alergeno) => (
+                        <div key={alergeno.id} className={styles.alergenoOption}>
+                            <input
+                                type="checkbox"
+                                id={`alergeno-${alergeno.id}`}
+                                checked={selectedAlergenos.includes(alergeno.id)}
+                                onChange={() => toggleAlergeno(alergeno.id)}
+                            />
+                            <label htmlFor={`alergeno-${alergeno.id}`}>{alergeno.denominacion}</label>
+                    </div>
+                  ))}
                 </div>
+              )}
+            </div>
+
+                <UploadImage 
+                imageObjeto={imageProduct}
+                setImageObjeto={setImageProduct}
+                typeElement="images"
+                />
                 
-                
-                <div className={styles.formBlockTwo}>
+            </div>
 
-                    <label htmlFor="codigo">Código: </label>
-                    <input type="text" placeholder="Código" value={newProduct.codigo} name="codigo" onChange={handleChange} />
-
-                    <label htmlFor="categoria">Categoria: </label>
-                    <select name="" id="" onChange={handleCategoryChange}>
-                        <option value="">Seleccione una Categoría</option>
-                        {categories.map((category) => (
-                            <option key={category.id} value={category.id}>{category.denominacion}</option>
-                        ))}
-                    </select>
-
-
-                    <label htmlFor="alergenos">Alergenos</label>
-                    <div className={styles.alergenosDropdown}>
-                    <button type="button" onClick={handleAlergenosToggle}>
-                        Seleccionar alérgenos
-                    </button>
-                    {isAlergenosOpen && (
-                        <div className={styles.alergenosList}>
-                            {alergenos.map((alergeno) => (
-                                <div key={alergeno.id} className={styles.alergenoOption}>
-                                    <input
-                                        type="checkbox"
-                                        id={`alergeno-${alergeno.id}`}
-                                        checked={selectedAlergenos.includes(alergeno.id)}
-                                        onChange={() => toggleAlergeno(alergeno.id)}
-                                    />
-                                    <label htmlFor={`alergeno-${alergeno.id}`}>{alergeno.denominacion}</label>
-                                </div>
-                            ))}
-                        </div>
-                    )}
-                </div>
-                </div>
+            
             </form>
         </div>
 

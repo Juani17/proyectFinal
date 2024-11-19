@@ -1,63 +1,185 @@
-import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material"; // Importa componentes de la biblioteca Material UI
-import { RootState } from "../../../../../redux/store/store"; // Importa el tipo de estado raíz de Redux
-import { useSelector } from "react-redux"; // Hook de React-Redux para seleccionar el estado
-import { useEffect, useState } from "react"; // Importa hooks de React
+import {  Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material"
+import { RootState } from "../../../../../redux/store/store";
+import { useSelector } from "react-redux";
+import { ChangeEvent, useEffect, useState } from "react";
 
-import { IProductos } from "../../../../../endPoints/types/dtos/productos/IProductos"; // Importa el tipo de producto
-import { articleService } from "../../../../../Services/articleServices"; // Servicio para obtener productos
-import { ProductRow } from "../ProductRow/ProductRow"; // Componente para renderizar cada fila de producto
+import { IProductos } from "../../../../../endPoints/types/dtos/productos/IProductos";
+import { articleService } from "../../../../../Services/articleServices";
+import { ProductRow } from "../ProductRow/ProductRow";
+import { Button } from "react-bootstrap";
+import styles from "./ListProducts.module.css";
+import { ModalAddProduct } from "../ModalAddProduct/ModalAddProduct";
+import { ICategorias } from "../../../../../endPoints/types/dtos//categorias/ICategorias";
+import { categoryService } from "../../../../../Services/categoryServices";
 
-// Componente para listar productos
 export const ListProducts = () => {
 
-    // Obtiene la sucursal seleccionada del almacenamiento local o del estado de Redux
+
+
     const storedSucursal = localStorage.getItem('sucursal');
 
-    // Si hay una sucursal almacenada en localStorage, se parsea; si no, se usa la seleccionada en el estado de Redux
     const selectedSucursal = storedSucursal ? JSON.parse(storedSucursal) : useSelector(
         (state: RootState) => state.sucursal.selectedSucursal
-    );
+    )
 
-    // Estado local para almacenar la lista de productos
     const [products, setProducts] = useState<IProductos[]>([]);
+    const [categories, setCategories] = useState<ICategorias[]>([]);
+    const [showModalAddProduct, setShowModalAddProduct] = useState<boolean>(false);
+    const [selectedCategory, setSelectedCategory] = useState<ICategorias | undefined>(undefined);
+    const [productsLoaded, setProductsLoaded] = useState(false);
+    const [categoriesLoaded, setCategoriesLoaded] = useState(false);
+    const [page, setPage] = useState<number>(1);
+    const [totalPages, setTotalPages] = useState<number>(1);
+    const [totalElements, setTotalElements] = useState<number>(0);
+    const [loading, setLoading] = useState<boolean>(false);
 
-    // Efecto que se ejecuta al montar el componente o cuando `selectedSucursal` cambia
+
+    const filteredProducts = selectedCategory ? products.filter(product => product.categoria.denominacion === selectedCategory.denominacion) : products
+
+
     useEffect(() => {
         const fetchProducts = async () => {
-            // Llama al servicio para obtener productos por ID de sucursal
-            const data = await articleService.getArticlesBySucursalId(selectedSucursal?.id);
-            setProducts(data); // Actualiza el estado con los productos obtenidos
+            setLoading(true);
+            if (!productsLoaded) {
+                try {
+                    const data = await articleService.getPagedArticles(selectedSucursal?.id, page -1 );
+                    setProducts(data.content);
+                    setTotalPages(data.totalPages);
+                    setTotalElements(data.totalElements);
+                    setProductsLoaded(true);
+                } catch (error) {
+                    console.error("Error al cargar productos:", error);
+                }
+            }
         };
+    
+        fetchProducts();
+        setLoading(false);
+    }, [selectedSucursal, productsLoaded, page]);
+    
+    useEffect(() => {
+        const fetchCategories = async () => {
+            if (!categoriesLoaded) {
+                try {
+                    const data = await categoryService.getCategoriesBySucursal(selectedSucursal?.id);
+                    setCategories(data);
+                    setCategoriesLoaded(true);
+                } catch (error) {
+                    console.error("Error al cargar categorías:", error);
+                }
+            }
+        };
+    
+        fetchCategories();
+    }, [selectedSucursal, categoriesLoaded]);
 
-        fetchProducts(); // Llama a la función de obtención de datos
-    }, [selectedSucursal]);
+    const handleShowModalAddProduct = () => {
+        setShowModalAddProduct(true);
+    }
+    const handleCloseModalAddProduct = () => {
+            setShowModalAddProduct(false);
+    }
 
-    return (
-        <div>
-            {/* Contenedor de la tabla con estilo aplicado */}
-            <TableContainer component={Paper} style={{ marginTop: '20px', height: '82vh' }}>
-                <Table>
-                    <TableHead>
-                        <TableRow>
-                            {/* Encabezados de la tabla */}
-                            <TableCell>Nombre</TableCell>
-                            <TableCell>Precio</TableCell>
-                            <TableCell>Descripción</TableCell>
-                            <TableCell>Categoría</TableCell>
-                            <TableCell>Habilitado</TableCell>
-                            <TableCell>Acciones</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {/* Mapea y renderiza cada producto usando el componente `ProductRow` */}
-                        {products.map(product => (
-                            <ProductRow product={product} />
-                        ))}
-                    </TableBody>
-                </Table>
-            </TableContainer>
+    const handleCategoryChange = (e : ChangeEvent<HTMLSelectElement>) => {
+        
+        const filtredCategories =(categories.find(category => category.denominacion === e.target.value));
+
+        if (filtredCategories?.denominacion === "" ) {
+            setSelectedCategory(undefined);
+        }else{
+            setSelectedCategory(filtredCategories);
+        }
+    }
+
+    const handleNextPage = () => {
+        if (page < totalPages) {
+            setPage(page + 1);
+            //seteo products loaded false para que recargue cada vez que cambie de página
+            setProductsLoaded(false);
+        }
+    };
+    
+    const handlePrevPage = () => {
+        if (page > 1) {
+            setPage(page - 1);
+            //seteo products loaded false para que recargue cada vez que cambie de página
+            setProductsLoaded(false);
+        }
+    };
+
+
+  return (
+    <div className={styles.heroContainer}>
+        
+        <div className={styles.upContainer}>
+            <Button
+                onClick={handleShowModalAddProduct}>Agregar Producto
+            </Button>
+            <select onChange={handleCategoryChange}>
+                <option value="">Filtrar por categoría</option>
+                <option value="">Todas</option>
+                {categories.map(category =>(
+                    <option key={category.id} >{category.denominacion}</option>
+                ))}
+            </select>
+
         </div>
-    );
-};
+        
+        {loading && (
+        <div className="d-flex justify-content-center">
+            <div className="spinner-border text-primary" role="status">
+                <span className="visually-hidden">Cargando...</span>
+            </div>
+        </div>
+        )}
+
+
+        <TableContainer component={Paper} style={{ marginTop: '20px', height: '73vh'}}>
+        <Table>
+            <TableHead>
+                <TableRow>
+                    <TableCell>Nombre</TableCell>
+                    <TableCell>Precio</TableCell>
+                    <TableCell>Descripción</TableCell>
+                    <TableCell>Categoría</TableCell>
+                    <TableCell>Habilitado</TableCell>
+                    <TableCell>Acciones</TableCell>
+                </TableRow>
+            </TableHead>
+            <TableBody>
+                {filteredProducts.map(product => (
+                    <ProductRow key={product.id} product={product} />
+
+                ))}
+            </TableBody>
+
+            </Table>
+        </TableContainer>
+        
+        <div className={styles.pagination}>
+            <Button onClick={handlePrevPage} disabled={page === 1}>
+                Anterior
+            </Button>
+            <span>
+                Página {page} de {totalPages} (Total: {totalElements} productos)
+            </span>
+            <Button onClick={handleNextPage} disabled={page === totalPages}>
+                Siguiente
+            </Button>
+
+            
+        </div>
+        
+        {showModalAddProduct && (
+            <div className={styles.backgroundDisabled}>
+
+                <ModalAddProduct closeModal={handleCloseModalAddProduct} sucursal ={selectedSucursal}/>
+
+            </div>
+        )}
+         
+    </div>
+  )
+}
 
 export default ListProducts;
