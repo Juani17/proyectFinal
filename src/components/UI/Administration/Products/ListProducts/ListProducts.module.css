@@ -42,7 +42,7 @@
 
 .heroContainer {
     padding: 20px;
-    max-width: 1200px;
+    max-width: 1100px;
     margin: 0 auto;
   }
   
@@ -82,7 +82,7 @@
 }
 /* Table styles to handle long text */
 .tableContainer {
-    max-height: 69vh;
+    max-height: 66vh;
     overflow-y: auto;
 }
 
