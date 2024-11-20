@@ -11,14 +11,30 @@
     font-size: 2em;
   
 }
+.headerBtn {
+  background: transparent !important;
+  color: #000000 !important;
+  border: none !important;
+  outline: none !important;
+  cursor: pointer !important;
+  padding: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 50% !important; /* Botón circular */
+  width: 50px !important; /* Ajusta el tamaño según necesidad */
+  height: 50px !important;
+  font-size: 2.5rem !important;
+  transition: background-color 0.3s ease color 0.3s ease !important;
 
-.headerBtn{
-    background-color: transparent;
-    border: 2px solid white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 5px 15px;
-    color: white;
-    margin: 7px;
+}
+
+.headerBtn:hover {
+  background-color: rgba(0, 0, 0, 0.1) !important; /* Fondo circular al hacer hover */
+  color:  #007bff !important; /* Cambia el color del icono al hacer hover */
+}
+
+.material-symbols-outlined {
+  font-size: 30px !important; /* Tamaño del icono */
+  color: inherit !important; /* Usa el color actual del texto */
 }

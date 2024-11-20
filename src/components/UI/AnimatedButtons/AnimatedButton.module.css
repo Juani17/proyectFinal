@@ -1,0 +1,37 @@
+.circularButton {
+  background: transparent;
+  margin-right: 5px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%; /* Asegura que sea circular */
+  width: 50px; /* Ajusta el tamaño del contenedor circular */
+  height: 50px;
+  transition: background-color 0.3s ease;
+}
+
+.circularButton:hover {
+  background-color: rgba(0, 0, 0, 0.1); /* Cambia el color del círculo al hacer hover */
+}
+
+.iconContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.icon {
+  fill: currentColor; /* Toma el color actual del texto o estilo */
+  width: 24px;
+  height: 24px;
+}
+
+.circularButton:hover .icon {
+  color: #007bff; /* Cambia el color del icono al hacer hover */
+}
