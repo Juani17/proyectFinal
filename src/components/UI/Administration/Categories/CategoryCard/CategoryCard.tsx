@@ -34,8 +34,8 @@ const CategoryCard: FC<ICategoryCard> = ({ category }) => {
     const fetchSubCategories = async () => {
       try {
         const subCategoriesFetched = await categoryService.getAllSubCategoriesPorCAtegoriaPadre(
-          category.id,
-          selectedSucursal.id
+          selectedSucursal.id,
+          category.id
         );
         setSubCategories(subCategoriesFetched);
       } catch (error) {
