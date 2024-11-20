@@ -41,12 +41,12 @@ export const ListProducts = () => {
   const [totalElements, setTotalElements] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(false);
 
-   const filteredProducts = selectedCategory
-     ? products.filter(
-         (product) =>
-           product.categoria.denominacion === selectedCategory.denominacion
-       )
-     : products;
+  const filteredProducts = selectedCategory
+    ? products.filter(
+        (product) =>
+          product.categoria.denominacion === selectedCategory.denominacion
+      )
+    : products;
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -108,33 +108,28 @@ export const ListProducts = () => {
     }
   };
 
-  const handleNextPage = () => {
-    if (page < totalPages) {
-      setPage(page + 1);
-      //seteo products loaded false para que recargue cada vez que cambie de página
-      setProductsLoaded(false);
-    }
-  };
-
-  const handlePrevPage = () => {
-    if (page > 1) {
-      setPage(page - 1);
-      //seteo products loaded false para que recargue cada vez que cambie de página
-      setProductsLoaded(false);
-    }
-  };
 
   return (
     <div className={styles.heroContainer}>
       <div className={styles.upContainer}>
-        <Button onClick={handleShowModalAddProduct}>Agregar Producto</Button>
-        <select onChange={handleCategoryChange}>
-          <option value="">Filtrar por categoría</option>
-          <option value="">Todas</option>
-          {categories.map((category) => (
-            <option key={category.id}>{category.denominacion}</option>
-          ))}
-        </select>
+        <Button
+          className={styles.addButton}
+          onClick={handleShowModalAddProduct}
+        >
+          + Producto
+        </Button>
+        <div className={styles.filterContainer}>
+          <select
+            className={styles.categorySelect}
+            onChange={handleCategoryChange}
+          >
+            <option value="">🔍 Filtrar por categoría</option>
+            <option value="">Todas</option>
+            {categories.map((category) => (
+              <option key={category.id}>{category.denominacion}</option>
+            ))}
+          </select>
+        </div>
       </div>
 
       {loading && (
@@ -167,18 +162,6 @@ export const ListProducts = () => {
           </TableBody>
         </Table>
       </TableContainer>
-
-      <div className={styles.pagination}>
-        <Button onClick={handlePrevPage} disabled={page === 1}>
-          Anterior
-        </Button>
-        <span>
-          Página {page} de {totalPages} (Total: {totalElements} productos)
-        </span>
-        <Button onClick={handleNextPage} disabled={page === totalPages}>
-          Siguiente
-        </Button>
-      </div>
 
       {showModalAddProduct && (
         <div className={styles.backgroundDisabled}>
