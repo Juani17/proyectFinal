@@ -53,12 +53,12 @@ export const ViewSucursals: FC = () => {
       {selectedCompany? ( 
         <>
         <h2>Sucursales: {selectedCompany?.nombre}</h2>
-        <Button onClick={handleShowModal}>Agregar Sucursal</Button>
+        <Button onClick={handleShowModal}>Agregar Una Sucursal</Button>
         </>
       
       ) : 
 
-      (<h1>Selecciona una empresa</h1>)}
+      <div className={styles.sucursalNoCompany}> <h1>Elegir Una Empresa</h1></div>}
 
       
       </div>

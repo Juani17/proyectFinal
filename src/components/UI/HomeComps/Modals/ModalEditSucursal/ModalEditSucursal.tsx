@@ -63,27 +63,46 @@ const ModalEditSucursal: FC<IModalEditSucursal> = ({ modalCloseEdit, sucursal })
         }
     };
 
-    // Maneja el envío del formulario
-    const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
-        e.preventDefault();
-        try {
-            await sucursalService.updateSucursal(formValues.id, formValues);
+// Maneja el envío del formulario
+const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    try {
+        await sucursalService.updateSucursal(formValues.id, formValues);
 
-            Swal.fire({
-                icon: "success",
-                title: "Sucursal actualizada",
-                showConfirmButton: false,
-                timer: 1500,
-                willClose: () => {
-                    modalCloseEdit();
-                    window.location.reload();
-                }
-            });
-        } catch (error) {
-            console.error("El problema es: ", error);
-            alert("Hubo un problema");
-        }
-    };
+        Swal.fire({
+            icon: "success",
+            title: "¡Actualización exitosa!",
+            text: "La sucursal ha sido actualizada correctamente. Puedes verificar los cambios en la lista.",
+            customClass: {
+                popup: 'custom-popup-success', 
+                title: 'custom-title-success', 
+                htmlContainer: 'custom-content-success' // Cambio de 'content' a 'htmlContainer'
+            },
+            showConfirmButton: false,
+            timer: 1500,
+            willClose: () => {
+                modalCloseEdit();
+                window.location.reload();
+            },
+        });
+    } catch (error) {
+        console.error("El problema es: ", error);
+
+        Swal.fire({
+            icon: "error",
+            title: "¡Algo salió mal!",
+            text: "No se pudo actualizar la sucursal. Por favor, verifica los datos e inténtalo nuevamente.",
+            customClass: {
+                popup: 'custom-popup-error', 
+                title: 'custom-title-error', 
+                htmlContainer: 'custom-content-error' // Cambio de 'content' a 'htmlContainer'
+            },
+            confirmButtonText: "Reintentar",
+            confirmButtonColor: "#dc3545",
+        });
+    }
+};
+
 
        // Estados para países, provincias y localidades
        const [countries, setCountries] = useState<IPais[]>([]);

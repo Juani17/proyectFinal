@@ -10,6 +10,8 @@ import { IProvincia } from "../../../../../endPoints/types/IProvincia";
 import { ILocalidad } from "../../../../../endPoints/types/ILocalidad";
 import { provinceService } from "../../../../../Services/provinceService";
 import { localityService } from "../../../../../Services/localityServices";
+import '../../../../../styles/custom-alerts.css'
+
 
 interface IModalAdd {
     closeModalAdd: () => void; // Función que recibe desde CardCompany para cerrar el modal
@@ -58,42 +60,70 @@ const ModalAddSucursal: FC<IModalAdd> = ({ closeModalAdd, idEmpresa }) => {
     };
     
 
-    // Función que maneja el envío de los campos del formulario a la API
     const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
-
+    
         if (!newSucursal.nombre || !newSucursal.horarioApertura || !newSucursal.horarioCierre || newSucursal.latitud <= 0) {
-            alert("Complete todos los campos");
+            Swal.fire({
+                icon: "warning",
+                title: "Información incompleta",
+                text: "Por favor, complete todos los campos requeridos antes de continuar.",
+                customClass: {
+                    popup: 'custom-popup-warning',
+                    title: 'custom-title-warning',
+                    htmlContainer: 'custom-content-warning',
+                    confirmButton: 'custom-button-warning'
+                },
+                background: '#fff8e1',
+                color: '#856404',
+                confirmButtonColor: '#ffcc00',
+                confirmButtonText: 'Entendido'
+            });
             return;
         }
-
+    
         try {
             console.log("Datos enviados:", newSucursal);
             await sucursalService.createSucursal(newSucursal);
-
+    
             Swal.fire({
                 icon: "success",
-                title: "Sucursal agregada",
+                title: "¡Sucursal registrada!",
+                text: "La nueva sucursal se ha agregado correctamente.",
+                customClass: {
+                    popup: 'custom-popup-success',
+                    title: 'custom-title-success',
+                    htmlContainer: 'custom-content-success'
+                },
+                background: 'linear-gradient(135deg, #e8f5e9, #a5d6a7)',
+                color: '#1b5e20',
                 showConfirmButton: false,
                 timer: 1500,
                 willClose: () => {
                     closeModalAdd();
                     window.location.reload();
-                },
+                }
             });
         } catch (error) {
-            console.error("El problema es: ", error);
+            console.error("Error al agregar sucursal:", error);
             Swal.fire({
                 icon: "error",
-                title: "Oops...",
-                text: "Algo salió mal!",
+                title: "Error al registrar",
+                text: "Hubo un problema al intentar registrar la sucursal. Por favor, inténtelo nuevamente más tarde.",
+                customClass: {
+                    popup: 'custom-popup-error',
+                    title: 'custom-title-error',
+                    htmlContainer: 'custom-content-error',
+                    confirmButton: 'custom-button-error'
+                },
+                background: '#fbe9e7',
+                color: '#c62828',
+                confirmButtonColor: '#f44336',
+                confirmButtonText: 'Cerrar'
             });
         }
-
-     
-
     };
-
+    
        // Select de localidades
        const [countries, setCountries] = useState<IPais[]>([]);
        const [provinces, setProvinces] = useState<IProvincia[]>([]);

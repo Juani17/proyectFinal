@@ -34,33 +34,51 @@ const ModalEditCompany : FC<IModalEditCompany> = ({modalCloseEdit, company}) => 
         
     };
 
-    //Funcion que maneja el envio de los campos del form a la api
-    const handleSubmit = async (e :  React.MouseEvent<HTMLButtonElement> ) => {
+    const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
-        
-        try{
+    
+        try {
             await companyService.updateCompany(formValues.id, formValues);
-
+    
             Swal.fire({
                 icon: "success",
-                title: "Empresa actualizada",
+                title: "¡Actualización exitosa!",
+                text: "Los datos de la empresa se han actualizado correctamente.",
+                customClass: {
+                    popup: 'custom-popup-success',
+                    title: 'custom-title-success',
+                    htmlContainer: 'custom-content-success'
+                },
+                background: 'linear-gradient(135deg, #e8f5e9, #a5d6a7)',
+                color: '#1b5e20',
                 showConfirmButton: false,
                 timer: 1500,
-                willClose: ()=>{
+                willClose: () => {
                     modalCloseEdit();
-                    window.location.reload() 
+                    window.location.reload();
                 }
-                });
-            
-        }catch(error){
-            console.error("El problema es: ", error)
+            });
+        } catch (error) {
+            console.error("Error al actualizar la empresa:", error);
+    
             Swal.fire({
                 icon: "error",
-                title: "Oops...",
-                text: "Something went wrong!",
+                title: "Error al actualizar",
+                text: "Ocurrió un problema al intentar actualizar la empresa. Por favor, inténtelo más tarde.",
+                customClass: {
+                    popup: 'custom-popup-error',
+                    title: 'custom-title-error',
+                    htmlContainer: 'custom-content-error',
+                    confirmButton: 'custom-button-error'
+                },
+                background: '#fbe9e7',
+                color: '#c62828',
+                confirmButtonColor: '#f44336',
+                confirmButtonText: 'Cerrar'
             });
         }
-    }
+    };
+    
     
 
     return(

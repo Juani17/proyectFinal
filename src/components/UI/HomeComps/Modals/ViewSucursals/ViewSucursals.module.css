@@ -1,28 +1,49 @@
+.sucursalsMainContainer{
+    background-color: #000;
+}
 .sucursalsContainer {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    gap: 15px;
-    padding: 15px;
+    gap: 0; /* Sin espacio entre el header y el main */
+    padding: 0; /* Elimina el padding externo */
     width: 100%;
-    background-color: #000000; /* Fondo claro para contraste */
+    background-color: #000; /* Fondo negro unificado */
+    color: #f5f5f5; /* Texto claro */
 }
 
 .sucursalsCardContainer {
     display: grid;
     grid-template-columns: repeat(2, 1fr); /* Dos columnas en pantallas pequeñas */
-    gap: 25px; /* Espacio entre tarjetas para una separación más clara */
-    padding: 15px;
-    max-height: 80vh; /* Altura máxima para evitar desbordamiento */
-    overflow-y: auto; /* Habilita el scroll vertical */
-    background-color: #000000;
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgb(0, 0, 0); /* Sombra sutil */
+    gap: 20px;
+    padding: 20px;
+    max-height: 80vh;
+    overflow-y: auto;
+    background-color: #111; /* Fondo más oscuro para las tarjetas */
+    border-radius: 0 0 10px 10px; /* Bordes suaves solo en la parte inferior */
+    box-shadow: none; /* Sin sombra para una transición fluida */
+    animation: fadeIn 1s ease-in;
+    scrollbar-color: #222 #000; /* Color del thumb y del fondo */
+    scrollbar-width: thin; /* Ancho reducido */
+}
+/* Personalización de la barra de desplazamiento para navegadores modernos */
+.sucursalsCardContainer::-webkit-scrollbar {
+    width: 8px; /* Ancho de la barra de desplazamiento */
+    background-color: #000; /* Color del fondo de la barra */
 }
 
+.sucursalsCardContainer::-webkit-scrollbar-thumb {
+    background-color: #222; /* Color de la "thumb" */
+    border-radius: 4px; /* Bordes redondeados */
+    border: 2px solid #000; /* Espacio entre el fondo y el thumb */
+}
+
+.sucursalsCardContainer::-webkit-scrollbar-thumb:hover {
+    background-color: #444; /* Color del thumb al pasar el mouse */
+}
 @media (min-width: 1250px) {
     .sucursalsCardContainer {
-        grid-template-columns: repeat(3, 1fr); /* Tres columnas en pantallas grandes */
+        grid-template-columns: repeat(3, 1fr);
     }
 }
 
@@ -31,21 +52,41 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    padding: 15px;
-    border-bottom: 1px solid #636363; 
-    border-radius: 0 0 8px 8px;
-    color: #000000;/* Color de texto oscuro para contraste */
-    background-color: #797a7c
+    padding: 20px;
+    color: #f5f5f5; /* Texto claro */
+    background-color: #111; /* Fondo homogéneo con las tarjetas */
+    
+    box-shadow: none; /* Sin sombra */
 }
 
-.backgroundDisabled {
-    background-color: rgba(0, 0, 0, 0.6); /* Fondo más oscuro para el overlay */
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 2 !important;
-    backdrop-filter: blur(3px); /* Agrega desenfoque para mejor efecto */
+
+
+/* Animaciones */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Botones */
+button {
+    background-color: #f5f5f5;
+    color: #000;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background-color: #ddd;
+    transform: translateY(-3px);
 }
 

@@ -1,40 +1,68 @@
-.card{
-    min-width: 270px !important ;; 
-    width: 25%;
-    height: fit-content !important;
-    padding: 10px;
+/* Estilo general de tarjetas */
+.card {
+    background-color: #222 !important; /* Fondo oscuro */
+    color: #fff !important; /* Texto claro */
+    border-radius: 12px !important; /* Bordes suaves */
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1) !important; /* Sombra sutil */
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease !important;
+    height: 400px !important; /* Ajuste de altura */
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    align-items: center !important; /* Centra el contenido horizontalmente */
+    padding: 20px !important; /* Añade espacio interno */
+    overflow: hidden !important;
+    position: relative !important;
+    margin: 20px; /* Más separación entre tarjetas */
+}
+.cardBody{
     display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 20px auto;
+    flex-direction: column;
+    justify-content: space-between;
+}
+/* Imagen dentro de las tarjetas */
+.card img {
+    cursor: pointer !important;
+    width: 100% !important; /* Escala la imagen para ocupar el ancho completo */
+    height: 200px !important; /* Ajuste de altura */
+    object-fit: cover !important;
+    border-radius: 8px !important;
+    margin-bottom: 15px !important; /* Mayor separación con el contenido */
 }
 
-.cardImg{
-    width: 80%;
-    max-width: 200px;
-    max-height: 300px;
-    object-fit: cover;
+/* Estilo hover de tarjetas */
+.card:hover {
+    transform: translateY(-8px) !important;
+    box-shadow: 0 8px 20px rgba(255, 255, 255, 0.3) !important;
+    border: 2px solid #f5f5f5 !important;
 }
 
+/* Botones dentro de las tarjetas */
+.card .btn {
+    padding: 10px 18px !important; /* Más espacio para mayor comodidad */
+    border-radius: 8px !important;
+    font-size: 14px !important;
+    transition: background-color 0.3s ease, transform 0.2s ease !important;
+}
+
+.card .btn:hover {
+    background-color: #ddd !important;
+    color: #000 !important;
+    transform: translateY(-3px) !important;
+}
+
+/* Fondo de bloqueo deshabilitado */
+.backgroundDisabled {
+    background-color: rgba(0, 0, 0, 0.5) !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    z-index: 2 !important;
+}
 .containerButtons{
     display: flex;
-    justify-content: center;
-    gap: 15px;
-    padding: 2vh;
-}
-
-.containerButtons button{
-    padding: 10px 30px;
-    border-radius: 8px;
-    font-size: 1.2rem;
-}
-
-.backgroundDisabled{
-    background-color:rgba(0, 0, 0, 0.5) !important ;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index:2 !important
+    justify-content: space-between;
+    margin-top: 10px;
 }

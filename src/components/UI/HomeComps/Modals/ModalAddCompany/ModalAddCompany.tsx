@@ -4,7 +4,8 @@ import { ChangeEvent, FC, useState } from "react";
 import { ICreateEmpresaDto } from "../../../../../endPoints/types/dtos/empresa/ICreateEmpresaDto";
 import Swal from "sweetalert2";
 import { companyService } from "../../../../../Services/companyServices";
-
+import 'sweetalert2/dist/sweetalert2.min.css'
+import '../../../../../styles/custom-alerts.css'
 interface IModalAdd{
     closeModalAdd : () => void //Funcion que recibe desde CardCompany para cerrar el modal
 }
@@ -27,40 +28,69 @@ const ModalAddCompany : FC<IModalAdd> = ({closeModalAdd}) =>{
         }));
     }
 
-    //Funcion que majea el envio de los campos del form a la api
-    const handleSubmit = async (e : React.MouseEvent<HTMLButtonElement>) =>{
+    const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
-
-        if(!newCompany.nombre || !newCompany.razonSocial || (!newCompany.cuit || newCompany.cuit <= 0) /* || !newCompany.logo */){
-            alert("Complete todos los campos");
-            return;
+      
+        if (!newCompany.nombre || !newCompany.razonSocial || (!newCompany.cuit || newCompany.cuit <= 0)) {
+          Swal.fire({
+            icon: "warning",
+            title: "Información incompleta",
+            text: "Por favor, asegúrese de completar todos los campos antes de continuar.",
+            customClass: {
+              popup: 'custom-popup-warning',
+              title: 'custom-title-warning',
+              htmlContainer: 'custom-content-warning',
+              confirmButton: 'custom-button-warning'
+            },
+            background: '#fff8e1',
+            color: '#856404',
+            confirmButtonColor: '#ffcc00',
+            confirmButtonText: 'Completar'
+          });
+          return;
         }
-        
-        try{
-            console.log("Datos enviados:", newCompany);
-            await companyService.createCompany(newCompany);
-            
-            
-            Swal.fire({
-                icon: "success",
-                title: "Empresa agregada",
-                showConfirmButton: false,
-                timer: 1500,
-                willClose: ()=>{
-                    closeModalAdd();
-                    window.location.reload() 
-                }
-                });
-        }catch(error){
-            console.error("El problema es: ", error);
-            Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: "Something went wrong!",
-            });
+      
+        try {
+          await companyService.createCompany(newCompany);
+      
+          Swal.fire({
+            icon: "success",
+            title: "¡Registro exitoso!",
+            text: "La empresa ha sido registrada correctamente.",
+            customClass: {
+              popup: 'custom-popup-success',
+              title: 'custom-title-success',
+              htmlContainer: 'custom-content-success',
+              confirmButton: 'custom-button-success'
+            },
+            background: 'linear-gradient(135deg, #e0f7fa, #80deea)',
+            color: '#004d40',
+            showConfirmButton: false,
+            timer: 1500,
+            willClose: () => {
+              closeModalAdd();
+              window.location.reload();
+            }
+          });
+        } catch (error) {
+          Swal.fire({
+            icon: "error",
+            title: "¡Error inesperado!",
+            text: "Algo salió mal al intentar registrar la empresa. Inténtelo nuevamente más tarde.",
+            customClass: {
+              popup: 'custom-popup-error',
+              title: 'custom-title-error',
+              htmlContainer: 'custom-content-error',
+              confirmButton: 'custom-button-error'
+            },
+            background: '#fbe9e7',
+            color: '#d32f2f',
+            confirmButtonColor: '#f44336',
+            confirmButtonText: 'Entendido'
+          });
         }
-    }
-
+      };
+      
     return(
         <div className={style.containerPrincipal}>
         <div className={style.containerTitle}>

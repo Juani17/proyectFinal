@@ -1,0 +1,49 @@
+/* Success Popup */
+.custom-popup-success {
+    border-radius: 20px !important;
+    animation: fadeIn 0.3s ease-in-out !important;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3) !important;
+}
+
+.custom-title-success {
+    font-size: 1.6rem !important;
+    font-weight: bold !important;
+    font-family: 'Poppins', sans-serif !important;
+    text-align: center !important;
+    margin-bottom: 10px !important;
+}
+
+.custom-content-success {
+    font-size: 1.2rem !important;
+    font-family: 'Roboto', sans-serif !important;
+    line-height: 1.5 !important;
+    text-align: center !important;
+}
+
+/* Repeat the rest of your styles... */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-5px);
+    }
+    50% {
+        transform: translateX(5px);
+    }
+    75% {
+        transform: translateX(-5px);
+    }
+}

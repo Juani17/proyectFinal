@@ -74,6 +74,9 @@ export const Alergenos: FC = () => {
         text: "El Alergeno no se ha eliminado exitosamente.",
         showConfirmButton: false,
         timer: 1500,
+        customClass: {
+          confirmButton: 'custom-button',
+        },
       });
     }
   };
