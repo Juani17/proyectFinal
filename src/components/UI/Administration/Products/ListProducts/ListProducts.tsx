@@ -41,12 +41,12 @@ export const ListProducts = () => {
   const [totalElements, setTotalElements] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(false);
 
-   const filteredProducts = selectedCategory
-     ? products.filter(
-         (product) =>
-           product.categoria.denominacion === selectedCategory.denominacion
-       )
-     : products;
+  const filteredProducts = selectedCategory
+    ? products.filter(
+        (product) =>
+          product.categoria.denominacion === selectedCategory.denominacion
+      )
+    : products;
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -108,33 +108,27 @@ export const ListProducts = () => {
     }
   };
 
-  const handleNextPage = () => {
-    if (page < totalPages) {
-      setPage(page + 1);
-      //seteo products loaded false para que recargue cada vez que cambie de página
-      setProductsLoaded(false);
-    }
-  };
-
-  const handlePrevPage = () => {
-    if (page > 1) {
-      setPage(page - 1);
-      //seteo products loaded false para que recargue cada vez que cambie de página
-      setProductsLoaded(false);
-    }
-  };
-
   return (
     <div className={styles.heroContainer}>
       <div className={styles.upContainer}>
-        <Button onClick={handleShowModalAddProduct}>Agregar Producto</Button>
-        <select onChange={handleCategoryChange}>
-          <option value="">Filtrar por categoría</option>
-          <option value="">Todas</option>
-          {categories.map((category) => (
-            <option key={category.id}>{category.denominacion}</option>
-          ))}
-        </select>
+        <Button
+          className={styles.addButton}
+          onClick={handleShowModalAddProduct}
+        >
+          + Producto
+        </Button>
+        <div className={styles.filterContainer}>
+          <select
+            className={styles.categorySelect}
+            onChange={handleCategoryChange}
+          >
+            <option value="">🔍 Filtrar por categoría</option>
+            <option value="">Todas</option>
+            {categories.map((category) => (
+              <option key={category.id}>{category.denominacion}</option>
+            ))}
+          </select>
+        </div>
       </div>
 
       {loading && (
@@ -147,38 +141,26 @@ export const ListProducts = () => {
 
       <TableContainer
         component={Paper}
-        style={{ marginTop: "20px", height: "73vh" }}
+        style={{ marginTop: "10px", height: "69vh" }}
       >
         <Table>
-          <TableHead>
+          <TableHead className={styles.tableHead}>
             <TableRow>
-              <TableCell>Nombre</TableCell>
-              <TableCell>Precio</TableCell>
-              <TableCell>Descripción</TableCell>
-              <TableCell>Categoría</TableCell>
-              <TableCell>Habilitado</TableCell>
-              <TableCell>Acciones</TableCell>
+              <TableCell className={styles.tableName}>Nombre</TableCell>
+              <TableCell className={styles.tableHeadCell}>Precio</TableCell>
+              <TableCell className={styles.tableDescriptionCell}>Descripción</TableCell>
+              <TableCell className={styles.tableHeadCell}>Categoría</TableCell>
+              <TableCell className={styles.tableHeadCell}>Habilitado</TableCell>
+              <TableCell className={styles.tableHeadCell}>Acciones</TableCell>
             </TableRow>
           </TableHead>
-          <TableBody>
+          <TableBody >
             {filteredProducts.map((product) => (
               <ProductRow key={product.id} product={product} />
             ))}
           </TableBody>
         </Table>
       </TableContainer>
-
-      <div className={styles.pagination}>
-        <Button onClick={handlePrevPage} disabled={page === 1}>
-          Anterior
-        </Button>
-        <span>
-          Página {page} de {totalPages} (Total: {totalElements} productos)
-        </span>
-        <Button onClick={handleNextPage} disabled={page === totalPages}>
-          Siguiente
-        </Button>
-      </div>
 
       {showModalAddProduct && (
         <div className={styles.backgroundDisabled}>
