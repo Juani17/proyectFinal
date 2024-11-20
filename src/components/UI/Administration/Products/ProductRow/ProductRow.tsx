@@ -43,9 +43,9 @@ export const ProductRow: FC<IProductRow> = ({ product }) => {
         {/* Celdas de la tabla que muestran información del producto */}
         <TableCell>{product.denominacion}</TableCell>
         <TableCell>{product.precioVenta}</TableCell>
-        <TableCell>{product.descripcion}</TableCell>
-        <TableCell>{product.categoria.denominacion}</TableCell>
-        <TableCell>{product.habilitado ? "Si" : "No"}</TableCell>
+        <TableCell className={styles.productRow}>{product.descripcion}</TableCell>
+        <TableCell className={styles.productRow}>{product.categoria.denominacion}</TableCell>
+        <TableCell className={styles.productRow}>{product.habilitado ? "Si" : "No"}</TableCell>
         <TableCell>
           {/* Botones de acción con íconos SVG */}
           <Button className={styles.buttonView} onClick={handleShowModalViewProduct}>

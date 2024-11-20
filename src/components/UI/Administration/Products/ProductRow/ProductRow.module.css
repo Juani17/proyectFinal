@@ -7,6 +7,9 @@
     height: 100%;
     z-index:2 !important
 }
+.productRow{
+    text-align: center !important;
+}
 
 /* Estilo para los botones */
 .buttonView {

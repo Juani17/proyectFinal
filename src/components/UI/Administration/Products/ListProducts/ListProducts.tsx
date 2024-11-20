@@ -108,7 +108,6 @@ export const ListProducts = () => {
     }
   };
 
-
   return (
     <div className={styles.heroContainer}>
       <div className={styles.upContainer}>
@@ -145,17 +144,17 @@ export const ListProducts = () => {
         style={{ marginTop: "20px", height: "73vh" }}
       >
         <Table>
-          <TableHead>
+          <TableHead className={styles.tableHead}>
             <TableRow>
-              <TableCell>Nombre</TableCell>
-              <TableCell>Precio</TableCell>
-              <TableCell>Descripción</TableCell>
-              <TableCell>Categoría</TableCell>
-              <TableCell>Habilitado</TableCell>
-              <TableCell>Acciones</TableCell>
+              <TableCell className={styles.tableName}>Nombre</TableCell>
+              <TableCell className={styles.tableHeadCell}>Precio</TableCell>
+              <TableCell className={styles.tableDescriptionCell}>Descripción</TableCell>
+              <TableCell className={styles.tableHeadCell}>Categoría</TableCell>
+              <TableCell className={styles.tableHeadCell}>Habilitado</TableCell>
+              <TableCell className={styles.tableHeadCell}>Acciones</TableCell>
             </TableRow>
           </TableHead>
-          <TableBody>
+          <TableBody >
             {filteredProducts.map((product) => (
               <ProductRow key={product.id} product={product} />
             ))}

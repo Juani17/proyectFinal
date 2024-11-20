@@ -10,6 +10,36 @@
     justify-content: center;
     align-items: center;
 }
+/* Estilo para el encabezado de la tabla */
+.tableHead {
+    background-color: #3f51b5 !important; /* Azul oscuro */
+    color: white !important;
+  }
+  
+  .tableHeadCell {
+    
+    font-weight: bold !important;
+    font-size: 16px !important;
+    text-align: center !important;
+    padding: 12px !important;
+    border-bottom: 2px solid #ffffff !important;
+  }
+  .tableName {
+    
+    font-weight: bold !important;
+    font-size: 16px !important;
+    text-align: left !important;
+    padding: 12px !important;
+    border-bottom: 2px solid #ffffff !important;
+  }
+  .tableDescriptionCell {
+    display: flex !important;    
+    justify-content: center !important;
+    font-weight: bold !important;
+    font-size: 16px !important;
+    text-align: center !important;
+}
+
 .heroContainer {
     padding: 20px;
     max-width: 1200px;
