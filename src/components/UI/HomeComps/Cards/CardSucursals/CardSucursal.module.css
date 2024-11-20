@@ -65,4 +65,21 @@
     display: flex;
     justify-content: space-between;
     margin-top: 10px;
+    
+}
+
+/* Botones */
+.buttonContainer button {
+    background-color: #444444 !important; /* Fondo gris oscuro */
+    color: #f1f1f1 !important; /* Texto blanco */
+    padding: 8px 12px !important;
+    border: none !important;
+    border-radius: 5px !important;
+    cursor: pointer !important;
+    transition: background-color 0.3s !important;
+}
+
+/* Efecto Hover en Botones */
+.buttonContainer button:hover {
+    background-color: #ff0000 !important; /* Rojo en hover */
 }
