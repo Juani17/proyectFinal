@@ -36,7 +36,7 @@ const ModalAddAlergen: FC<IModalAdd> = ({ closeModalAdd }) => {
       Swal.fire({
         icon: "error",
         title: "Error",
-        text: "La denominación es obligatoria.",
+        text: "Ll nombre es obligatorio.",
       });
       return;
     }
@@ -90,8 +90,8 @@ const ModalAddAlergen: FC<IModalAdd> = ({ closeModalAdd }) => {
 
         <input
           type="text"
-          name="denominacion"
-          placeholder="Ingresa una denominación"
+          name="denominación"
+          placeholder="Ingresa un nombre"
           className={styles.ModalAddAlergenInput}
           onChange={handleChange}
         />

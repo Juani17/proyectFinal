@@ -1,4 +1,3 @@
-import { Button } from "react-bootstrap";
 import styles from "./ModalAddSubCategory.module.css";
 import { ChangeEvent, FC, useState } from "react";
 import { ICreateCategoria } from "../../../../../endPoints/types/dtos/categorias/ICreateCategoria";
@@ -84,19 +83,19 @@ const ModalAddSubCategory: FC<IModalAddSubCategory> = ({
         <h1>Agregar Subcategoría</h1>
       </div>
       <div className={styles.containerBody}>
-        <label htmlFor="">Ingrese Denominación</label>
+        <label htmlFor="">Ingrese un Nombre</label>
         <input
           type="text"
-          placeholder="Denominación"
+          placeholder="Nombre"
           name="denominacion"
           value={newSubCategory.denominacion}
           onChange={handleChange} // Llama a la función de manejo de cambios
         />
       </div>
       <div className={styles.containerButtons}>
-        <Button onClick={handleSubmit}>Aceptar</Button>{" "}
+        <button onClick={handleSubmit}>Aceptar</button>{" "}
         {/* Botón para enviar */}
-        <Button onClick={closeModalAdd}>Cancelar</Button>{" "}
+        <button onClick={closeModalAdd}>Cancelar</button>{" "}
         {/* Botón para cerrar el modal */}
       </div>
     </div>

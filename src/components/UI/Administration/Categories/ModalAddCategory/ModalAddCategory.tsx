@@ -1,7 +1,6 @@
 // ModalAddCategory.tsx
 import { ChangeEvent, FC, useState } from 'react';
 import styles from './ModalAddCategory.module.css';
-import { Button } from 'react-bootstrap';
 import { ICreateCategoria } from '../../../../../endPoints/types/dtos/categorias/ICreateCategoria';
 import Swal from 'sweetalert2';
 import { useSelector } from 'react-redux';
@@ -79,18 +78,18 @@ const ModalAddCategory: FC<IModalAddCategory> = ({
         <h1>Agregar Categoría</h1>
       </div>
       <div className={styles.containerBody}>
-        <label>Ingrese Denominación</label>
+        <label>Ingrese un nombre</label>
         <input
           type="text"
-          placeholder="Denominación"
+          placeholder="Nombre"
           value={newCategory.denominacion}
           name="denominacion"
           onChange={handleChange}
         />
       </div>
       <div className={styles.containerButtons}>
-        <Button onClick={handleSubmit}>Aceptar</Button>
-        <Button onClick={closeModalAdd}>Cancelar</Button>
+        <button onClick={handleSubmit}>Aceptar</button>
+        <button onClick={closeModalAdd}>Cancelar</button>
       </div>
     </div>
   );

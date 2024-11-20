@@ -1,7 +1,6 @@
 .containerPrincipal{
     background-color: white;
     border-radius: 3vh;
-    box-shadow: 5px 5px 25px;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -21,13 +20,22 @@
     gap: 2vh;
     text-align: center;
 }
-.containerBody input{
+.containerBody ::placeholder{
     text-align: left;
     height: 8vh;
     border-radius: 5px;
+    background-color: black;
 }
 .containerButtons{
     padding: 20px;
     display: flex;
     gap: 13vw;
+}
+.containerButtons button{
+    background-color: black;
+    color: white;
+    border-radius: 6px;
+}
+.containerButtons :hover{
+    background-color: #ff6f00;
 }
