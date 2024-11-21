@@ -31,56 +31,97 @@ const ModalAddAlergen: FC<IModalAdd> = ({ closeModalAdd }) => {
   const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
-   
+    // Validación para asegurarse de que el campo de denominación no esté vacío
     if (!newAlergen.denominacion) {
       Swal.fire({
-        icon: "error",
-        title: "Error",
-        text: "La denominación es obligatoria.",
+          icon: "warning",
+          title: "Información incompleta",
+          text: "La denominación es obligatoria.",
+          customClass: {
+              popup: "custom-popup-warning",
+              title: "custom-title-warning",
+              htmlContainer: "custom-content-warning",
+              confirmButton: "custom-button-warning",
+          },
+          background: "#fff8e1",
+          color: "#856404",
+          confirmButtonColor: "#ffcc00",
+          confirmButtonText: "Completar",
       });
       return;
-    }
-  
-    // Validar que se haya seleccionado una imagen
-    if (!imageAlergeno && newAlergen.imagen == null) {
-      Swal.fire({
-        icon: "error",
-        title: "Error",
-        text: "Debe cargar una imagen.",
-      });
-      return;
-    }
+  }
 
-    try {
+  // Validar que se haya seleccionado una imagen
+  if (!imageAlergeno && newAlergen.imagen == null) {
+      Swal.fire({
+          icon: "warning",
+          title: "Imagen requerida",
+          text: "Debe cargar una imagen.",
+          customClass: {
+              popup: "custom-popup-warning",
+              title: "custom-title-warning",
+              htmlContainer: "custom-content-warning",
+              confirmButton: "custom-button-warning",
+          },
+          background: "#fff8e1",
+          color: "#856404",
+          confirmButtonColor: "#ffcc00",
+          confirmButtonText: "Completar",
+      });
+      return;
+  }
+
+  try {
       // Crea el objeto del alérgeno incluyendo la imagen cargada (si existe)
       const alergenoToCreate = {
-        ...newAlergen,
-        imagen: imageAlergeno || null, // Utiliza directamente la imagen subida
+          ...newAlergen,
+          imagen: imageAlergeno || null, // Utiliza directamente la imagen subida
       };
 
       // Crear el alérgeno en el servidor
       await alergenoService.createAlergeno(alergenoToCreate);
 
+      // Mostrar mensaje de éxito
       Swal.fire({
-        icon: "success",
-        title: "Alergeno agregado",
-        showConfirmButton: false,
-        timer: 1500,
-        willClose: () => {
-          closeModalAdd();
-          window.location.reload();
-        }
+          icon: "success",
+          title: "¡Alérgeno agregado!",
+          text: "El alérgeno se ha agregado correctamente.",
+          customClass: {
+              popup: "custom-popup-success",
+              title: "custom-title-success",
+              htmlContainer: "custom-content-success",
+              confirmButton: "custom-button-success",
+          },
+          background: "linear-gradient(135deg, #e0f7fa, #80deea)",
+          color: "#004d40",
+          showConfirmButton: false,
+          timer: 1500,
+          willClose: () => {
+              closeModalAdd(); // Cerrar el modal al terminar
+              window.location.reload(); // Recargar la página
+          },
       });
-    } catch (error) {
+  } catch (error) {
       console.error("El problema es: ", error);
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Something went wrong!",
-      });
-    }
-  };
 
+      // Mostrar mensaje de error
+      Swal.fire({
+          icon: "error",
+          title: "¡Error al agregar alérgeno!",
+          text: "Algo salió mal al intentar agregar el alérgeno. Inténtelo nuevamente más tarde.",
+          customClass: {
+              popup: "custom-popup-error",
+              title: "custom-title-error",
+              htmlContainer: "custom-content-error",
+              confirmButton: "custom-button-error",
+          },
+          background: "#fbe9e7",
+          color: "#d32f2f",
+          confirmButtonColor: "#f44336",
+          confirmButtonText: "Entendido",
+      });
+  }
+};
   return (
     <>
       <form className={styles.ModalAddAlergen}>

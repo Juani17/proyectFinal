@@ -49,40 +49,79 @@ const ModalEditCategory : FC<IModalEditCategory> = ({closeModalEdit, category}) 
     const handleSubmit = async (e : React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
 
-        if(!categoryEdit){
-            alert("No se pudo editar");
-            return;
-        }
 
-        try{
-            console.log("Enviando datos:", JSON.stringify(categoryEdit))
-            console.log(categoryEdit)
-            await categoryService.updateCategory(category.id, categoryEdit)
-            Swal.fire({
-                icon: "success",
-                title: "Categoria Actualizada",
-                text: "La categoria se ha editado exitosamente.",
-                timer: 1500,
-                willClose: () => {
-                    closeModalEdit();
-                    window.location.reload()
-                }
-            })
-            closeModalEdit();
-        }catch(error){
-            console.error("El problema es: ", error);
-            Swal.fire({
-                icon: "success",
-                title: "Categoria no editada",
-                showConfirmButton: false,
-                timer: 1500,
-                willClose: ()=>{
-                    closeModalEdit();
-                    window.location.reload() 
-                }
-            });
-        }
+    // Validar que la categoría a editar no esté vacía
+    if (!categoryEdit) {
+        Swal.fire({
+            icon: "warning",
+            title: "Información incompleta",
+            text: "No se pudo editar. Por favor, revise los datos ingresados.",
+            customClass: {
+                popup: "custom-popup-warning",
+                title: "custom-title-warning",
+                htmlContainer: "custom-content-warning",
+                confirmButton: "custom-button-warning",
+            },
+            background: "#fff8e1",
+            color: "#856404",
+            confirmButtonColor: "#ffcc00",
+            confirmButtonText: "Entendido",
+        });
+        return;
     }
+
+    try {
+        console.log("Enviando datos:", JSON.stringify(categoryEdit));
+        console.log(categoryEdit);
+
+        // Llamar al servicio para actualizar la categoría
+        await categoryService.updateCategory(category.id, categoryEdit);
+
+        // Mostrar mensaje de éxito
+        Swal.fire({
+            icon: "success",
+            title: "¡Categoría actualizada!",
+            text: "La categoría se ha editado exitosamente.",
+            customClass: {
+                popup: "custom-popup-success",
+                title: "custom-title-success",
+                htmlContainer: "custom-content-success",
+                confirmButton: "custom-button-success",
+            },
+            background: "linear-gradient(135deg, #e0f7fa, #80deea)",
+            color: "#004d40",
+            showConfirmButton: false,
+            timer: 1500,
+            willClose: () => {
+                closeModalEdit(); // Cerrar el modal
+                window.location.reload(); // Recargar la página
+            },
+        });
+    } catch (error) {
+        console.error("El problema es: ", error);
+
+        // Mostrar mensaje de error
+        Swal.fire({
+            icon: "error",
+            title: "¡Error al actualizar categoría!",
+            text: "No se pudo editar la categoría. Inténtelo nuevamente más tarde.",
+            customClass: {
+                popup: "custom-popup-error",
+                title: "custom-title-error",
+                htmlContainer: "custom-content-error",
+                confirmButton: "custom-button-error",
+            },
+            background: "#fbe9e7",
+            color: "#d32f2f",
+            confirmButtonColor: "#f44336",
+            confirmButtonText: "Entendido",
+            willClose: () => {
+                closeModalEdit(); // Asegurar el cierre del modal
+                window.location.reload(); // Recargar la página
+            },
+        });
+    }
+};
 
     return(
         <div className={styles.containerPrincipal}>

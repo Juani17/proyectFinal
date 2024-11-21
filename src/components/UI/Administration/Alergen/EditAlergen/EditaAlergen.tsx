@@ -47,53 +47,98 @@ const ModalEditAlergen: FC<IModalEdit> = ({ closeModalEdit, alergenoId }) => {
   const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
   
-    if (!editAlergen.denominacion) {
-      Swal.fire({
-        icon: "error",
-        title: "Error",
-        text: "La denominación es obligatoria.",
-      });
-      return;
-    }
-  
-    // Validar que se haya seleccionado una imagen
-    if (!imageAlergeno && editAlergen.imagen == null) {
-      Swal.fire({
-        icon: "error",
-        title: "Error",
-        text: "Debe cargar una imagen.",
-      });
-      return;
-    }
-  
-    try {
-      const alergenoToUpdate: IAlergenos = {
-        id: alergenoId,
-        denominacion: editAlergen.denominacion,
-        imagen: imageAlergeno ?? editAlergen.imagen,
-      };
-  
-      await alergenoService.updateAlergeno(alergenoId, alergenoToUpdate);
-  
-      Swal.fire({
-        icon: "success",
-        title: "Alergeno actualizado",
-        showConfirmButton: false,
-        timer: 1500,
-        willClose: () => {
-          closeModalEdit();
-          window.location.reload();
-        },
-      });
-    } catch (error) {
-      console.error("El problema es: ", error);
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Something went wrong!",
-      });
-    }
+ // Validación para asegurarse de que la denominación no esté vacía
+ if (!editAlergen.denominacion) {
+  Swal.fire({
+      icon: "warning",
+      title: "Información incompleta",
+      text: "La denominación es obligatoria.",
+      customClass: {
+          popup: "custom-popup-warning",
+          title: "custom-title-warning",
+          htmlContainer: "custom-content-warning",
+          confirmButton: "custom-button-warning",
+      },
+      background: "#fff8e1",
+      color: "#856404",
+      confirmButtonColor: "#ffcc00",
+      confirmButtonText: "Completar",
+  });
+  return;
+}
+
+// Validar que se haya seleccionado una imagen
+if (!imageAlergeno && editAlergen.imagen == null) {
+  Swal.fire({
+      icon: "warning",
+      title: "Imagen requerida",
+      text: "Debe cargar una imagen.",
+      customClass: {
+          popup: "custom-popup-warning",
+          title: "custom-title-warning",
+          htmlContainer: "custom-content-warning",
+          confirmButton: "custom-button-warning",
+      },
+      background: "#fff8e1",
+      color: "#856404",
+      confirmButtonColor: "#ffcc00",
+      confirmButtonText: "Completar",
+  });
+  return;
+}
+
+try {
+  // Crear el objeto para actualizar el alérgeno
+  const alergenoToUpdate: IAlergenos = {
+      id: alergenoId,
+      denominacion: editAlergen.denominacion,
+      imagen: imageAlergeno ?? editAlergen.imagen,
   };
+
+  // Llamar al servicio para actualizar el alérgeno
+  await alergenoService.updateAlergeno(alergenoId, alergenoToUpdate);
+
+  // Mostrar mensaje de éxito
+  Swal.fire({
+      icon: "success",
+      title: "¡Alérgeno actualizado!",
+      text: "El alérgeno se ha actualizado correctamente.",
+      customClass: {
+          popup: "custom-popup-success",
+          title: "custom-title-success",
+          htmlContainer: "custom-content-success",
+          confirmButton: "custom-button-success",
+      },
+      background: "linear-gradient(135deg, #e0f7fa, #80deea)",
+      color: "#004d40",
+      showConfirmButton: false,
+      timer: 1500,
+      willClose: () => {
+          closeModalEdit(); // Cerrar el modal
+          window.location.reload(); // Recargar la página
+      },
+  });
+} catch (error) {
+  console.error("El problema es: ", error);
+
+  // Mostrar mensaje de error
+  Swal.fire({
+      icon: "error",
+      title: "¡Error al actualizar alérgeno!",
+      text: "Algo salió mal al intentar actualizar el alérgeno. Inténtelo nuevamente más tarde.",
+      customClass: {
+          popup: "custom-popup-error",
+          title: "custom-title-error",
+          htmlContainer: "custom-content-error",
+          confirmButton: "custom-button-error",
+      },
+      background: "#fbe9e7",
+      color: "#d32f2f",
+      confirmButtonColor: "#f44336",
+      confirmButtonText: "Entendido",
+  });
+}
+};
 
   const handleCancel = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
