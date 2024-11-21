@@ -1,118 +1,60 @@
-import styles from "./ModalAddSubCategory.module.css";
-import { ChangeEvent, FC, useState } from "react";
-import { ICreateCategoria } from "../../../../../endPoints/types/dtos/categorias/ICreateCategoria";
-import { categoryService } from "../../../../../Services/categoryServices";
-import Swal from "sweetalert2";
+import { FC, useState, ChangeEvent } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../../../redux/store/store";
+import Swal from "sweetalert2";
+import { ICreateCategoria } from "../../../../../endPoints/types/dtos/categorias/ICreateCategoria";
+import { categoryService } from "../../../../../Services/categoryServices";
+import styles from "./ModalAddSubCategory.module.css";
 
-// Definición de las propiedades esperadas para el componente
 interface IModalAddSubCategory {
-  closeModalAdd: () => void; // Función para cerrar el modal
-  idCategoriaPadre: number; // ID de la categoría padre
+  closeModalAdd: () => void;
+  idCategoriaPadre: number;
 }
 
-// Componente funcional para agregar una subcategoría
 const ModalAddSubCategory: FC<IModalAddSubCategory> = ({
-  idCategoriaPadre,
   closeModalAdd,
+  idCategoriaPadre,
 }) => {
-  // Obtener la empresa seleccionada desde localStorage o Redux
-  const storedEmpresa = localStorage.getItem('company');
-  const selectedEmpresa = storedEmpresa
-    ? JSON.parse(storedEmpresa)
-    : useSelector((state: RootState) => state.company.selectedEmpresa);
+  // Obtiene la empresa seleccionada directamente desde Redux
+  const selectedEmpresa = useSelector(
+    (state: RootState) => state.company.selectedCompany
+  );
 
-  // Estado local para la nueva subcategoría
+  if (!selectedEmpresa) {
+    return <div>Error: No hay empresa seleccionada.</div>;
+  }
+
   const [newSubCategory, setNewCategory] = useState<ICreateCategoria>({
-    denominacion: "", // Campo de denominación vacío inicialmente
-    idCategoriaPadre: idCategoriaPadre, // Asociado con la categoría padre actual
-    idEmpresa: selectedEmpresa ? selectedEmpresa.id : 0, // Asociado con la empresa actual
+    denominacion: "",
+    idCategoriaPadre: idCategoriaPadre,
+    idEmpresa: selectedEmpresa.id,
   });
 
-  // Función para manejar el cambio en los inputs del formulario
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    // Actualiza el estado con el nuevo valor del input
     setNewCategory((prev) => ({
       ...prev,
       [name]: value,
     }));
   };
 
-  // Función para manejar el envío del formulario
   const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault(); // Evita el comportamiento por defecto de recargar la página
-
-    // Validación para verificar que el campo no esté vacío
+    e.preventDefault();
     if (!newSubCategory.denominacion) {
-      Swal.fire({
-          icon: "warning",
-          title: "Información incompleta",
-          text: "Por favor, complete el campo antes de continuar.",
-          customClass: {
-              popup: "custom-popup-warning",
-              title: "custom-title-warning",
-              htmlContainer: "custom-content-warning",
-              confirmButton: "custom-button-warning",
-          },
-          background: "#fff8e1",
-          color: "#856404",
-          confirmButtonColor: "#ffcc00",
-          confirmButtonText: "Completar",
-      });
+      Swal.fire("Complete el campo antes de continuar.", "", "warning");
       return;
-  }
+    }
 
-  try {
-      // Llamar al servicio para crear la subcategoría
+    try {
       await categoryService.createCategory(newSubCategory);
+      Swal.fire("Subcategoría creada con éxito.", "", "success");
+      closeModalAdd();
+    } catch (error) {
+      console.error("Error al crear la subcategoría:", error);
+      Swal.fire("Error al crear la subcategoría.", "", "error");
+    }
+  };
 
-      // Mostrar mensaje de éxito
-      Swal.fire({
-          icon: "success",
-          title: "¡Subcategoría creada!",
-          text: "La subcategoría se ha creado exitosamente.",
-          customClass: {
-              popup: "custom-popup-success",
-              title: "custom-title-success",
-              htmlContainer: "custom-content-success",
-              confirmButton: "custom-button-success",
-          },
-          background: "linear-gradient(135deg, #e0f7fa, #80deea)",
-          color: "#004d40",
-          showConfirmButton: false,
-          timer: 1500,
-          willClose: () => {
-              closeModalAdd(); // Cerrar el modal al terminar el mensaje
-              window.location.reload();
-          },
-      });
-  } catch (error) {
-      console.error("El problema es: ", error); // Muestra el error en consola
-
-      // Mostrar mensaje de error
-      Swal.fire({
-          icon: "error",
-          title: "¡Error al crear subcategoría!",
-          text: "Algo salió mal al intentar crear la subcategoría. Inténtelo nuevamente más tarde.",
-          customClass: {
-              popup: "custom-popup-error",
-              title: "custom-title-error",
-              htmlContainer: "custom-content-error",
-              confirmButton: "custom-button-error",
-          },
-          background: "#fbe9e7",
-          color: "#d32f2f",
-          confirmButtonColor: "#f44336",
-          confirmButtonText: "Entendido",
-          willClose: () => {
-              closeModalAdd(); // Cerrar el modal también si ocurre un error
-          },
-      });
-  }
-};
-  // Renderizado del componente
   return (
     <div className={styles.containerPrincipal}>
       <div className={styles.containerTitle}>
@@ -125,14 +67,12 @@ const ModalAddSubCategory: FC<IModalAddSubCategory> = ({
           placeholder="Nombre"
           name="denominacion"
           value={newSubCategory.denominacion}
-          onChange={handleChange} // Llama a la función de manejo de cambios
+          onChange={handleChange}
         />
       </div>
       <div className={styles.containerButtons}>
-        <button onClick={handleSubmit}>Aceptar</button>{" "}
-        {/* Botón para enviar */}
-        <button onClick={closeModalAdd}>Cancelar</button>{" "}
-        {/* Botón para cerrar el modal */}
+        <button onClick={handleSubmit}>Aceptar</button>
+        <button onClick={closeModalAdd}>Cancelar</button>
       </div>
     </div>
   );

@@ -1,11 +1,9 @@
-// ModalAddCategory.tsx
 import { ChangeEvent, FC, useState } from 'react';
 import styles from './ModalAddCategory.module.css';
 import { ICreateCategoria } from '../../../../../endPoints/types/dtos/categorias/ICreateCategoria';
 import Swal from 'sweetalert2';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../../../../redux/store/store'; 
-import { categoryService } from '../../../../../Services/categoryServices';
+import { RootState } from '../../../../../redux/store/store';
 
 interface IModalAddCategory {
   closeModalAdd: () => void;
@@ -16,12 +14,23 @@ const ModalAddCategory: FC<IModalAddCategory> = ({
   closeModalAdd,
   onAddCategory,
 }) => {
-  // Obtener la sucursal seleccionada
-  const storedSucursal = localStorage.getItem('selectedSucursal');
-  const selectedSucursal = storedSucursal
-    ? JSON.parse(storedSucursal)
-    : useSelector((state: RootState) => state.sucursal.selectedSucursal);
+  // Obtener la sucursal seleccionada desde Redux
+  const selectedSucursal = useSelector(
+    (state: RootState) => state.sucursal.selectedSucursal
+  );
 
+  if (!selectedSucursal) {
+    // Mostrar alerta si no hay sucursal seleccionada
+    Swal.fire({
+      icon: 'warning',
+      title: 'Sucursal no seleccionada',
+      text: 'Por favor selecciona una sucursal antes de agregar una categoría.',
+    });
+    closeModalAdd(); // Cerrar el modal
+    return null; // No renderizar el modal
+  }
+
+  // Estado local para manejar los datos de la nueva categoría
   const [newCategory, setNewCategory] = useState<ICreateCategoria>({
     denominacion: '',
     idEmpresa: selectedSucursal.empresa?.id,
@@ -40,83 +49,35 @@ const ModalAddCategory: FC<IModalAddCategory> = ({
     e.preventDefault();
 
     if (!newCategory.denominacion) {
-        Swal.fire({
-          icon: "warning",
-          title: "Información incompleta",
-          text: "Por favor, complete el campo antes de continuar.",
-          customClass: {
-              popup: "custom-popup-warning",
-              title: "custom-title-warning",
-              htmlContainer: "custom-content-warning",
-              confirmButton: "custom-button-warning",
-          },
-          background: "#fff8e1",
-          color: "#856404",
-          confirmButtonColor: "#ffcc00",
-          confirmButtonText: "Completar",
-          willClose: () => {
-            // Cerrar el modal aquí
-            closeModalAdd();
-            window.location.reload();
-        },
-    });
-    return;
-}
+      Swal.fire({
+        icon: 'warning',
+        title: 'Información incompleta',
+        text: 'Por favor, complete el campo antes de continuar.',
+      });
+      return;
+    }
 
     try {
-      // Llamar al servicio para crear la categoría
-      await categoryService.createCategory({
-        denominacion: newCategory.denominacion,
-        idEmpresa: newCategory.idEmpresa,
-        idCategoriaPadre: newCategory.idCategoriaPadre,
+      // Simulación de creación de categoría.
+      console.log('Categoría creada:', newCategory);
+
+      Swal.fire({
+        icon: 'success',
+        title: '¡Categoría creada!',
+        text: 'La categoría se ha creado exitosamente.',
+        showConfirmButton: false,
+        timer: 1500,
       });
-;
 
-      // Mostrar un mensaje de éxito
-      Swal.fire({
-        icon: "success",
-            title: "¡Categoría creada!",
-            text: "La categoría se ha creado exitosamente.",
-            customClass: {
-                popup: "custom-popup-success",
-                title: "custom-title-success",
-                htmlContainer: "custom-content-success",
-                confirmButton: "custom-button-success",
-            },
-            background: "linear-gradient(135deg, #e0f7fa, #80deea)",
-            color: "#004d40",
-            showConfirmButton: false,
-            timer: 1500,
-            willClose: () => {
-                // Cerrar el modal aquí
-                closeModalAdd();
-                window.location.reload();
-            },
-        });
-
-      // Llamar a la función de callback para agregar la categoría
+      // Llama a la función de callback para actualizar la lista
       onAddCategory(newCategory);
+      closeModalAdd();
     } catch (error) {
-      console.error("El problema es: ", error);
+      console.error(error);
       Swal.fire({
-          icon: "error",
-          title: "¡Error al agregar categoría!",
-          text: "Algo salió mal al intentar agregar la categoría. Inténtelo nuevamente más tarde.",
-          customClass: {
-              popup: "custom-popup-error",
-              title: "custom-title-error",
-              htmlContainer: "custom-content-error",
-              confirmButton: "custom-button-error",
-          },
-          background: "#fbe9e7",
-          color: "#d32f2f",
-          confirmButtonColor: "#f44336",
-          confirmButtonText: "Entendido",
-          willClose: () => {
-            // Cerrar el modal aquí
-            closeModalAdd();
-            window.location.reload();
-        },
+        icon: 'error',
+        title: 'Error',
+        text: 'No se pudo crear la categoría. Intenta nuevamente más tarde.',
       });
     }
   };

@@ -153,7 +153,7 @@ try {
 
         <input
           type="text"
-          name="Nombre"
+          name="denominacion"
           placeholder="Editar Nombre"
           value={editAlergen.denominacion}
           className={styles.ModalEditAlergenInput}

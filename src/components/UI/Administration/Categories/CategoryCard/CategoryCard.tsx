@@ -22,10 +22,8 @@ const CategoryCard: FC<ICategoryCard> = ({ category }) => {
 
 
   // Recuperamos la sucursal seleccionada desde el localStorage o el store de Redux
-  const storedSucursal = localStorage.getItem("sucursal");
-  const selectedSucursal = storedSucursal
-    ? JSON.parse(storedSucursal)
-    : useSelector((state: RootState) => state.sucursal.selectedSucursal);
+  const selectedSucursal = useSelector((state: RootState) => state.sucursal.selectedSucursal);
+
 
   // Validamos si la categoría y la sucursal están disponibles antes de continuar
   if (!category || !selectedSucursal) {

@@ -1,35 +1,26 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit"; // Importa createSlice y PayloadAction de Redux Toolkit
-import { IEmpresa } from "../../endPoints/types/dtos/empresa/IEmpresa"; // Importa la interfaz de la empresa
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { IEmpresa } from "../../endPoints/types/dtos/empresa/IEmpresa";
 
-// Define la estructura del estado inicial para la compañía
 interface CompanyState {
-    selectedEmpresa: any;
-    selectedCompany: IEmpresa | null; // Representa la compañía seleccionada, o null si no hay ninguna seleccionada
+    selectedCompany: IEmpresa | null; // Representa la empresa seleccionada
 }
 
-// Estado inicial con selectedCompany establecido en null
 const initialState: CompanyState = {
-    selectedCompany: null,
+    selectedCompany: null, // Estado inicial
 };
 
-// Crea un slice de Redux para manejar el estado de la compañía
 const companySlice = createSlice({
-    name: "company", // Nombre del slice
-    initialState, // Estado inicial
+    name: "company",
+    initialState,
     reducers: {
-        // Reducer para establecer la compañía seleccionada
         setSelectedCompany: (state, action: PayloadAction<IEmpresa>) => {
-            state.selectedCompany = action.payload; // Actualiza el estado con la compañía proporcionada en la acción
+            state.selectedCompany = action.payload; // Establece la empresa seleccionada
         },
-        // Reducer para limpiar la compañía seleccionada
         clearSelectedCompany: (state) => {
-            state.selectedCompany = null; // Restablece el estado a null
+            state.selectedCompany = null; // Limpia la empresa seleccionada
         },
     },
 });
 
-// Exporta las acciones generadas automáticamente por createSlice
 export const { setSelectedCompany, clearSelectedCompany } = companySlice.actions;
-
-// Exporta el reducer para integrarlo en el store de Redux
 export default companySlice.reducer;
