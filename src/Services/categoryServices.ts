@@ -1,6 +1,7 @@
 import axios from "axios";
 import { ICategorias } from "../endPoints/types/dtos/categorias/ICategorias";
 import { ICreateCategoria } from "../endPoints/types/dtos/categorias/ICreateCategoria";
+import { IUpdateCategoria } from "../endPoints/types/dtos/categorias/IUpdateCategoria";
 
 // Definimos la URL base de la API 
 const API_URL = `${import.meta.env.VITE_API_URL}/categorias`;
@@ -36,10 +37,10 @@ export const categoryService = {
   },
 
   // Método para actualizar los datos de una categoría existente
-  async updateCategory(categoryId: number, categoryActualizada: ICategorias): Promise<ICategorias> {
+  async updateCategory(categoryId: number, categoryActualizada: IUpdateCategoria): Promise<ICategorias> {
     const response = await axios.put<ICategorias>(`${API_URL}/update/${categoryId}`, categoryActualizada);
     return response.data;
-  },
+},
 
   // Método para obtener todas las subcategorías de una categoría padre por su ID 
   async getAllSubCategoriesPorCAtegoriaPadre(sucursalId: number, idCategoriaPadre: number): Promise<ICategorias[]> {
