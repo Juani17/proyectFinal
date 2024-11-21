@@ -7,91 +7,92 @@ import { setSelectedSucursal } from "../../../../../redux/slices/sucursalSlice";
 import ModalViewSucursal from "../../Modals/ModalViewSucursal/ModalViewSucursal";
 import ModalEditSucursal from "../../Modals/ModalEditSucursal/ModalEditSucursal";
 import { useNavigate } from "react-router-dom";
+import ReactDOM from "react-dom";
 
 interface ICardSucursal {
   sucursal: ISucursal;
 }
 
 export const CardSucursal: FC<ICardSucursal> = ({ sucursal }) => {
-  const [showModal, setShowModal] = useState(false); //Estado que se va a usar para mostrar el popup
-  const [showModalEdit, setShowModalEdit] = useState(false); //Estado que se va a usar para editar la empresa
+  const [activeModal, setActiveModal] = useState<"view" | "edit" | null>(null); // Estado unificado para los modales
   const navigate = useNavigate();
-
   const dispatch = useDispatch();
 
   const handleSelectSucursal = () => {
-    localStorage.setItem("sucursal", JSON.stringify(sucursal));
-    dispatch(setSelectedSucursal(sucursal));
-    navigate(`/administracion`);
+    if (sucursal) {
+      localStorage.setItem("sucursal", JSON.stringify(sucursal));
+      dispatch(setSelectedSucursal(sucursal));
+      navigate(`/administracion`);
+    }
   };
 
-  const handleButtonShow = () => {
-    //Muestra el modal de View
-    setShowModal(true);
-  };
+  const handleButtonShow = () => setActiveModal("view");
+  const handleButtonEdit = () => setActiveModal("edit");
+  const handleCloseModal = () => setActiveModal(null);
 
-  const handleCloseModal = () => {
-    //Deja de mostrar el modal de View
-    setShowModal(false);
-  };
-
-  const handleButtonEdit = () => {
-    setShowModalEdit(true);
-  };
-
-  const handleCloseModalEdit = () => {
-    setShowModalEdit(false);
-  };
+  if (!sucursal) return null; // Validación para evitar errores si falta `sucursal`
 
   return (
     <>
- <Card className={`card ${styles.card}`}>
-  <Card.Body className={`card-body ${styles.cardBody}`}>
-    <img
-      className={`card-img ${styles.cardImg}`}
-      onClick={handleSelectSucursal}
-      src={
-        sucursal.logo
-          ? sucursal.logo
-          : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQppJKxBxJI-9UWLe2VVmzuBd24zsq4_ihxZw&s"
-      }
-      alt="Logo de la sucursal"
-    />
-    <Card.Title onClick={handleSelectSucursal}>
-      {sucursal.nombre}
-    </Card.Title>
-    <Card.Subtitle onClick={handleSelectSucursal}>
-      {sucursal.horarioApertura} - {sucursal.horarioCierre}
-    </Card.Subtitle>
-    <div className={`container-buttons ${styles.containerButtons}`}>
-      <Button onClick={handleButtonShow}>Ver</Button>
-      <Button onClick={handleButtonEdit} variant="secondary">
-        Editar
-      </Button>
-    </div>
-  </Card.Body>
-</Card>
-
-      {showModal && (
-        <>
-          {/* Meto un div abajo para que impida pulsar otro elemento */}
-          <div className={styles.backgroundDisabled}></div>
-          <ModalViewSucursal
-            sucursal={sucursal}
-            modalClose={handleCloseModal}
+      <Card className={`card ${styles.card}`}>
+        <Card.Body className={`card-body ${styles.cardBody}`}>
+          <img
+            className={`card-img ${styles.cardImg}`}
+            onClick={handleSelectSucursal}
+            src={
+              sucursal.logo
+                ? sucursal.logo
+                : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQppJKxBxJI-9UWLe2VVmzuBd24zsq4_ihxZw&s"
+            }
+            alt={`Logo de ${sucursal.nombre}`}
           />
-        </>
-      )}
+          <Card.Title onClick={handleSelectSucursal}>
+            {sucursal.nombre}
+          </Card.Title>
+          <Card.Subtitle onClick={handleSelectSucursal}>
+            {sucursal.horarioApertura} - {sucursal.horarioCierre}
+          </Card.Subtitle>
+          <div className={`container-buttons ${styles.containerButtons}`}>
+            <Button
+              onClick={handleButtonShow}
+              aria-label={`Ver detalles de ${sucursal.nombre}`}
+            >
+              Ver
+            </Button>
+            <Button
+              onClick={handleButtonEdit}
+              variant="secondary"
+              aria-label={`Editar detalles de ${sucursal.nombre}`}
+            >
+              Editar
+            </Button>
+          </div>
+        </Card.Body>
+      </Card>
 
-      {showModalEdit && (
-        <>
-          <div className={styles.backgroundDisabled}></div>
-          <ModalEditSucursal
-            modalCloseEdit={handleCloseModalEdit}
-            sucursal={sucursal}
-          />
-        </>
-      )}
+      {activeModal === "view" &&
+        ReactDOM.createPortal(
+          <>
+            <div className={styles.backgroundDisabled}></div>
+            <ModalViewSucursal
+              sucursal={sucursal}
+              modalClose={handleCloseModal}
+            />
+          </>,
+          document.body
+        )}
+
+      {activeModal === "edit" &&
+        ReactDOM.createPortal(
+          <>
+            <div className={styles.backgroundDisabled}></div>
+            <ModalEditSucursal
+              modalCloseEdit={handleCloseModal}
+              sucursal={sucursal}
+            />
+          </>,
+          document.body
+        )}
     </>
   );
 };

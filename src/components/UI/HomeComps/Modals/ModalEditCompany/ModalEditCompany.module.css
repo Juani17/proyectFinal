@@ -26,6 +26,19 @@
     display: flex;
     justify-content: center;
     gap: 5vw;
-    padding: 2vh;
-   
+    padding: 2vh;  
+}
+.containerButtons button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #000000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.containerButtons button:hover {
+    background-color: #ff7b00; /* Color más oscuro al hacer hover */
 }

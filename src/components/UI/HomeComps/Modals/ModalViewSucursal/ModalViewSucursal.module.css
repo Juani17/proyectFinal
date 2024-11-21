@@ -1,20 +1,25 @@
 .containerPrincipalOn {
     min-height: 50vh !important;
     min-width: 25vw;
-    background-color: rgb(255, 255, 255);
-    border-radius: 3vh;
-    position: fixed; /* Position fixed para centrar el popup */
+    background-color: #f5f5f5; /* Fondo gris claro */
+    border-radius: 15px; /* Bordes más suaves */
+    position: fixed; /* Centrar el modal */
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     padding: 20px;
-    color: #ff8000;
+    color: #333; /* Texto gris oscuro para contraste */
     z-index: 3;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Sombra ligera */
 }
 
 .containerTitle {
     text-align: center;
-    padding: 5px;
+    padding: 10px 0;
+    border-bottom: 1px solid #ccc; /* Línea divisoria */
+    color: #111; /* Texto más oscuro para el título */
+    font-size: 1.5rem;
+    font-weight: bold;
 }
 
 .containerData {
@@ -24,29 +29,41 @@
     flex-direction: column;
     gap: 15px;
     text-align: left;
+    color: #555; /* Texto gris medio */
 }
 
 .containerLogo {
     display: flex;
-    gap: 1vw;
+    align-items: center;
+    gap: 15px;
+    background-color: #e9e9e9; /* Fondo gris suave para destacar */
+    padding: 10px;
+    border-radius: 10px; /* Bordes redondeados */
 }
 
 .containerLogo img {
     max-width: 5vw;
     max-height: 8vh;
+    border-radius: 5px; /* Esquinas ligeramente redondeadas */
+    border: 1px solid #ddd; /* Borde sutil */
 }
 
 .containerButton {
-    padding: 10px;
+    margin-top: 20px;
     text-align: center;
 }
 
 .containerButton button {
-    width: 8vw;
-    background-color: black;
-    border: black;
+    background-color: #ddd; /* Botón gris claro */
+    color: #333; /* Texto gris oscuro */
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .containerButton button:hover {
-    background-color: #ff7b00; /* Color más oscuro al hacer hover */
+    background-color: #ccc; /* Color más oscuro al pasar el ratón */
+    transform: translateY(-3px);
 }
