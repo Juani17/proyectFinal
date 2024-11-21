@@ -45,37 +45,74 @@ const ModalAddSubCategory: FC<IModalAddSubCategory> = ({
   const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault(); // Evita el comportamiento por defecto de recargar la página
 
-    // Validación simple para verificar que el campo no esté vacío
+    // Validación para verificar que el campo no esté vacío
     if (!newSubCategory.denominacion) {
-      alert("No puede dejar vacio el campo");
-      return; // Detiene la ejecución si la validación falla
-    }
-    try {
-      // Llamar al servicio para crear la categoría
-      await categoryService.createCategory(newSubCategory);
+      Swal.fire({
+          icon: "warning",
+          title: "Información incompleta",
+          text: "Por favor, complete el campo antes de continuar.",
+          customClass: {
+              popup: "custom-popup-warning",
+              title: "custom-title-warning",
+              htmlContainer: "custom-content-warning",
+              confirmButton: "custom-button-warning",
+          },
+          background: "#fff8e1",
+          color: "#856404",
+          confirmButtonColor: "#ffcc00",
+          confirmButtonText: "Completar",
+      });
+      return;
+  }
 
-      // Cerrar el modal después de agregar la subcategoría
-      closeModalAdd();
+  try {
+      // Llamar al servicio para crear la subcategoría
+      await categoryService.createCategory(newSubCategory);
 
       // Mostrar mensaje de éxito
       Swal.fire({
-        icon: 'success',
-        title: 'Subcategoría creada',
-        text: 'La subcategoría se ha creado exitosamente.',
+          icon: "success",
+          title: "¡Subcategoría creada!",
+          text: "La subcategoría se ha creado exitosamente.",
+          customClass: {
+              popup: "custom-popup-success",
+              title: "custom-title-success",
+              htmlContainer: "custom-content-success",
+              confirmButton: "custom-button-success",
+          },
+          background: "linear-gradient(135deg, #e0f7fa, #80deea)",
+          color: "#004d40",
+          showConfirmButton: false,
+          timer: 1500,
+          willClose: () => {
+              closeModalAdd(); // Cerrar el modal al terminar el mensaje
+              window.location.reload();
+          },
       });
-      
-    } catch (error) {
+  } catch (error) {
       console.error("El problema es: ", error); // Muestra el error en consola
-      // Muestra una alerta usando SweetAlert2 si ocurre un error
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Error al crear subcategoría!",
-      });
-      closeModalAdd();
-    }
-  };
 
+      // Mostrar mensaje de error
+      Swal.fire({
+          icon: "error",
+          title: "¡Error al crear subcategoría!",
+          text: "Algo salió mal al intentar crear la subcategoría. Inténtelo nuevamente más tarde.",
+          customClass: {
+              popup: "custom-popup-error",
+              title: "custom-title-error",
+              htmlContainer: "custom-content-error",
+              confirmButton: "custom-button-error",
+          },
+          background: "#fbe9e7",
+          color: "#d32f2f",
+          confirmButtonColor: "#f44336",
+          confirmButtonText: "Entendido",
+          willClose: () => {
+              closeModalAdd(); // Cerrar el modal también si ocurre un error
+          },
+      });
+  }
+};
   // Renderizado del componente
   return (
     <div className={styles.containerPrincipal}>

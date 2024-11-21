@@ -45,7 +45,12 @@ const ModalAddCompany : FC<IModalAdd> = ({closeModalAdd}) =>{
             background: '#fff8e1',
             color: '#856404',
             confirmButtonColor: '#ffcc00',
-            confirmButtonText: 'Completar'
+            confirmButtonText: 'Completar',
+            willClose: () => {
+              // Cerrar el modal aquí
+              closeModalAdd();
+              window.location.reload();
+          },
           });
           return;
         }
@@ -86,7 +91,12 @@ const ModalAddCompany : FC<IModalAdd> = ({closeModalAdd}) =>{
             background: '#fbe9e7',
             color: '#d32f2f',
             confirmButtonColor: '#f44336',
-            confirmButtonText: 'Entendido'
+            confirmButtonText: 'Entendido',
+            willClose: () => {
+              // Cerrar el modal aquí
+              closeModalAdd();
+              window.location.reload();
+          },
           });
         }
       };

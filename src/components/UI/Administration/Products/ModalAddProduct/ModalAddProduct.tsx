@@ -111,24 +111,46 @@ export const ModalAddProduct : FC<IModalAddProduct> = ({closeModal, sucursal}) =
             console.log("Datos enviados:", newProduct);
             await articleService.createArticle(productToCreate);
             
-            
             Swal.fire({
                 icon: "success",
-                title: "Producto agregado",
+                title: "¡Registro exitoso!",
+                text: "El Producto ha sido registrada correctamente.",
+                customClass: {
+                  popup: 'custom-popup-success',
+                  title: 'custom-title-success',
+                  htmlContainer: 'custom-content-success',
+                  confirmButton: 'custom-button-success'
+                },
+                background: 'linear-gradient(135deg, #e0f7fa, #80deea)',
+                color: '#004d40',
                 showConfirmButton: false,
                 timer: 1500,
-                willClose: ()=>{
-                    closeModal();
-                    window.location.reload() 
+                willClose: () => {
+                  closeModal();
+                  window.location.reload();
                 }
-                });
-        }catch(error){
-            console.error("El problema es: ", error);
-            Swal.fire({
+              });
+            } catch (error) {
+              Swal.fire({
                 icon: "error",
-                title: "Oops...",
-                text: "Something went wrong!",
-            });
+                title: "¡Error inesperado!",
+                text: "Algo salió mal al intentar registrar el Producto. Inténtelo nuevamente más tarde.",
+                customClass: {
+                  popup: 'custom-popup-error',
+                  title: 'custom-title-error',
+                  htmlContainer: 'custom-content-error',
+                  confirmButton: 'custom-button-error'
+                },
+                background: '#fbe9e7',
+                color: '#d32f2f',
+                confirmButtonColor: '#f44336',
+                confirmButtonText: 'Entendido',
+                willClose: () => {
+                  // Cerrar el modal aquí
+                  closeModal();
+                  window.location.reload();
+              },
+              });
         }
     }
 

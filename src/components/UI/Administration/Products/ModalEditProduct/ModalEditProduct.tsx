@@ -68,45 +68,87 @@ useEffect(() => {
 const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
   e.preventDefault();
 
-  if (!productToEdit.denominacion || !productToEdit.descripcion || (productToEdit.idCategoria <= 0 || productToEdit.precioVenta <= 0)  || !productToEdit.codigo ) {
-    Swal.fire({
-      icon: "error",
-      title: "Error",
-      text: "Rellene todos los campos.",
-    });
-    return;
+
+    // Validación para asegurarse de que todos los campos estén completos
+    if (
+      !productToEdit.denominacion ||
+      !productToEdit.descripcion ||
+      productToEdit.idCategoria <= 0 ||
+      productToEdit.precioVenta <= 0 ||
+      !productToEdit.codigo
+  ) {
+      Swal.fire({
+          icon: "warning",
+          title: "Información incompleta",
+          text: "Por favor, complete todos los campos antes de continuar.",
+          customClass: {
+              popup: "custom-popup-warning",
+              title: "custom-title-warning",
+              htmlContainer: "custom-content-warning",
+              confirmButton: "custom-button-warning",
+          },
+          background: "#fff8e1",
+          color: "#856404",
+          confirmButtonColor: "#ffcc00",
+          confirmButtonText: "Completar",
+      });
+      return;
   }
-
-
 
   try {
-    const productToSend = {
-      ...productToEdit,
-      idAlergenos: selectedAlergenos,
-      imagenes: imageProduct?[imageProduct] : productToEdit.imagenes
-  }
+      // Preparar el objeto con los datos actualizados
+      const productToSend = {
+          ...productToEdit,
+          idAlergenos: selectedAlergenos,
+          imagenes: imageProduct ? [imageProduct] : productToEdit.imagenes,
+      };
 
-    await articleService.updateArticle(product.id, productToSend);
+      // Llamar al servicio para actualizar el producto
+      await articleService.updateArticle(product.id, productToSend);
 
-    Swal.fire({
-      icon: "success",
-      title: "Producto actualizado",
-      showConfirmButton: false,
-      timer: 1500,
-      willClose: () => {
-        modalClose();
-        window.location.reload();
-      },
-    });
+      // Mostrar mensaje de éxito
+      Swal.fire({
+          icon: "success",
+          title: "¡Producto actualizado!",
+          text: "El producto se ha actualizado correctamente.",
+          customClass: {
+              popup: "custom-popup-success",
+              title: "custom-title-success",
+              htmlContainer: "custom-content-success",
+              confirmButton: "custom-button-success",
+          },
+          background: "linear-gradient(135deg, #e0f7fa, #80deea)",
+          color: "#004d40",
+          showConfirmButton: false,
+          timer: 1500,
+          willClose: () => {
+            modalClose(); // Cerrar el modal
+              window.location.reload(); // Recargar la página
+          },
+      });
   } catch (error) {
-    console.error("El problema es: ", error);
-    console.log("datos envidos", productToEdit);
-    
-    Swal.fire({
-      icon: "error",
-      title: "Oops...",
-      text: "Something went wrong!",
-    });
+      console.error("El problema es: ", error);
+      console.log("Datos enviados:", productToEdit);
+
+      // Mostrar mensaje de error
+      Swal.fire({
+          icon: "error",
+          title: "¡Error al actualizar el producto!",
+          text: "Algo salió mal al intentar actualizar el producto. Inténtelo nuevamente más tarde.",
+          customClass: {
+              popup: "custom-popup-error",
+              title: "custom-title-error",
+              htmlContainer: "custom-content-error",
+              confirmButton: "custom-button-error",
+          },
+          background: "#fbe9e7",
+          color: "#d32f2f",
+          confirmButtonColor: "#f44336",
+          confirmButtonText: "Entendido",
+          willClose: () => {
+            modalClose(); // Cerrar el modal en caso de error
+          },
+      });
   }
 };
 

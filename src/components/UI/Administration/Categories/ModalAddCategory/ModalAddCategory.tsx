@@ -41,9 +41,28 @@ const ModalAddCategory: FC<IModalAddCategory> = ({
     e.preventDefault();
 
     if (!newCategory.denominacion) {
-      alert('No puede dejar en blanco el campo');
-      return;
-    }
+        Swal.fire({
+          icon: "warning",
+          title: "Información incompleta",
+          text: "Por favor, complete el campo antes de continuar.",
+          customClass: {
+              popup: "custom-popup-warning",
+              title: "custom-title-warning",
+              htmlContainer: "custom-content-warning",
+              confirmButton: "custom-button-warning",
+          },
+          background: "#fff8e1",
+          color: "#856404",
+          confirmButtonColor: "#ffcc00",
+          confirmButtonText: "Completar",
+          willClose: () => {
+            // Cerrar el modal aquí
+            closeModalAdd();
+            window.location.reload();
+        },
+    });
+    return;
+}
 
     try {
       // Llamar al servicio para crear la categoría
@@ -55,20 +74,49 @@ const ModalAddCategory: FC<IModalAddCategory> = ({
 
       // Mostrar un mensaje de éxito
       Swal.fire({
-        icon: 'success',
-        title: 'Categoría creada',
-        text: 'La categoría se ha creado exitosamente.',
-      });
+        icon: "success",
+            title: "¡Categoría creada!",
+            text: "La categoría se ha creado exitosamente.",
+            customClass: {
+                popup: "custom-popup-success",
+                title: "custom-title-success",
+                htmlContainer: "custom-content-success",
+                confirmButton: "custom-button-success",
+            },
+            background: "linear-gradient(135deg, #e0f7fa, #80deea)",
+            color: "#004d40",
+            showConfirmButton: false,
+            timer: 1500,
+            willClose: () => {
+                // Cerrar el modal aquí
+                closeModalAdd();
+                window.location.reload();
+            },
+        });
 
       // Llamar a la función de callback para agregar la categoría
       onAddCategory(newCategory);
     } catch (error) {
-      console.error('El problema es: ', error);
+      console.error("El problema es: ", error);
       Swal.fire({
-        icon: 'error',
-        title: 'Error al agregar categoría',
-        showConfirmButton: false,
-        timer: 1500,
+          icon: "error",
+          title: "¡Error al agregar categoría!",
+          text: "Algo salió mal al intentar agregar la categoría. Inténtelo nuevamente más tarde.",
+          customClass: {
+              popup: "custom-popup-error",
+              title: "custom-title-error",
+              htmlContainer: "custom-content-error",
+              confirmButton: "custom-button-error",
+          },
+          background: "#fbe9e7",
+          color: "#d32f2f",
+          confirmButtonColor: "#f44336",
+          confirmButtonText: "Entendido",
+          willClose: () => {
+            // Cerrar el modal aquí
+            closeModalAdd();
+            window.location.reload();
+        },
       });
     }
   };
