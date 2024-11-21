@@ -1,10 +1,10 @@
 .header{
-    background-color: rgb(223, 219, 226);
+    background-color: rgb(221, 226, 219);
     height: 10vh;
     display: flex;
     align-items: center;
     padding: 10px 20px;
-    color: white;
+    color: rgb(0, 0, 0);
 }
 
 .header__logo{
@@ -31,7 +31,7 @@
 
 .headerBtn:hover {
   background-color: rgba(0, 0, 0, 0.1) !important; /* Fondo circular al hacer hover */
-  color:  #007bff !important; /* Cambia el color del icono al hacer hover */
+  color:  #ff0000 !important; /* Cambia el color del icono al hacer hover */
 }
 
 .material-symbols-outlined {

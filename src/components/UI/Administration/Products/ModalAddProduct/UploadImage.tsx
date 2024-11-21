@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import sinImagen from "../assets/imagenes/sinImagen.jpeg"
 import { IImagen } from "../../../../../../src/endPoints/types/IImagen";
 import { ImageService } from "../../../../../Services/imageServices";
+import styles from "./ModalAddProduct.module.css"
 
 interface IUploadImage {
   image?: string | null;
@@ -111,6 +112,7 @@ export const UploadImage: FC<IUploadImage> = ({
           />
         </div>
       ) : (
+        <div className={styles.image}>
         <>
           <input
             accept="image/*"
@@ -119,6 +121,7 @@ export const UploadImage: FC<IUploadImage> = ({
             type="file"
             onChange={handleFileChange}
           />
+
           <label htmlFor="contained-button-file">
             <Button variant="outlined" component="span">
               Elige una imagen
@@ -130,7 +133,9 @@ export const UploadImage: FC<IUploadImage> = ({
             style={{ maxWidth: "100px", height: "auto", marginLeft: "1rem" }}
           />
         </>
+        </div>
       )}
+
     </div>
   );
 };

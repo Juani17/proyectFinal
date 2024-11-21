@@ -41,7 +41,7 @@
     flex-direction: column;
     gap: 10px;
     overflow-y: auto; /* Habilita el scroll */
-    max-height: 80vh; /* Limita el tamaño al 75% del viewport */
+    max-height: 80vh; /* Limita el tamaÃ±o al 75% del viewport */
     justify-content: flex-start; /* Alinea los elementos al principio */
 }
 

@@ -3,7 +3,6 @@
     align-items: center;
     background-color: rgb(255, 255, 255);
     border-radius: 3vh;
-    box-shadow: 5px 5px 25px;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -17,24 +16,28 @@
     padding: 10px;
     text-align: center;
 }
+
 .containerBody{
     padding: 20px;
     display: flex;
     flex-direction: column;
     gap: 2vh;
     text-align: center;
-    
 }
+
 .formContainer input{
     text-align: left;
     height: 30px;
     border-radius: 5px;
+    background-color: black;
+    color: white;
 }
 
 .formContainer button{
     border-radius: .4rem;
     border: rgb(0, 0, 0) solid 2px;
-    
+    background-color: black;
+    color: white;
 }
 
 .containerButtons{
@@ -43,6 +46,15 @@
     padding: 20px;
     display: flex;
     gap: 10vw;
+}
+
+.containerButtons button{
+    background-color: black;
+    border: black;
+}
+
+.containerButtons button:hover{
+    background-color: #f66c10;
 }
 
 .formContainer{
@@ -57,7 +69,8 @@
 .formContainer textarea{
     max-height: 150px;
     min-height: 30px;
-
+    background-color: black;
+    color: white;
 }
 
 .formBlockOne{
@@ -78,12 +91,13 @@
   
   .alergenosList {
     position: absolute;
-    background: #fff;
-    border: 1px solid #ccc;
+    background: #000000;
+    border: 1px solid #ffffff;
     max-height: 150px;
     overflow-y: auto;
     width: 100%;
     z-index: 10;
+    color: rgb(255, 255, 255);
   }
   
   .alergenoOption {
@@ -94,6 +108,16 @@
   
   .alergenoOption input {
     margin-right: 10px;
-    height: 30px;
+    height: 30px;  
   }
 
+
+
+.category select{
+    background-color: black;
+    color: #fff;
+}
+
+.image body {
+    background-color: #000000;
+}

@@ -25,6 +25,7 @@
 .ModalEditAlergenTitle{
     padding: 10px;
     text-align: center;
+    color: #ff6f00 ;
 }
 .containerBody{
     padding: 20px;
@@ -37,6 +38,8 @@
     text-align: left;
     height: 8vh;
     border-radius: 5px;
+    background-color: black;
+    color: white;
 }
 .containerButtons{
     padding: 20px;
@@ -59,14 +62,21 @@
 }
 
 .ModalEditAlergenButtons button{
-    background-color: #007bff;
+    background-color: #000000;
     color: #fff;
     border-radius: 6px;
-    border-color: #007bff;
+    border-color: #000000;
     font-size: 16px;
     height: 38px;
 }
+
+.ModalEditAlergenButtons :hover{
+    background-color: #ff6f00;
+}
+
 .uploadImage{
     width: 300px;
     margin: 0 auto;
+    background-color: #000;
+    color: #ff6f00;
 }

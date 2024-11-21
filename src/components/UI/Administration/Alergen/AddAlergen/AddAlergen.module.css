@@ -8,22 +8,20 @@
     box-shadow: 5px 5px 25px;
     background-color: white;
     border-radius: 18px;
-    background-color: white;
-    border-radius: 3vh;
-    box-shadow: 5px 5px 25px;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     padding: 20px;
-    color: #f66c10;
     z-index: 3; 
 }
 
 .ModalAddAlergenTitle{
     padding: 10px;
     text-align: center;
+    color: #ff6f00;
 }
+
 .containerBody{
     padding: 20px;
     display: flex;
@@ -35,7 +33,9 @@
     text-align: left;
     height: 8vh;
     border-radius: 5px;
+    color: white;
 }
+
 .containerButtons{
     padding: 20px;
     display: flex;
@@ -47,6 +47,7 @@
     height: 70px;
     width: 400px;
     margin: 0 auto;
+    background-color: black;
 }
 
 .ModalAddAlergenButtons {
@@ -54,6 +55,9 @@
     justify-content: space-between;
     margin: 0 auto;
     width: 80%; 
+}
+.ModalAddAlergenButtons :hover{
+    background-color: #ff6f00;
 }
 
 .ModalAddAlergenButtons button{
@@ -65,4 +69,6 @@
 }
 .uploadImage{
     margin: 0 auto;
+    background-color: #000000;
+    color: #ff6f00;
 }

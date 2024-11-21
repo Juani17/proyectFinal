@@ -24,9 +24,19 @@
     text-align: left;
     height: 8vh;
     border-radius: 5px;
+    background-color: black;
+    color: white;
 }
 .containerButtons{
     padding: 20px;
     display: flex;
     gap: 13vw;
+}
+.containerButtons button{
+    background-color: black;
+    color: white;
+    border-radius: 6px;
+}
+.containerButtons :hover{
+    background-color: #ff6f00;
 }

@@ -13,7 +13,7 @@
 
 /* Estilo para los botones */
 .buttonView {
-    background-color: #1c50c0 !important; /* Verde para indicar vista */
+    background-color: #000000 !important; /* Verde para indicar vista */
     color: white !important;
     border: none !important;
     border-radius: 4px !important;
@@ -27,11 +27,11 @@
   }
   
   .buttonView:hover {
-    background-color: #45a049 !important; /* Más oscuro al pasar el ratón */
+    background-color:#ff0000 !important; /* Más oscuro al pasar el ratón */
   }
   
   .buttonEdit {
-    background-color: #31568f !important; /* Naranja para indicar edición */
+    background-color: #000000 !important; /* Naranja para indicar edición */
     color: white !important;
     border: none !important;
     border-radius: 4px !important;
@@ -44,7 +44,7 @@
   }
   
   .buttonEdit:hover {
-    background-color: #e68900 !important; /* Más oscuro al pasar el ratón */
+    background-color: #ff0000 !important; /* Más oscuro al pasar el ratón */
   }
   
   /* Estilo para los íconos */

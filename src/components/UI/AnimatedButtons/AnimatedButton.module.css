@@ -33,5 +33,5 @@
 }
 
 .circularButton:hover .icon {
-  color: #007bff; /* Cambia el color del icono al hacer hover */
+  color: #ff0000; /* Cambia el color del icono al hacer hover */
 }
