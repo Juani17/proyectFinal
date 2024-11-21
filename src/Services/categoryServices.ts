@@ -48,7 +48,7 @@ export const categoryService = {
     return response.data;
   },
 
-
+  // Método para mostrar subcategorias por id sucursal 
   async getAllSubCategoriesBySucursalId(sucursalId: number): Promise<ICategorias[]> {
     const response = await axios.get<ICategorias[]>(`${API_URL}/allSubCategoriasPorSucursal/${sucursalId}`);
     return response.data;

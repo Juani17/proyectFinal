@@ -45,19 +45,18 @@ const ListCategories = () => {
   };
 
   // Agregar la nueva categoría a la lista después de recibir la respuesta de la API
-  const handleAddCategory = (newCategory: ICreateCategoria) => {
-    categoryService.createCategory(newCategory).then((createdCategory) => {
-      // Actualizar el estado con la categoría recién creada, con el ID de la API
-      setCategories((prevCategories) => [
-        ...prevCategories,
-        createdCategory, // La categoría creada con su ID único
-      ]);
-      // Cerrar el modal después de agregar la categoría
+  const handleAddCategory = async (newCategory: ICreateCategoria) => {
+    try {
+      await categoryService.createCategory(newCategory);
+      // Volver a obtener la lista de categorías desde el servidor
+      const updatedCategories = await categoryService.getCategoriesBySucursal(selectedSucursal?.id);
+      setCategories(updatedCategories);
       closeModal();
-    }).catch((error) => {
+    } catch (error) {
       console.error("Error al agregar categoría:", error);
-    });
+    }
   };
+  
 
   return (
     <div className={styles.contentHero}>
