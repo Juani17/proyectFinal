@@ -129,8 +129,8 @@ const ModalEditCategory : FC<IModalEditCategory> = ({closeModalEdit, category}) 
                 <h1>Editar Categoria</h1>
             </div>
             <div className={styles.containerBody}>
-                <label htmlFor="">Ingrese Denominacion</label>
-                <input type="text" placeholder="Denominacion" value={categoryEdit.denominacion} name="denominacion" onChange={handleChange}/>
+                <label htmlFor="">Nombre</label>
+                <input type="text" placeholder="Ingrese Nombre" value={categoryEdit.denominacion} name="denominacion" onChange={handleChange}/>
             </div>
             <div className={styles.containerButtons}>
                 <Button onClick={handleSubmit}>Aceptar</Button>

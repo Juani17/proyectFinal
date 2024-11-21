@@ -75,8 +75,9 @@
 
 /* Botones */
 button {
-    background-color: #f5f5f5;
+    background-color: #474444 !important;
     color: #000;
+    border: #000 !important;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
@@ -86,7 +87,7 @@ button {
 }
 
 button:hover {
-    background-color: #ddd;
+    background-color: #ff0000 !important;
     transform: translateY(-3px);
 }
 

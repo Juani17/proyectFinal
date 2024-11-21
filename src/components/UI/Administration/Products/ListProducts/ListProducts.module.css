@@ -55,8 +55,9 @@
   }
   
   .addButton {
-    background-color: #4caf50;
+    background-color: #000000 !important;
     color: white;
+    border: #000000 !important;
     border-radius: 8px;
     padding: 10px 20px;
     font-weight: bold;
@@ -66,26 +67,31 @@
 
 
 .addButton:hover {
-    background-color: #ff0000;
+    background-color: #ff0000 !important;
 }
   
 .filterContainer select {
     padding: 10px;
     border-radius: 8px;
-    border: 1px solid #ccc;
+    border: #000000;
+    border: 1px solid #ffffff;
     font-size: 16px;
     min-width: 250px;
+    background-color: #c8c2c2;
+    color: rgb(0, 0, 0);
 }
 
 .filterContainer select:focus {
-    border-color: #55ff00;
+    border-color: #000000;
     outline: none;
-    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+    background-color: #c8c2c2;
+    color: rgb(0, 0, 0);
 }
 /* Table styles to handle long text */
 .tableContainer {
     max-height: 66vh;
     overflow-y: auto;
+    
 }
 
 .tableCell {
