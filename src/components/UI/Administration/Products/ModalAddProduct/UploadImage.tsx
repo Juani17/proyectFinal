@@ -99,17 +99,18 @@ export const UploadImage: FC<IUploadImage> = ({
           >
             Eliminar imagen
           </Button>
+          <div >
           <img
             src={imageObjeto ? imageObjeto.url : image || sinImagen}
-            alt="Uploaded"
+            alt="No Image"
             style={{
-              backgroundColor: "#ccc",
               width: "10vw",
               borderRadius: ".4rem",
               height: "10vh",
               objectFit: "cover",
             }}
           />
+          </div>
         </div>
       ) : (
         <div className={styles.image}>
@@ -129,7 +130,7 @@ export const UploadImage: FC<IUploadImage> = ({
           </label>
           <img
             src={sinImagen}
-            alt="Sin imagen"
+            alt=" "
             style={{ maxWidth: "100px", height: "auto", marginLeft: "1rem" }}
           />
         </>

@@ -1,82 +1,92 @@
 .ModalEditAlergen {
-    min-height: 50vh;
-    min-width: 600px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    border: solid black 2px;
-    box-shadow: 5px 5px 25px;
-    background-color: white;
-    border-radius: 18px;
-    padding: 20px;
-    background-color: white;
-    border-radius: 3vh;
-    box-shadow: 5px 5px 25px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 20px;
-    color: #000;
-    z-index: 3; 
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    min-width: 600px !important;
+    min-height: 50vh !important;
+    padding: 20px !important;
+    background-color: white !important;
+    border: 2px solid black !important;
+    border-radius: 18px !important;
+    box-shadow: 5px 5px 25px rgba(0, 0, 0, 0.5) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    z-index: 3 !important;
+    text-align: center !important;
+    color: #000 !important;
 }
 
+.ModalEditAlergenTitle {
+    font-size: 24px !important;
+    font-weight: bold !important;
+    color: #ff6f00 !important;
+    margin-bottom: 20px !important;
+}
 
-.ModalEditAlergenTitle{
-    padding: 10px;
-    text-align: center;
-    color: #ff6f00 ;
-}
-.containerBody{
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 2vh;
-    text-align: center;
-}
-.containerBody input{
-    text-align: left;
-    height: 8vh;
-    border-radius: 5px;
-    background-color: black;
-    color: white;
-}
-.containerButtons{
-    padding: 20px;
-    display: flex;
-    gap: 13vw;
+.containerBody {
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 20px !important;
+    align-items: center !important;
+    padding: 20px !important;
 }
 
 .ModalEditAlergenInput {
-    margin-inline: 20px;
-    height: 70px;
-    width: 400px;
-    margin: 0 auto;
+    width: 80% !important;
+    max-width: 400px !important;
+    height: 50px !important;
+    padding: 10px !important;
+    font-size: 16px !important;
+    border-radius: 6px !important;
+    border: 1px solid #ccc !important;
+    background-color: #000 !important;
+    color: #fff !important;
 }
+
+.ModalEditAlergenInput::placeholder {
+    color: black !important; /* El texto del placeholder será negro */
+    opacity: 1 !important;
+}
+
+.uploadImage {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 80% !important;
+    max-width: 400px !important;
+    padding: 20px !important;
+    border-radius: 6px !important;
+    color: #ff6f00 !important;
+    font-size: 14px !important;
+    margin: 0 auto !important; /* Esto centra el contenedor de la imagen */
+}
+
+
 
 .ModalEditAlergenButtons {
-    display: flex;
-    justify-content: space-between;
-    margin: 0 auto;
-    width: 80%; 
+    width: 100% !important;
+    display: flex !important;
+    justify-content: space-around !important;
+    margin-top: 20px !important;
 }
 
-.ModalEditAlergenButtons button{
-    background-color: #000000;
-    color: #fff;
-    border-radius: 6px;
-    border-color: #000000;
-    font-size: 16px;
-    height: 38px;
+.ModalEditAlergenButtons button {
+    width: 120px !important;
+    height: 40px !important;
+    background-color: #000000 !important;
+    color: #fff !important;
+    border-radius: 6px !important;
+    font-size: 16px !important;
+    cursor: pointer !important;
+    border: none !important;
+    transition: background-color 0.3s ease !important;
 }
 
-.ModalEditAlergenButtons :hover{
-    background-color: #ff6f00;
-}
-
-.uploadImage{
-    width: 300px;
-    margin: 0 auto;
-    background-color: #000;
-    color: #ff6f00;
+.ModalEditAlergenButtons button:hover {
+    background-color: #ff6f00 !important;
+    color: #000 !important;
 }

@@ -131,8 +131,8 @@ const ModalAddAlergen: FC<IModalAdd> = ({ closeModalAdd }) => {
 
         <input
           type="text"
-          name="denominacion"
-          placeholder="Ingresa una denominación"
+          name="Nombre"
+          placeholder="Ingresa un Nombre"
           className={styles.ModalAddAlergenInput}
           onChange={handleChange}
         />

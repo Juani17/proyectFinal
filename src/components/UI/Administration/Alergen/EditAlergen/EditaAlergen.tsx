@@ -146,39 +146,39 @@ try {
   };
 
   return (
-    <form className={styles.ModalEditAlergen}>
-      <div className={styles.containerBody}>
-      <div className={styles.ModalEditAlergenTitle}>Editar Alergeno</div>
+      <form className={styles.ModalEditAlergen}>
+        <div className={styles.containerBody}>
+        <div className={styles.ModalEditAlergenTitle}>Editar Alergeno</div>
 
 
-      <input
-        type="text"
-        name="denominacion"
-        placeholder="Editar denominación"
-        value={editAlergen.denominacion}
-        className={styles.ModalEditAlergenInput}
-        onChange={handleChange}
-      />
-      <div className={styles.uploadImage}>
-
-      <UploadImage 
-        imageObjeto={imageAlergeno}
-        setImageObjeto={setImageAlergeno}
-        typeElement="images"
+        <input
+          type="text"
+          name="Nombre"
+          placeholder="Editar Nombre"
+          value={editAlergen.denominacion}
+          className={styles.ModalEditAlergenInput}
+          onChange={handleChange}
         />
-        </div>
+        <div className={styles.uploadImage}>
 
-      <div className={styles.ModalEditAlergenButtons}>
-        <button className={styles.ModalConfirm} onClick={handleSubmit}>
-          CONFIRMAR
-        </button>
-        <button className={styles.ModalCancel} onClick={handleCancel}>
-          CANCELAR
-        </button>
-      </div>
+        <UploadImage 
+          imageObjeto={imageAlergeno}
+          setImageObjeto={setImageAlergeno}
+          typeElement="images"
+          />
+          </div>
+
+        <div className={styles.ModalEditAlergenButtons}>
+          <button className={styles.ModalConfirm} onClick={handleSubmit}>
+            CONFIRMAR
+          </button>
+          <button className={styles.ModalCancel} onClick={handleCancel}>
+            CANCELAR
+          </button>
         </div>
-    </form>
-  );
+          </div>
+      </form>
+    );
 };
 
 export default ModalEditAlergen;
