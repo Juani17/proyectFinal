@@ -53,7 +53,7 @@
     border: black;
 }
 
-.containerButtons.hover{
+.containerButtons button:hover{
     background-color: #f66c10;
 }
 

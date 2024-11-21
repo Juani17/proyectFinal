@@ -1,21 +1,23 @@
 .mainContent {
     display: flex;
+    height: 90vh; /* Asegura que ocupe toda la altura de la ventana */
+    overflow: hidden; /* Evita que los elementos se salgan de la pantalla */
 }
 
 .MainDiv {
     text-align: center;
     width: 100%;
-    height: 100%;
+    height: 90%;
     justify-content: center;
-    overflow-x: hidden;
-    overflow-y: scroll;
+    
+    max-height: 100vh; /* Restringe el contenedor al alto de la pantalla */
     min-height: 90vh;
 }
-.BodyDeploy{
-    
+
+.BodyDeploy {
     width: 100%;
     height: 100%;
-    overflow-y: scroll;
+    max-height: 100vh; /* Limita el alto al 90% de la pantalla */
 }
 
 .titleContainer {
@@ -38,13 +40,15 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
-    height: 75vh;
-    justify-content: center;
+    overflow-y: auto; /* Habilita el scroll */
+    max-height: 80vh; /* Limita el tamaÃ±o al 75% del viewport */
+    justify-content: flex-start; /* Alinea los elementos al principio */
 }
 
 ul {
     list-style: none;
     padding: 0px;
+    margin: 0;
 }
 
 .containerItem {
@@ -84,7 +88,9 @@ ul {
 }
 
 .ModalAddAlergen {
+    max-height: 100vh; /* Asegura que el modal no exceda el viewport */
     min-height: 50vh;
+    max-width: 90vw;
     min-width: 600px;
     top: 50%;
     left: 50%;
@@ -99,6 +105,7 @@ ul {
     color: #ff8800;
     border-radius: 18px;
     padding: 20px;
+    overflow-y: auto; /* Habilita scroll si el contenido es muy grande */
 }
 
 .hidden {
@@ -120,7 +127,7 @@ ul {
 }
 
 .ModalAddAlergenButtons button {
-    background-color: #ff6600;
+    background-color: #ff6600 !important;
     color: #fff;
     border-radius: 6px;
     font-size: 16px;

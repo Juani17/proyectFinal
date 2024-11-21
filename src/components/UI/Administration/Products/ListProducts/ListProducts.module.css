@@ -12,8 +12,8 @@
 }
 /* Estilo para el encabezado de la tabla */
 .tableHead {
-    background-color: #3f51b5 !important; /* Azul oscuro */
-    color: white !important;
+    background-color: #c6c0c0 !important; /* Azul oscuro */
+    color: rgb(255, 0, 0) !important;
   }
   
   .tableHeadCell {
@@ -23,6 +23,7 @@
     text-align: center !important;
     padding: 12px !important;
     border-bottom: 2px solid #ffffff !important;
+    
   }
   .tableName {
     
@@ -63,8 +64,9 @@
     border: none;
 }
 
+
 .addButton:hover {
-    background-color: #45a049;
+    background-color: #ff0000;
 }
   
 .filterContainer select {
@@ -76,7 +78,7 @@
 }
 
 .filterContainer select:focus {
-    border-color: #007bff;
+    border-color: #55ff00;
     outline: none;
     box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
 }
