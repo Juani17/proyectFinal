@@ -47,10 +47,9 @@ const ModalAddSubCategory: FC<IModalAddSubCategory> = ({
 
     // Validación simple para verificar que el campo no esté vacío
     if (!newSubCategory.denominacion) {
-      alert("No puede dejar en blanco el campo");
+      alert("No puede dejar vacio el campo");
       return; // Detiene la ejecución si la validación falla
     }
-
     try {
       // Llamar al servicio para crear la categoría
       await categoryService.createCategory(newSubCategory);
@@ -61,7 +60,7 @@ const ModalAddSubCategory: FC<IModalAddSubCategory> = ({
       // Mostrar mensaje de éxito
       Swal.fire({
         icon: 'success',
-        title: 'Categoría creada',
+        title: 'Subcategoría creada',
         text: 'La subcategoría se ha creado exitosamente.',
       });
       

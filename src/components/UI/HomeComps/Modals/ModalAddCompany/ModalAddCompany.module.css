@@ -33,6 +33,13 @@
     padding: 16px;
 }
 
+.containerForm input,
+.containerForm select {
+    text-align: center;
+    background-color: #000000;
+    color: white;
+}
+
 /* Contenedor de Botones */
 .containerButtons {
     display: flex;
