@@ -197,20 +197,20 @@ const handleAlergenosToggle = () => {
         <form action="" className={styles.containerForm} >
         <div className={styles.blockOne}>
 
-                    <label htmlFor="">Denominacion</label>
+                    <label htmlFor="">Nombre</label>
                     <input type="text" placeholder="Nombre del Producto" name="denominacion" value={productToEdit.denominacion} onChange={handleChange}/>
 
-                    <label htmlFor="">Precio venta</label>
-                    <input type="text" placeholder="Razon Social de la empresa" name="precioVenta" value={productToEdit.precioVenta} onChange={handleChange}/>
+                    <label htmlFor="">Precio</label>
+                    <input type="text" placeholder="Precio del Producto" name="precioVenta" value={productToEdit.precioVenta} onChange={handleChange}/>
 
                     <label htmlFor="">Descripcion</label>
-                    <input type="text" placeholder="Descripcion del producto" name="descripcion" value={productToEdit.descripcion} onChange={handleChange}/>
+                    <input type="text" placeholder="Descripcion del Producto" name="descripcion" value={productToEdit.descripcion} onChange={handleChange}/>
         </div>
 
         <div className={styles.blockTwo}>
 
                     <label htmlFor="">Código</label>                    
-                    <input type="text" placeholder="Link de imagen" name="codigo" value={productToEdit.codigo} onChange={handleChange}/>
+                    <input type="text" placeholder="Código del Producto" name="codigo" value={productToEdit.codigo} onChange={handleChange}/>
 
                     <label htmlFor="categoria">Categoria: </label>
                       <select name="" id="" onChange={handleCategoryChange}>
@@ -228,9 +228,9 @@ const handleAlergenosToggle = () => {
                     
 
                   <div className={styles.alergenosDropdown}>
-              <Button type="button" onClick={handleAlergenosToggle}>
+              <button type="button" onClick={handleAlergenosToggle}>
                 Seleccionar alérgenos
-              </Button>
+              </button>
               {isAlergenosOpen && (
                 <div className={styles.alergenosList}>
                     {alergenos.map((alergeno) => (

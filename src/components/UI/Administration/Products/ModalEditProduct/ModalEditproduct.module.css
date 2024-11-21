@@ -1,15 +1,14 @@
 .containerPrincipal{
     min-height: 50vh;
     min-width: 600px;
-    background-color: white;
+    background-color: rgb(255, 255, 255);
     border-radius: 3vh;
-    box-shadow: 5px 5px 25px;
     position: fixed; /* Position fixed para centrar el popup */
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     padding: 20px;
-    color: #000;
+    color: #ff6600;
     z-index: 3;
 }
 .containerTitle{
@@ -47,16 +46,23 @@
   justify-content: center;
   padding: 10px 20px;
   width: 100px;
+  background-color: black;
+  border: black;
 }
 
+.containerButton button:hover{
+  background-color: #ff6600;
+}
 
 .alergenosDropdown {
     position: relative;
+    
   }
   
   .alergenosList {
     position: absolute;
-    background: #fff;
+    background: #000000;
+    color: white;
     border: 1px solid #ccc;
     max-height: 150px;
     overflow-y: auto;
@@ -68,11 +74,13 @@
     padding: 5px;
     display: flex;
     align-items: center;
+    background-color: #000000;
   }
   
   .alergenoOption input {
     margin-right: 10px;
     height: 30px;
+    background-color: #000000;
   }
 
   .blockOne{
@@ -81,12 +89,21 @@
     gap: 2vh;
 }
 
+.alergenoOption select{
+  background-color:#000000 ;
+}
+
 .blockTwo{
     display: flex;
     flex-direction: column;
     gap: 2vh;
     align-items: flex-start;
 }
+.alergenosDropdown button{
+  background-color: #000000;
+  color: white;
+}
+
 #habilitado{
     margin-left: -100px;
 }
@@ -94,5 +111,19 @@
 .containerForm textarea{
   max-height: 150px;
   min-height: 30px;
+}
 
+.containerData input,
+.containerData select{
+  background-color: #000000;
+  color: white;
+}
+
+.uploadImage {
+  background-color: #000000;
+  color: #ff6600;
+}
+
+.uploadImage select{
+  color: aqua;
 }
