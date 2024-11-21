@@ -24,7 +24,7 @@ const ModalAddCategory: FC<IModalAddCategory> = ({
 
   const [newCategory, setNewCategory] = useState<ICreateCategoria>({
     denominacion: '',
-    idEmpresa: selectedSucursal.empresa?.id || 0,
+    idEmpresa: selectedSucursal.empresa?.id,
     idCategoriaPadre: null,
   });
 
@@ -70,6 +70,7 @@ const ModalAddCategory: FC<IModalAddCategory> = ({
         idEmpresa: newCategory.idEmpresa,
         idCategoriaPadre: newCategory.idCategoriaPadre,
       });
+;
 
       // Mostrar un mensaje de éxito
       Swal.fire({
