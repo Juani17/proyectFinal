@@ -20,12 +20,14 @@
     gap: 2vh;
     text-align: center;
 }
-.containerBody ::placeholder{
+.containerBody input{
     text-align: left;
     height: 8vh;
     border-radius: 5px;
     background-color: black;
+    color: white;
 }
+
 .containerButtons{
     padding: 20px;
     display: flex;

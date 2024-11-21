@@ -142,11 +142,11 @@ export const ModalAddProduct : FC<IModalAddProduct> = ({closeModal, sucursal}) =
             <form action="" className={styles.formContainer}>
 
             <div className={styles.formBlockOne}>
-                <label htmlFor="denominacion">Denominacion: </label>
-                <input type="text" placeholder="Denominacion" value={newProduct.denominacion} name="denominacion" onChange={handleChange}/>
+                <label htmlFor="denominacion"> Nombre: </label>
+                <input type="text" placeholder="Nombre" value={newProduct.denominacion} name="denominacion" onChange={handleChange}/>
 
-                <label htmlFor="precioVenta">Precio de venta: </label>
-                <input type="number" placeholder="Precio de venta" min={0} value={newProduct.precioVenta} name="precioVenta" onChange={handleChange}/>
+                <label htmlFor="precioVenta"> Precio: </label>
+                <input type="number" placeholder="Precio " min={0} value={newProduct.precioVenta} name="precioVenta" onChange={handleChange}/>
 
                 <label htmlFor="descripcion">Descripcion: </label>
                 <textarea
@@ -162,17 +162,18 @@ export const ModalAddProduct : FC<IModalAddProduct> = ({closeModal, sucursal}) =
             
             <div className={styles.formBlockTwo}>
 
-                <label htmlFor="codigo">Código: </label>
+                <label htmlFor="codigo"> Código: </label>
                 <input type="text" placeholder="Código" value={newProduct.codigo} name="codigo" onChange={handleChange} />
 
-                <label htmlFor="categoria">Categoria: </label>
-                <select name="" id="" onChange={handleCategoryChange}>
-                    <option value="">Seleccione una Categoría</option>
-                    {categories.map((category) => (
+                <div className={styles.category}>
+                    <label htmlFor="categoria"> Categoria: </label>
+                    <select name="" id="" onChange={handleCategoryChange}>
+                        <option value="">Seleccione una Categoría</option>
+                        {categories.map((category) => (
                         <option key={category.id} value={category.id}>{category.denominacion}</option>
                     ))}
-                </select>
-
+                    </select>
+                </div>
 
                 <label htmlFor="alergenos">Alergenos</label>
             <div className={styles.alergenosDropdown}>

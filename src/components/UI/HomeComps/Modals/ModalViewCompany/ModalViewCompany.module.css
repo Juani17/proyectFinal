@@ -1,5 +1,5 @@
 .containerPrincipalOn {
-    min-height: 50vh;
+    min-height: 50vh !important; 
     min-width: 25vw;
     background-color: #f5f5f5; /* Fondo gris claro */
     border-radius: 15px; /* Bordes más suaves */

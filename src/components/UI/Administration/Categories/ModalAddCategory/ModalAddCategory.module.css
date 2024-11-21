@@ -25,6 +25,7 @@
     height: 8vh;
     border-radius: 5px;
     background-color: black;
+    color: white;
 }
 .containerButtons{
     padding: 20px;
