@@ -21,7 +21,7 @@ const CategoryCard: FC<ICategoryCard> = ({ category }) => {
   const [showModalEditCategory, setShowModalEditCategory] = useState(false); //Estado para ver el modal de editar
 
 
-  // Recuperamos la sucursal seleccionada desde el localStorage o el store de Redux
+  // Traemos la sucursal seleccionada desde la store de Redux
   const selectedSucursal = useSelector((state: RootState) => state.sucursal.selectedSucursal);
 
 

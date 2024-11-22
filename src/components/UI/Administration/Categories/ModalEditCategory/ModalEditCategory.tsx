@@ -16,16 +16,18 @@ interface IModalEditCategory{
 const ModalEditCategory : FC<IModalEditCategory> = ({closeModalEdit, category}) =>{
 
     //Selecciono empresa
-    const storedEmpresa = localStorage.getItem('empresa');
-    const selectedEmpresa = storedEmpresa ? JSON.parse(storedEmpresa) : useSelector(
-        (state : RootState) => state.company.selectedCompany
-    )
-
+    const selectedEmpresa = useSelector((state: RootState) => state.company.selectedCompany);
     //Selecciono sucursal
-    const storedSucursal = localStorage.getItem('sucursal');
-    const selectedSucursal = storedSucursal ? JSON.parse(storedSucursal) : useSelector(
-        (state : RootState) => state.sucursal.selectedSucursal
-    )
+    const selectedSucursal = useSelector((state: RootState) => state.sucursal.selectedSucursal);
+
+    // Comprobaciones de seleccion de empresa y sucursal
+    if (!category || !selectedSucursal) {
+        return <div>Error: No se encontró la sucursal seleccionada.</div>;
+        }
+    if (!selectedEmpresa) {
+        return <div>Error: No se encontró la empresa seleccionada.</div>;
+      } 
+
 
     //Creo estado para el objeto de categoria
     const [categoryEdit, setCategoryEdit] = useState<IUpdateCategoria>({
@@ -117,7 +119,6 @@ const ModalEditCategory : FC<IModalEditCategory> = ({closeModalEdit, category}) 
             confirmButtonText: "Entendido",
             willClose: () => {
                 closeModalEdit(); // Asegurar el cierre del modal
-                window.location.reload(); // Recargar la página
             },
         });
     }
