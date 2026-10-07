@@ -32,4 +32,4 @@ Scripts disponibles: `npm run build`, `npm run lint` y `npm run preview`.
 
 Proyecto del grupo Javachispas: Francisco Barraco, Franco Sardi, Joaquín Redondo y Juan Emilio Frery.
 
-Se conserva la implementación académica original. La capa de empresas contiene una referencia adicional a `process.env.REACT_APP_API_URL_API`, incompatible con el uso habitual de variables en Vite; su corrección requiere cambios de código. La integración necesita el backend correspondiente y no fue validada contra un servicio activo.
+Se conserva la implementación académica original. La integración necesita el backend correspondiente y no fue validada contra un servicio activo.
